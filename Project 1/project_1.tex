@@ -1,0 +1,277 @@
+\documentclass[uio,jmp,amsmath,amssymb,reprint]{revtex4-1}
+
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath,graphicx,varioref,verbatim,amsfonts,geometry,grffile}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{flafter}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{subcaption}
+% Document formatting
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{1.5mm}
+%Color scheme for listings
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+%Listings configuration
+\usepackage{listings}
+%Hvis du bruker noe annet enn python, endre det her for å få riktig highlighting.
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+        
+\newcounter{subproject}
+\renewcommand{\thesubproject}{\alph{subproject}}
+\newenvironment{subproj}{
+\begin{description}
+\item[\refstepcounter{subproject}(\thesubproject)]
+}{\end{description}}
+
+\numberwithin{equation}{section}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\infint}{\int_{-\infty}^\infty}
+\newcommand{\pdot}{\boldsymbol{\cdot}}
+
+
+\begin{document}
+
+\title{FYS-STK4155 – Applied data analysis and machine learning\\ Project 1 - Regression analysis and resampling methods}% Force line breaks with \\
+
+\author{Jon A Ottesen}
+%{Department of physics, University of Oslo}%Lines break automatically or can be 
+\date{\today}
+
+\begin{abstract}
+The main topic of this projects is to study different regression methods including Ordinary Least Squares, Ridge regression and Lasso regression. These methods in conjunction with resampling techniques such as k-fold cross-validation are used in polynomial and exponential fitting on the 2-dimensional Franke function surface with added Gaussian noise and .... The different methods give varied result in reproducing the original surface with .... having the highest MSE and R2 compared to ... with MSE being. Finally real-life data is the analysed using the same techniques as the Franke function.
+
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}\label{sec:Introduction}
+
+The first paper on regression methods was published by Legendre in 1805 and Gauss in 1809 about the least square method\cite{wiki:Regression_analysis}. Albeit being a relatively simple theory developed before the computational era of statistics its importance cannot be overstated, and is still prominent and even outperforming newer more complex methods in some cases. The simple nature of the least square theory makes it a excellent starting point for further studies in regression theory while still giving decent results in real-life data-analysis. Especially when applied together with resampling methods which has a vital role in modern statistical data analysis.
+
+Regression methods are often used in conjunction with measured data to determine the underlying patterns. Unlike in most research where linear regression is used as a tool for data-analysis, it will here be the main object of study itself. To stimulate a more real-life usage of linear regression actual data from ... is used coupled with generated data from  Franke's function. The central themes are thus resampling methods, error analysis such as the mean squared error, the bias-variance tradeoff and most importantly the main linear regression methods themselves: OLS, rigde regression and lasso regression.
+
+%Using different linear regression methods and error analysis such as the mean squared error(from now called MSE)
+
+%The aim of this project is to study the application of different linear regression methods in conjunction with resampling methods. Error analysis such as the mean squared error (from now called MSE) is later applied to study the bias-variance tradeoff.
+
+\section{Theory}\label{sec:Theory}
+
+As a basis for parts of the theory below we will assume the data follows this form:
+\begin{equation}\label{eq:01}
+    \bm{y} = f(\bm{x}) + \bm{\epsilon}
+\end{equation}
+where \(\bm{y}\) is the data-sample, f is the function describing the data and \(\bm{\epsilon}\) is the noise of the data ... distributed with a mean of 0.
+
+\subsection{Moments and error analysis}
+
+\subsubsection{Moments in statistics}
+
+To describe, analyse and understand data, statistical knowledge is essential. Various moments in statistics are therefore used when describing key elements of data, models or functions. In our case to describe and understand the model created with linear regression, and for this the the 1\(^\text{st}\) and 2\(^\text{and}\) order moments will be used.
+
+For a real valued continuous function \(g(x)\) for real-valued x, the n-th moment is given by
+\begin{equation}
+    \mu_n(c) = \infint (x-c)^ng(x)dx
+\end{equation}
+with c as a real variable. By restricting g as a normalized non-negative function the 1\(^\text{st}\) moment around \(c=0\) is the mean value given by
+\begin{align}
+    \mu = \infint xg(x)dx.
+\end{align}
+Higher order moments are often defined around the mean:
+\begin{align}
+    \mu_n(\mu) = \infint (x-\mu)g(x)dx
+\end{align}
+to provide more qualitative information about the distribution. The 2\(^\text{nd}\) moment is the variance
+\begin{equation}
+    \mu_2(\mu) = \sigma^2 = \infint (x-\mu)^2g(x)dx
+\end{equation}
+where \(\sigma\) is the standard-deviation.
+
+So far I have only looked at the continuous case where the probability distribution is know. In the non continuous case with a sample of finite size the true moments of the distribution can realistically only be approximated. There is however theoretically possible to get the correct and this is covered in section ...
+
+For a finite sample of size n taken from the function g the 1\(^\text{st}\) moment i.e mean value is for the sample given by:
+\begin{equation}\label{eq:02}
+    \overline{g^s} = \frac{1}{n}\sum_{i=1}^n g_i^s
+\end{equation}
+The 2\(^\text{an}\) moment i.e variance is for the sample
+\begin{align}\label{eq:03}
+    \text{Var}(g^s) = \frac{1}{n}\sum_{i=1}^n (g^s_i - \overline{g^s})^2
+\end{align}
+where in both cases \(g^s\) is a sample of data from the distribution \(g(x)\). Note however that \(\overline{g^s}\) and \(\text{Var}(g^s)\) are only approximations to the real mean \(\mu\) and variance \(\mu_2\) for the distribution g.
+
+A new finite sample of size n is given from function \ref{eq:01}, and the function \(f(\bm{x})\) is approximation from the sample by regression methods as \(\bm{\hat{g}}\). From this the mean and the variance of the noise \(\bm{\epsilon}\) can be approximated by
+\begin{align}
+    \overline{\epsilon} &\approx \frac{1}{n}\sum_{i=1}^n(y_i - \hat{g_i})\\ \label{eq:04}
+    \text{Var}(\epsilon) &\approx \frac{1}{n - m}\sum_{i=1}^n ((y_i - \hat{g_i}) - \overline{\epsilon})^2
+\end{align}
+since
+\begin{equation}
+    \bm{y} - \bm{\hat{g}} = g(\bm{x}) + \bm{\epsilon} - \bm{\hat{g}}\approx \bm{\epsilon}.
+\end{equation}
+
+For all future reference of the moments the following convention will be used
+\begin{align}
+    \mu_n(c) = \left<(x-c)^n\right>.
+\end{align}
+
+\subsubsection{Error analysis}
+
+There are a multitude of different cost functions for evaluating the error in a model. Among them are the mean square error(MSE) and the \(R^2\) score function which are respectivly given by
+\begin{align}\label{eq:05}
+    MSE(\bm{y}, \bm{\tilde{y}}) &= \frac{1}{n}\sum_{i=1}^n(y_i - \tilde{y_i})^2\\
+    R^2(\bm{y}, \bm{\tilde{y}}) &= 1 - \frac{\sum_{i=1}^n(y_i - \tilde{y_i})^2}{\sum_{i=1}^n(y_i - \overline{y})^2}. 
+\end{align}
+Notice how for the variance given in equation \ref{eq:04} with \(m=0\) and a mean noise of \(\mu=0\) we are left with the equation for the MSE.
+
+\subsection{Linear regression methods}
+
+The very basis of linear regression is based around the assumption that the form of the data can be written on the form of equation \ref{eq:01}. This form can again be written as
+\begin{equation}
+    \bm{y} = \bm{X}\bm{\beta} + \bm{\epsilon}
+\end{equation}
+where \(\bm{y}, \bm{\epsilon} \in \mathbb{R}^{n\times 1}\) whereas \(\bm{\beta} \in \mathbb{R}^{p\times 1}\) and \(\bm{X}  \in \mathbb{R}^{n\times p}\) is the design matrix.
+
+The goal of linear regression is thus to approximate \(\bm{y}\) with
+\begin{align}
+    \bm{\tilde{y}} = \bm{X}\bm{\beta}
+\end{align}
+by optimizing \(\bm{\beta}\). 
+
+\subsubsection{Ordinary least squares}
+
+The ordinary least square method optimizes \(\bm{\beta}\) by minimizing the MSE cost function
+\begin{align}
+    C(\bm{\beta}) &= \frac{1}{n}\sum_{i=1}^n(y_i-\tilde{y}_i)\\
+    &= \frac{1}{n}\lsb \lp \bm{y} - \bm{\tilde{y}}\rp^T\lp \bm{y} - \bm{\tilde{y}}\rp\rsb\\
+    &= \frac{1}{n}\lsb \lp \bm{y} - \bm{X}\bm{\beta}\rp^T\lp \bm{y} - \bm{X}\bm{\beta}\rp\rsb.
+\end{align}
+The steps is to take following derivative
+\begin{align}
+    \bm{\frac{\partial C(\beta)}{\partial\beta}} = 0
+\end{align}
+which result in the OLS formula
+\begin{equation}\label{eq:06}
+    \bm{\beta} = (\bm{X}^T\bm{X})^{-1}\bm{X}^T\bm{y}.
+\end{equation}
+A more rigorous version of the same derivation is found in ...
+
+Another way of deriving the OLS formula is by considering
+\begin{equation}
+    \bm{\tilde{y}} = \text{proj}_{\text{Col X}}\bm{y}.
+\end{equation}
+Following this there exist a \(\bm{\beta}\) such that
+\begin{equation}
+    \bm{\tilde{y}} = \bm{X}\bm{\beta}.
+\end{equation}
+A consequence of having \(\bm{\tilde{y}} = \text{proj}_{\text{Col X}}\bm{y}\) is that \(\bm{y} - \bm{\tilde{y}}\) is orthogonal to the vector space spanned by \(\bm{X}\) as stated by the Orthogonal Decomposition Theorem SITER. Therefore any column in \(\bm{X}\) must be orthogonal to \(\bm{y} - \bm{\tilde{y}}\) such that
+\begin{align}
+    \bm{X}_i\pdot (\bm{y} - \bm{\tilde{y}}) = 0.
+\end{align}
+This implies
+\begin{equation}
+    \bm{X}^T(\bm{y} - \bm{\tilde{y}}) = 0
+\end{equation}
+and finally
+\begin{equation}
+    \bm{X}^T\bm{X}\bm{\beta} = \bm{X}^T\bm{\tilde{y}} 
+\end{equation}
+which can be rearranged to equation \ref{eq:06}.
+
+Both derivations are equal in the sense that they yield the OLS formula, but their interpretations are different.
+
+For the two remaining methods: ridge and lasso regression their derivations will not be carried out. Instead both of their derivations can be found at...., but knowing them will not have any impact on the interpretations of the results.
+
+\subsubsection{Ridge and Lasso regression}
+
+Ridge and lasso regression are two shrinkage methods in linear regression. They work by imposing a penalty on the regression coefficients based on their size. This is done by minimizing
+\begin{align}
+    \lsb \lp \bm{y} - \bm{\tilde{y}}\rp^T\lp \bm{y} - \bm{\tilde{y}}\rp + \lambda \bm{\beta}^T\bm{\beta}\rsb
+\end{align}
+which is variant of the MSE with \(\lambda \geq 0\). Ridge regression will than take the following form
+\begin{align}\label{eq:07}
+    \bm{\beta} = (\bm{X}^T\bm{X} + \lambda\bm{I})^{-1}\bm{X}^T\bm{y}
+\end{align}
+where \(\bm{I} \in \mathbb{R}^{p\times p}\). Further analysis of equation \ref{eq:07} would reveal how the \(\lambda\) parameter shrinks terms i beta, but such information would not allow further insight when comparing the different methods.
+
+Lasso regression, albeit being similar to ridge regression has some key differences.
+
+
+
+
+
+\subsection{Resampling and Bias-variance tradeoff}
+
+\subsubsection{Bias-variance tradeoff}
+
+The MSE from equation \ref{eq:05} can be rewritten as
+\begin{align}
+     MSE(\bm{y}, \bm{\tilde{y}}) &= \frac{1}{n}\sum_{i=1}^n(y_i - \tilde{y_i})^2\\
+     &= E\lsb (f+\epsilon-\tilde{f})^2\rsb\\
+\end{align}
+
+\section{Method}\label{sec:Method}
+
+Something something
+
+
+\section{Results}\label{sec:Results}
+
+Something something
+
+\section{Discussion}\label{sec:Discussion}
+
+Something something
+
+\section{Conclusion}\label{sec:Conclusion}
+
+Something something
+
+
+
+
+
+\onecolumngrid
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
