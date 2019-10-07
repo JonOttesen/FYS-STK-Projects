@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.25)  7 OCT 2019 13:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.25)  7 OCT 2019 23:57
 entering extended mode
 **./project_1.tex
 (project_1.tex
@@ -957,7 +957,18 @@ Package caption Info: End \AtBeginDocument code.
 Class revtex4-1 Info: Taking \maketitle back from hyperref on input line 75.
 \openout3 = `project_1Notes.bib'.
 
+LaTeX Font Info:    Try loading font information for U+msa on input line 84.
 
+("C:\Users\Jon Andre Ottesen\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfon
+ts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 84.
+
+("C:\Users\Jon Andre Ottesen\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfon
+ts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 Class revtex4-1 Warning: Assuming \noaffiliation for authors.
 
@@ -966,210 +977,170 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\\' on input line 88.
 
 
-Package natbib Warning: Citation `wiki:Regression_analysis' on page 1 undefined
- on input line 93.
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+  [][][][][]$\OT1/cmtt/m/n/8 https : / / github . com / CompPhysics /
+ []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 104.
 
-("C:\Users\Jon Andre Ottesen\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfon
-ts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 104.
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+ \OT1/cmtt/m/n/8 MachineLearning / tree / master / doc / Projects /
+ []
 
-("C:\Users\Jon Andre Ottesen\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfon
-ts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{C:/Users/Jon Andre Ottesen/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.m
-ap}] [2] [3]
-Overfull \hbox (17.87529pt too wide) detected at line 252
+[1{C:/Users/Jon Andre Ottesen/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map
+}] [2]
+
+Package natbib Warning: Citation `LayDavidC2016Laai' on page 3 undefined on inp
+ut line 212.
+
+
+Overfull \hbox (17.53935pt too wide) detected at line 221
+[]
+ []
+
+[3]
+Overfull \hbox (17.87529pt too wide) detected at line 245
 []
  []
 
 [4]
-Underfull \hbox (badness 1360) in paragraph at lines 341--342
-[]\OT1/cmr/m/n/10 The next step was to split the data sets
+Underfull \hbox (badness 10000) in paragraph at lines 303--306
+[][]$\OT1/cmtt/m/n/10 https : / / github . com / JonOttesen /
  []
 
-[5]
+
+Underfull \hbox (badness 1661) in paragraph at lines 303--306
+\OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 regression.py \OT1/cmr/m/n/10 is the ge-ne
+-ral mo-du-le
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 303--306
+\OT1/cmr/m/n/10 func-tion and \OT1/cmtt/m/n/10 terrain.py \OT1/cmr/m/n/10 is th
+e file which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--312
+[][]$\OT1/cmtt/m/n/10 https : / / github . com / CompPhysics /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--312
+\OT1/cmtt/m/n/10 MachineLearning / tree / master / doc /
+ []
+
+[5] [6]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 358.
+(hyperref)                than one, level fixed on input line 389.
 
+[7]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Frankewnoise.png, id=206, 867.24pt x 505.89pt>
+ults/Frankewnoise.png, id=264, 867.24pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Frankewnoise.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Frankewnoise.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Frankewnoise.png  used on input line 364.
+FYS-STK4155/Project1/Results/Frankewnoise.png  used on input line 395.
 (pdftex.def)             Requested size: 258.00539pt x 150.5022pt.
 
-Overfull \hbox (52.00308pt too wide) in paragraph at lines 364--365
+Overfull \hbox (52.00308pt too wide) in paragraph at lines 395--396
  [][] 
  []
 
-[6 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
+[8 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
 Results/Frankewnoise.png>]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 415.
+ on input line 473.
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Ridge_and_smalllamba.png, id=242, 462.528pt x 346.896pt>
+ults/Ridge_and_smalllamba.png, id=302, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Ridge_and_smalllamba.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Ridge_and_smalllamba.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Ridge_and_smalllamba.png  used on input line 445.
+FYS-STK4155/Project1/Results/Ridge_and_smalllamba.png  used on input line 476.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 445--446
+Overfull \hbox (9.0pt too wide) in paragraph at lines 476--477
  [][] 
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Lasso_and_smalllambda.png, id=243, 462.528pt x 346.896pt>
+ults/Lasso_and_smalllambda.png, id=303, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Lasso_and_smalllambda.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Lasso_and_smalllambda.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Lasso_and_smalllambda.png  used on input line 452.
+FYS-STK4155/Project1/Results/Lasso_and_smalllambda.png  used on input line 483.
 
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 452--453
+Overfull \hbox (9.0pt too wide) in paragraph at lines 483--484
  [][] 
  []
 
-[7 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
-Results/Ridge_and_smalllamba.png>]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 456.
-
+[9 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
+Results/Ridge_and_smalllamba.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H20
+19/Python/FYS-STK4155/Project1/Results/Lasso_and_smalllambda.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Hist_Olsk=10.png, id=268, 722.7pt x 505.89pt>
+ults/Hist_Olsk=10.png, id=320, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Hist_Olsk=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Hist_Olsk=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Hist_Olsk=10.png  used on input line 472.
+FYS-STK4155/Project1/Results/Hist_Olsk=10.png  used on input line 503.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 472--473
+Overfull \hbox (9.0pt too wide) in paragraph at lines 503--504
  [][] 
  []
 
-[8 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
-Results/Lasso_and_smalllambda.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Hist_Ridgek=10.png, id=279, 722.7pt x 505.89pt>
+ults/Hist_Ridgek=10.png, id=321, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Hist_Ridgek=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Hist_Ridgek=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Hist_Ridgek=10.png  used on input line 479.
+FYS-STK4155/Project1/Results/Hist_Ridgek=10.png  used on input line 510.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 479--480
+Overfull \hbox (9.0pt too wide) in paragraph at lines 510--511
  [][] 
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Hist_Lassok=10.png, id=280, 722.7pt x 505.89pt>
+ults/Hist_Lassok=10.png, id=322, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Hist_Lassok=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Hist_Lassok=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Hist_Lassok=10.png  used on input line 486.
+FYS-STK4155/Project1/Results/Hist_Lassok=10.png  used on input line 517.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 486--487
+Overfull \hbox (9.0pt too wide) in paragraph at lines 517--518
  [][] 
  []
 
+[10 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/Hist_Olsk=10.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Pyth
+on/FYS-STK4155/Project1/Results/Hist_Ridgek=10.png> <C:/Users/Jon Andre Ottesen
+/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/Hist_Lassok=10.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/tradeoff2MSEOLS.png, id=288, 462.528pt x 346.896pt>
+ults/tradeoff2MSEOLS.png, id=338, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/tradeoff2MSEOLS.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/tradeoff2MSEOLS.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2MSEOLS.png  used on input line 497.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 497--498
- [][] 
- []
-
-[9 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/
-Results/Hist_Olsk=10.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Pytho
-n/FYS-STK4155/Project1/Results/Hist_Ridgek=10.png> <C:/Users/Jon Andre Ottesen/
-Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/Hist_Lassok=10.png>]
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/tradeoff2R2OLS.png, id=303, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/tradeoff2R2OLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2R2OLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2R2OLS.png  used on input line 504.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 504--505
- [][] 
- []
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/bias_varianceOLS.png, id=304, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/bias_varianceOLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/bias_varianceOLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/bias_varianceOLS.png  used on input line 512.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 512--513
- [][] 
- []
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ridge_lasso_high_order_poly_data.png, id=312, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/ridge_lasso_high_order_poly_data.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_poly_data.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly_data.png  used on inpu
-t line 521.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 521--522
- [][] 
- []
-
-[10 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2MSEOLS.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/P
-ython/FYS-STK4155/Project1/Results/tradeoff2R2OLS.png> <C:/Users/Jon Andre Otte
-sen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/bias_varianceOLS.pn
-g>]
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ridge_lasso_high_order_poly.png, id=325, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/ridge_lasso_high_order_poly.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_poly.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly.png  used on input lin
-e 528.
+FYS-STK4155/Project1/Results/tradeoff2MSEOLS.png  used on input line 528.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
 Overfull \hbox (9.0pt too wide) in paragraph at lines 528--529
@@ -1177,371 +1148,307 @@ Overfull \hbox (9.0pt too wide) in paragraph at lines 528--529
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ridge_3d_plot.png, id=340, 867.24pt x 505.89pt>
+ults/tradeoff2R2OLS.png, id=339, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/tradeoff2R2OLS.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/tradeoff2R2OLS.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/tradeoff2R2OLS.png  used on input line 535.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 535--536
+ [][] 
+ []
+
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/bias_varianceOLS.png, id=340, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/bias_varianceOLS.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/bias_varianceOLS.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/bias_varianceOLS.png  used on input line 543.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 543--544
+ [][] 
+ []
+
+[11 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/tradeoff2MSEOLS.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/P
+ython/FYS-STK4155/Project1/Results/tradeoff2R2OLS.png> <C:/Users/Jon Andre Otte
+sen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/bias_varianceOLS.pn
+g>]
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/ridge_lasso_high_order_poly_data.png, id=355, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/ridge_lasso_high_order_poly_data.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_high_order_poly_data.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly_data.png  used on inpu
+t line 552.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 552--553
+ [][] 
+ []
+
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/ridge_lasso_high_order_poly.png, id=356, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/ridge_lasso_high_order_poly.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_high_order_poly.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly.png  used on input lin
+e 559.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 559--560
+ [][] 
+ []
+
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/ridge_3d_plot.png, id=374, 867.24pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/ridge_3d_plot.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/ridge_3d_plot.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ridge_3d_plot.png  used on input line 561.
+FYS-STK4155/Project1/Results/ridge_3d_plot.png  used on input line 605.
 (pdftex.def)             Requested size: 258.00539pt x 150.5022pt.
 
-Overfull \hbox (52.00308pt too wide) in paragraph at lines 561--562
+Overfull \hbox (52.00308pt too wide) in paragraph at lines 605--606
  [][] 
  []
 
+[12 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_high_order_poly_data.png> <C:/Users/Jon Andre Ottesen/Docu
+ments/UiO/H2019/Python/FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly
+.png>]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 609.
+
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/tradeoff2MSEOLSlarge_n.png, id=343, 462.528pt x 346.896pt>
+ults/tradeoff2MSEOLSlarge_n.png, id=391, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/tradeoff2MSEOLSlarge_n.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/tradeoff2MSEOLSlarge_n.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2MSEOLSlarge_n.png  used on input line 570
+FYS-STK4155/Project1/Results/tradeoff2MSEOLSlarge_n.png  used on input line 614
 .
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 570--571
+Overfull \hbox (9.0pt too wide) in paragraph at lines 614--615
  [][] 
  []
 
-[11 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_poly_data.png> <C:/Users/Jon Andre Ottesen/Docu
-ments/UiO/H2019/Python/FYS-STK4155/Project1/Results/ridge_lasso_high_order_poly
-.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Projec
-t1/Results/ridge_3d_plot.png>]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 574.
-
+[13 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_3d_plot.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Pyt
+hon/FYS-STK4155/Project1/Results/tradeoff2MSEOLSlarge_n.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/terrain_data.png, id=358, 462.528pt x 346.896pt>
+ults_terrain/terrain_data.png, id=404, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/terrain_data.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/terrain_data.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results_terrain/terrain_data.png  used on input line 585.
+FYS-STK4155/Project1/Results_terrain/terrain_data.png  used on input line 629.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 585--586
+Overfull \hbox (9.0pt too wide) in paragraph at lines 629--630
  [][] 
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 586--586
+Underfull \hbox (badness 3291) in paragraph at lines 630--630
 \OT1/cmr/m/n/10 used from file ``SRTM[]data[]Norway[]2"after
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/tradeoff_terrain.png, id=359, 462.528pt x 346.896pt>
+ults_terrain/tradeoff_terrain.png, id=405, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/tradeoff_terrain.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/tradeoff_terrain.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results_terrain/tradeoff_terrain.png  used on input line 5
-92.
+FYS-STK4155/Project1/Results_terrain/tradeoff_terrain.png  used on input line 6
+36.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 592--593
+Overfull \hbox (9.0pt too wide) in paragraph at lines 636--637
  [][] 
  []
 
-[12 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2MSEOLSlarge_n.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/
-H2019/Python/FYS-STK4155/Project1/Results_terrain/terrain_data.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/tradeoff_terrainR2.png, id=369, 462.528pt x 346.896pt>
+ults_terrain/tradeoff_terrainR2.png, id=406, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/tradeoff_terrainR2.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/tradeoff_terrainR2.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/tradeoff_terrainR2.png  used on input line
- 599.
+ 643.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 599--600
+Overfull \hbox (9.0pt too wide) in paragraph at lines 643--644
  [][] 
  []
 
+[14 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/terrain_data.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2
+019/Python/FYS-STK4155/Project1/Results_terrain/tradeoff_terrain.png> <C:/Users
+/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results_terr
+ain/tradeoff_terrainR2.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/Ridge_bad.png, id=381, 462.528pt x 346.896pt>
+ults_terrain/Ridge_bad.png, id=428, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/Ridge_bad.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/Ridge_bad.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results_terrain/Ridge_bad.png  used on input line 625.
+FYS-STK4155/Project1/Results_terrain/Ridge_bad.png  used on input line 669.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 625--626
+Overfull \hbox (9.0pt too wide) in paragraph at lines 669--670
  [][] 
  []
 
-[13 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results_terrain/tradeoff_terrain.png> <C:/Users/Jon Andre Ottesen/Documents/Ui
-O/H2019/Python/FYS-STK4155/Project1/Results_terrain/tradeoff_terrainR2.png>]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 629.
-
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/Lasso_bad.png, id=394, 462.528pt x 346.896pt>
+ults_terrain/Lasso_bad.png, id=429, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/Lasso_bad.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/Lasso_bad.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results_terrain/Lasso_bad.png  used on input line 632.
+FYS-STK4155/Project1/Results_terrain/Lasso_bad.png  used on input line 676.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 632--633
+Overfull \hbox (9.0pt too wide) in paragraph at lines 676--677
  [][] 
  []
 
+[15 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/Ridge_bad.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/best_lambda_terrain.png, id=395, 462.528pt x 346.896pt>
+ults_terrain/best_lambda_terrain.png, id=440, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/best_lambda_terrain.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/best_lambda_terrain.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/best_lambda_terrain.png  used on input lin
-e 639.
+e 683.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 639--640
+Overfull \hbox (9.0pt too wide) in paragraph at lines 683--684
  [][] 
  []
 
-[14 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results_terrain/Ridge_bad.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019
-/Python/FYS-STK4155/Project1/Results_terrain/Lasso_bad.png> <C:/Users/Jon Andre
- Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results_terrain/best_l
-ambda_terrain.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/tradeoff_terrainridge.png, id=408, 462.528pt x 346.896pt>
+ults_terrain/tradeoff_terrainridge.png, id=445, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/tradeoff_terrainridge.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/tradeoff_terrainridge.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/tradeoff_terrainridge.png  used on input l
-ine 648.
+ine 692.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 648--649
+Overfull \hbox (9.0pt too wide) in paragraph at lines 692--693
  [][] 
  []
 
 
-Overfull \hbox (68.72649pt too wide) in paragraph at lines 708--715
+Overfull \hbox (68.72649pt too wide) in paragraph at lines 752--759
  []$[]$ 
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/terrainHist_Olsk=10.png, id=431, 722.7pt x 505.89pt>
+ults_terrain/terrainHist_Olsk=10.png, id=468, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/terrainHist_Olsk=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/terrainHist_Olsk=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/terrainHist_Olsk=10.png  used on input lin
-e 721.
+e 765.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 721--722
+Overfull \hbox (9.0pt too wide) in paragraph at lines 765--766
  [][] 
  []
 
-[15 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results_terrain/tradeoff_terrainridge.png>]
+[16 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/Lasso_bad.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019
+/Python/FYS-STK4155/Project1/Results_terrain/best_lambda_terrain.png> <C:/Users
+/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results_terr
+ain/tradeoff_terrainridge.png>]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 725.
+ on input line 769.
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/colormap_terrain.png, id=446, 462.528pt x 346.896pt>
+ults_terrain/colormap_terrain.png, id=486, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/colormap_terrain.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/colormap_terrain.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/colormap_terrain.png  used on input line 7
-30.
+74.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 730--731
+Overfull \hbox (9.0pt too wide) in paragraph at lines 774--775
  [][] 
  []
 
+[17 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/terrainHist_Olsk=10.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/colormap_terrain5th.png, id=447, 462.528pt x 346.896pt>
+ults_terrain/colormap_terrain5th.png, id=493, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/colormap_terrain5th.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/colormap_terrain5th.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/colormap_terrain5th.png  used on input lin
-e 737.
+e 781.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 737--738
+Overfull \hbox (9.0pt too wide) in paragraph at lines 781--782
  [][] 
  []
 
-[16 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results_terrain/terrainHist_Olsk=10.png> <C:/Users/Jon Andre Ottesen/Documents
-/UiO/H2019/Python/FYS-STK4155/Project1/Results_terrain/colormap_terrain.png> <C
-:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Resul
-ts_terrain/colormap_terrain5th.png>]
+[18 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/colormap_terrain.png> <C:/Users/Jon Andre Ottesen/Documents/Ui
+O/H2019/Python/FYS-STK4155/Project1/Results_terrain/colormap_terrain5th.png>]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 802.
+
+[19] [20]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 884.
+
+
+Class revtex4-1 Warning: Deferred float stuck during \clearpage processing.
+
+[21]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Ridge_and_largelamba.png, id=457, 462.528pt x 346.896pt>
+ults/Ridge_and_largelamba.png, id=547, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/Ridge_and_largelamba.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/Ridge_and_largelamba.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Ridge_and_largelamba.png  used on input line 826.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 826--827
- [][] 
- []
-
-[17]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 830.
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Lasso_and_largelambda.png, id=462, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/Lasso_and_largelambda.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Lasso_and_largelambda.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Lasso_and_largelambda.png  used on input line 833.
-
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 833--834
- [][] 
- []
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Ridge_and_smalllambacontour.png, id=463, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/Ridge_and_smalllambacontour.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Ridge_and_smalllambacontour.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Ridge_and_smalllambacontour.png  used on input lin
-e 840.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 840--841
- [][] 
- []
-
-[18 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Ridge_and_largelamba.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2
-019/Python/FYS-STK4155/Project1/Results/Lasso_and_largelambda.png>]
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Lasso_and_smalllambdacontour.png, id=470, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/Lasso_and_smalllambdacontour.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Lasso_and_smalllambdacontour.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Lasso_and_smalllambdacontour.png  used on input li
-ne 847.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 847--848
- [][] 
- []
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Ridge_and_largelambacontour.png, id=471, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/Ridge_and_largelambacontour.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Ridge_and_largelambacontour.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Ridge_and_largelambacontour.png  used on input lin
-e 854.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 854--855
- [][] 
- []
-
-<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/Lasso_and_largelambdacontour.png, id=472, 462.528pt x 346.896pt>
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/Lasso_and_largelambdacontour.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Lasso_and_largelambdacontour.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/Lasso_and_largelambdacontour.png  used on input li
-ne 861.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 861--862
- [][] 
- []
-
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/tradeoff2MSEOLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2MSEOLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2MSEOLS.png  used on input line 868.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 868--869
- [][] 
- []
-
-[19 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/Ridge_and_smalllambacontour.png> <C:/Users/Jon Andre Ottesen/Documents
-/UiO/H2019/Python/FYS-STK4155/Project1/Results/Lasso_and_smalllambdacontour.png
-> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/R
-esults/Ridge_and_largelambacontour.png> <C:/Users/Jon Andre Ottesen/Documents/U
-iO/H2019/Python/FYS-STK4155/Project1/Results/Lasso_and_largelambdacontour.png>]
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/tradeoff2R2OLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2R2OLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2R2OLS.png  used on input line 875.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 875--876
- [][] 
- []
-
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/tradeoff2MSEOLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2MSEOLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2MSEOLS.png  used on input line 882.
-(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 882--883
- [][] 
- []
-
-File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/tradeoff2R2OLS.png Graphic file (type png)
-<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/tradeoff2R2OLS.png>
-Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/tradeoff2R2OLS.png  used on input line 889.
+FYS-STK4155/Project1/Results/Ridge_and_largelamba.png  used on input line 889.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
 Overfull \hbox (9.0pt too wide) in paragraph at lines 889--890
@@ -1549,30 +1456,29 @@ Overfull \hbox (9.0pt too wide) in paragraph at lines 889--890
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ridge_lasso_high_order_polyMSE_data.png, id=482, 462.528pt x 346.896pt>
+ults/Lasso_and_largelambda.png, id=548, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/ridge_lasso_high_order_polyMSE_data.png Graphic file (type png)
+1/Results/Lasso_and_largelambda.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_polyMSE_data.png>
+/Results/Lasso_and_largelambda.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ridge_lasso_high_order_polyMSE_data.png  used on i
-nput line 896.
+FYS-STK4155/Project1/Results/Lasso_and_largelambda.png  used on input line 896.
+
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
 Overfull \hbox (9.0pt too wide) in paragraph at lines 896--897
  [][] 
  []
 
-[20]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ridge_lasso_high_order_polyMSE.png, id=487, 462.528pt x 346.896pt>
+ults/ridge_lasso_high_order_polyMSE_data.png, id=549, 462.528pt x 346.896pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
-1/Results/ridge_lasso_high_order_polyMSE.png Graphic file (type png)
+1/Results/ridge_lasso_high_order_polyMSE_data.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_polyMSE.png>
+/Results/ridge_lasso_high_order_polyMSE_data.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ridge_lasso_high_order_polyMSE.png  used on input 
-line 903.
+FYS-STK4155/Project1/Results/ridge_lasso_high_order_polyMSE_data.png  used on i
+nput line 903.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
 Overfull \hbox (9.0pt too wide) in paragraph at lines 903--904
@@ -1580,138 +1486,177 @@ Overfull \hbox (9.0pt too wide) in paragraph at lines 903--904
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/ols_3d_plot.png, id=488, 867.24pt x 505.89pt>
+ults/ridge_lasso_high_order_polyMSE.png, id=550, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/ridge_lasso_high_order_polyMSE.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_high_order_polyMSE.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/ridge_lasso_high_order_polyMSE.png  used on input 
+line 910.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 910--911
+ [][] 
+ []
+
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/ridge_lasso_lambda_poly.png, id=551, 462.528pt x 346.896pt>
+File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results/ridge_lasso_lambda_poly.png Graphic file (type png)
+<use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_lambda_poly.png>
+Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
+FYS-STK4155/Project1/Results/ridge_lasso_lambda_poly.png  used on input line 91
+7.
+(pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 917--918
+ [][] 
+ []
+
+[22 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/Ridge_and_largelamba.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2
+019/Python/FYS-STK4155/Project1/Results/Lasso_and_largelambda.png> <C:/Users/Jo
+n Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/ridge_l
+asso_high_order_polyMSE_data.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H20
+19/Python/FYS-STK4155/Project1/Results/ridge_lasso_high_order_polyMSE.png>]
+<C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
+ults/ols_3d_plot.png, id=560, 867.24pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/ols_3d_plot.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/ols_3d_plot.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/ols_3d_plot.png  used on input line 910.
+FYS-STK4155/Project1/Results/ols_3d_plot.png  used on input line 924.
 (pdftex.def)             Requested size: 258.00539pt x 150.5022pt.
 
-Overfull \hbox (52.00308pt too wide) in paragraph at lines 910--911
+Overfull \hbox (52.00308pt too wide) in paragraph at lines 924--925
  [][] 
  []
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults/lasso_3d_plot.png, id=491, 867.24pt x 505.89pt>
+ults/lasso_3d_plot.png, id=563, 867.24pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results/lasso_3d_plot.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results/lasso_3d_plot.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
-FYS-STK4155/Project1/Results/lasso_3d_plot.png  used on input line 917.
+FYS-STK4155/Project1/Results/lasso_3d_plot.png  used on input line 931.
 (pdftex.def)             Requested size: 258.00539pt x 150.5022pt.
 
-Overfull \hbox (52.00308pt too wide) in paragraph at lines 917--918
+Overfull \hbox (52.00308pt too wide) in paragraph at lines 931--932
  [][] 
  []
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 922.
+(hyperref)                than one, level fixed on input line 936.
 
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/terrainHist_Ridgek=10.png, id=494, 722.7pt x 505.89pt>
+ults_terrain/terrainHist_Ridgek=10.png, id=566, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/terrainHist_Ridgek=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/terrainHist_Ridgek=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/terrainHist_Ridgek=10.png  used on input l
-ine 926.
+ine 940.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 926--927
+Overfull \hbox (9.0pt too wide) in paragraph at lines 940--941
  [][] 
  []
 
-[21 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results/ridge_lasso_high_order_polyMSE_data.png> <C:/Users/Jon Andre Ottesen/D
-ocuments/UiO/H2019/Python/FYS-STK4155/Project1/Results/ridge_lasso_high_order_p
-olyMSE.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/
-Project1/Results/ols_3d_plot.png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H20
-19/Python/FYS-STK4155/Project1/Results/lasso_3d_plot.png>]
 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Res
-ults_terrain/terrainHist_Lassok=10.png, id=504, 722.7pt x 505.89pt>
+ults_terrain/terrainHist_Lassok=10.png, id=567, 722.7pt x 505.89pt>
 File: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
 1/Results_terrain/terrainHist_Lassok=10.png Graphic file (type png)
 <use C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
 /Results_terrain/terrainHist_Lassok=10.png>
 Package pdftex.def Info: C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/
 FYS-STK4155/Project1/Results_terrain/terrainHist_Lassok=10.png  used on input l
-ine 933.
+ine 947.
 (pdftex.def)             Requested size: 215.0023pt x 150.5022pt.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 933--934
+Overfull \hbox (9.0pt too wide) in paragraph at lines 947--948
  [][] 
  []
 
-No file project_1.bbl.
+[23 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results/ridge_lasso_lambda_poly.png> <C:/Users/Jon Andre Ottesen/Documents/UiO
+/H2019/Python/FYS-STK4155/Project1/Results/ols_3d_plot.png> <C:/Users/Jon Andre
+ Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1/Results/lasso_3d_plot.
+png> <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project
+1/Results_terrain/terrainHist_Ridgek=10.png>]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 954.
+
+[24 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
+/Results_terrain/terrainHist_Lassok=10.png>] (project_1.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[22 <C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project1
-/Results_terrain/terrainHist_Ridgek=10.png> <C:/Users/Jon Andre Ottesen/Documen
-ts/UiO/H2019/Python/FYS-STK4155/Project1/Results_terrain/terrainHist_Lassok=10.
-png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 946.
+[25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 989.
  (project_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 946.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 946.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 989.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 989.
 Package rerunfilecheck Info: File `project_1.out' has not changed.
-(rerunfilecheck)             Checksum: 05C1214072CE284C62E38A89DCD1AE2C;1726.
+(rerunfilecheck)             Checksum: 80433E5A9F94A29956632403CF39E1A1;2118.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 14155 strings out of 492895
- 226595 string characters out of 3118129
- 552080 words of memory out of 3000000
- 17689 multiletter control sequences out of 15000+200000
- 16975 words of font info for 63 fonts, out of 3000000 for 9000
+ 14165 strings out of 492895
+ 225444 string characters out of 3118129
+ 554080 words of memory out of 3000000
+ 17690 multiletter control sequences out of 15000+200000
+ 17310 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,13n,40p,1027b,414s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,15n,40p,1058b,414s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmbsy10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb><C:/Users/Jon Andre O
-ttesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.
-pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/Jon Andre Ottese
-n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C
-:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmex10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Jon Andre Ottesen/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Use
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Jon Andre Ottese
+n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmbx7.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/Jon Andre Ottesen/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Use
 rs/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/Jon Andre Ottesen/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Jo
+nts/cm/cmmi10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Jon Andre Ottesen/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Jon
+ Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmmi9.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Users/Jo
 n Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-mextra/cmmib7.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Jon Andre Ottesen/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Jon 
-Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr7.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Jon Andre Otte
-sen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Jon Andre Ottesen/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Us
-ers/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmti10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/Jon Andre Ottesen/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/J
+m/cmr10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Jon Andre O
+ttesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pf
+b><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Jon Andre Ottesen/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/U
+sers/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Jon Andre Ottesen/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/J
 on Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-symbols/msbm10.pfb>
-Output written on project_1.pdf (22 pages, 1922093 bytes).
+cm/cmti9.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jon Andre Ottesen/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/Jon And
+re Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+t9.pfb><C:/Users/Jon Andre Ottesen/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on project_1.pdf (25 pages, 1904022 bytes).
 PDF statistics:
- 622 PDF objects out of 1000 (max. 8388607)
- 143 named destinations out of 1000 (max. 500000)
- 384 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 714 PDF objects out of 1000 (max. 8388607)
+ 148 named destinations out of 1000 (max. 500000)
+ 417 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,19 +8,25 @@
 \BOOKMARK [2][-]{section*.8}{Linear regression methods}{section*.4}% 8
 \BOOKMARK [3][-]{section*.9}{Ordinary least squares}{section*.8}% 9
 \BOOKMARK [3][-]{section*.10}{Ridge and Lasso regression}{section*.8}% 10
-\BOOKMARK [3][-]{section*.11}{SVD}{section*.8}% 11
-\BOOKMARK [2][-]{section*.12}{Resampling and Bias-variance tradeoff}{section*.4}% 12
-\BOOKMARK [3][-]{section*.13}{Reasmpling methods}{section*.12}% 13
-\BOOKMARK [3][-]{section*.14}{Bias-variance tradeoff}{section*.12}% 14
-\BOOKMARK [1][-]{section*.15}{Method}{section*.2}% 15
-\BOOKMARK [2][-]{section*.16}{Preparations}{section*.15}% 16
-\BOOKMARK [2][-]{section*.17}{Regression analysis}{section*.15}% 17
-\BOOKMARK [1][-]{section*.18}{Results}{section*.2}% 18
-\BOOKMARK [2][-]{section*.19}{Franke function}{section*.18}% 19
-\BOOKMARK [3][-]{section*.39}{Terrain data}{section*.19}% 20
-\BOOKMARK [1][-]{section*.55}{Discussion}{section*.2}% 21
-\BOOKMARK [1][-]{section*.56}{Conclusion}{section*.2}% 22
-\BOOKMARK [1][-]{section*.57}{Tables}{section*.2}% 23
-\BOOKMARK [1][-]{section*.60}{Figures}{section*.2}% 24
-\BOOKMARK [2][-]{section*.75}{Terrain}{section*.60}% 25
-\BOOKMARK [1][-]{section*.78}{Proofs}{section*.2}% 26
+\BOOKMARK [3][-]{section*.11}{Confidence intervals}{section*.8}% 11
+\BOOKMARK [3][-]{section*.12}{SVD}{section*.8}% 12
+\BOOKMARK [2][-]{section*.13}{Resampling and Bias-variance tradeoff}{section*.4}% 13
+\BOOKMARK [3][-]{section*.14}{Reasmpling methods}{section*.13}% 14
+\BOOKMARK [3][-]{section*.15}{Bias-variance tradeoff}{section*.13}% 15
+\BOOKMARK [1][-]{section*.16}{Method}{section*.2}% 16
+\BOOKMARK [2][-]{section*.17}{Preparations}{section*.16}% 17
+\BOOKMARK [2][-]{section*.18}{Regression analysis}{section*.16}% 18
+\BOOKMARK [3][-]{section*.20}{Franke function}{section*.18}% 19
+\BOOKMARK [3][-]{section*.21}{Terrain data}{section*.18}% 20
+\BOOKMARK [1][-]{section*.22}{Results}{section*.2}% 21
+\BOOKMARK [2][-]{section*.23}{Franke function}{section*.22}% 22
+\BOOKMARK [3][-]{section*.44}{Terrain data}{section*.23}% 23
+\BOOKMARK [1][-]{section*.60}{Discussion}{section*.2}% 24
+\BOOKMARK [2][-]{section*.61}{Data sets}{section*.60}% 25
+\BOOKMARK [1][-]{section*.62}{Conclusion}{section*.2}% 26
+\BOOKMARK [1][-]{section*.63}{Tables}{section*.2}% 27
+\BOOKMARK [1][-]{section*.66}{Figures}{section*.2}% 28
+\BOOKMARK [2][-]{section*.74}{Terrain}{section*.66}% 29
+\BOOKMARK [1][-]{section*.77}{Proofs}{section*.2}% 30
+\BOOKMARK [2][-]{section*.78}{Bias-variance tradeoff proof}{section*.77}% 31
+\BOOKMARK [1][-]{section*.79}{Referanser}{section*.2}% 32

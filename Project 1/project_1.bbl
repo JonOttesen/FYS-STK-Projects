@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{MHJ_LinReg}
+Morten Hjorth-Jensen.
+\newblock Lectures notes in fys-stk4155. data analysis and machine learning:
+  Linear regression and more advanced regression analysis.
+\newblock
+  \url{https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression.html},
+  2019.
+\newblock [Online; accessed 23-September-2019].
+
+\bibitem{wiki:Regression_analysis}
+Wikipedia.
+\newblock {Regression analysis} --- {W}ikipedia{,} the free encyclopedia.
+\newblock
+  \url{http://en.wikipedia.org/w/index.php?title=Regression\%20analysis&oldid=914514224},
+  2019.
+\newblock [Online; accessed 14-September-2019].
+
+\end{thebibliography}

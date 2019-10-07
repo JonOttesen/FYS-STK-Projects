@@ -81,7 +81,7 @@
 \date{\today}
 
 \begin{abstract}
-The main topic of this projects is to study different regression methods including Ordinary Least Squares, Ridge regression and Lasso regression. These methods in conjunction with resampling techniques such as k-fold cross-validation are used in polynomial fitting on the 2-dimensional Franke function surface with added Gaussian noise and terrain data. The different methods give varied result in reproducing the original surface with .... having the highest MSE and R2 compared to ... with MSE being. Finally real-life data is the analysed using the same techniques as the Franke function with OLS giving the best fit.
+The main topic of this projects is to study different regression methods including Ordinary Least Squares, Ridge regression and Lasso regression. These methods in conjunction with resampling techniques such as k-fold cross-validation are used in polynomial fitting on the 2-dimensional Franke function surface with added Gaussian noise and terrain data. The different methods give varied result in reproducing the original surface with Ridge giving the smallest\(MSE = 0.0075\) when predicting test data, wheras lasso gave the worst with \(MSE = 0.0087\). Finally real-life data is the analysed using the same techniques as the Franke function with OLS giving the best fit \(R^2 = 0.8657\) for 15\(^\text{th}\) degree polynomial over ridge, with lasso preforming worst.
 
 \end{abstract}
 
@@ -92,7 +92,7 @@ The main topic of this projects is to study different regression methods includi
 
 The first paper on regression methods was published by Legendre in 1805 and Gauss in 1809 about the least square method\cite{wiki:Regression_analysis}. Albeit being a relatively simple theory developed before the computational era of statistics its importance cannot be overstated, and is still prominent and even outperforming newer more complex methods in some cases. The simple nature of the least square theory makes it a excellent starting point for further studies in regression theory while still giving decent results in real-life data-analysis. Especially when applied together with resampling methods which has a vital role in modern statistical data analysis.
 
-Regression methods are often used in conjunction with measured data to determine the underlying patterns. Unlike in most research where linear regression is used as a tool for data-analysis, it will here be the main object of study itself. To stimulate a more real-life usage of linear regression actual data from ... is used coupled with generated data from  Franke's function. The central themes are thus resampling methods, error analysis such as the mean squared error, the bias-variance tradeoff and most importantly the main linear regression methods themselves: OLS, rigde regression and lasso regression and their strengths and weaknesses.
+Regression methods are often used in conjunction with measured data to determine the underlying patterns. Unlike in most research where linear regression is used as a tool for data-analysis, it will here be the main object of study itself. To stimulate a more real-life usage of linear regression actual data\footnote{\url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/Projects/2019/Project1/DataFiles}} is used together with generated data from  Franke's function. The central themes are thus resampling methods, error analysis such as the mean squared error, the bias-variance tradeoff and most importantly the main linear regression methods themselves: OLS, rigde and lasso regression.
 
 %Using different linear regression methods and error analysis such as the mean squared error(from now called MSE)
 
@@ -100,17 +100,17 @@ Regression methods are often used in conjunction with measured data to determine
 
 \section{Theory}\label{sec:Theory}
 
-As a basis for parts of the theory below we will assume the data follows this form:
+As a basis for most of the theory below we will assume the data follows this form:
 \begin{equation}\label{eq:01}
     \bm{y} = f(\bm{x}) + \bm{\epsilon}
 \end{equation}
-where \(\bm{y}\) is the data-sample, f is the function describing the data and \(\bm{\epsilon}\) is the noise of the data ... distributed with a mean of 0.
+where \(\bm{y}\) is the data-sample, f is the function describing the data and \(\bm{\epsilon}\) is the noise of the data following a Gaussian distribution with a mean of 0.
 
 \subsection{Moments and error analysis}
 
 \subsubsection{Moments in statistics}
 
-To describe, analyse and understand data, statistical knowledge is essential. Various moments in statistics are therefore used when describing key elements of data, models or functions. In our case to describe and understand the model created with linear regression, and for this the the 1\(^\text{st}\) and 2\(^\text{and}\) order moments will be used.
+To describe, analyse and understand data, statistical knowledge is essential. Various moments in statistics are therefore used when describing key elements of data, models or functions. In our case we want to describe and understand the model created with linear regression, and for this the 1\(^\text{st}\) and 2\(^\text{and}\) order moments are a necessity.
 
 For a real valued continuous function \(g(x)\) for real-valued x, the n-th moment is given by
 \begin{equation}
@@ -130,9 +130,9 @@ to provide more qualitative information about the distribution. The 2\(^\text{nd
 \end{equation}
 where \(\sigma\) is the standard-deviation.
 
-So far I have only looked at the continuous case where the probability distribution is know. In the non continuous case with a sample of finite size the true moments of the distribution can realistically only be approximated. There is however theoretically possible to get the correct and this is covered in section ...
+So far I have only looked at the continuous case where the probability distribution is know. In the non continuous case with a sample of finite size the true moments of the distribution can realistically only be approximated. There is however theoretically possible to get the correct values by making use of the central limit theorem.
 
-For a finite sample of size n taken from the function g the 1\(^\text{st}\) moment i.e mean value is for the sample given by:
+For a finite sample of size n taken from the function g the 1\(^\text{st}\) moment i.e the mean value is for the sample given by:
 \begin{equation}\label{eq:02}
     \overline{g^s} = \frac{1}{n}\sum_{i=1}^n g_i^s
 \end{equation}
@@ -142,20 +142,11 @@ The 2\(^\text{an}\) moment i.e variance is for the sample
 \end{align}
 where in both cases \(g^s\) is a sample of data from the distribution \(g(x)\). Note however that \(\overline{g^s}\) and \(\text{Var}(g^s)\) are only approximations to the real mean \(\mu\) and variance \(\mu_2\) for the distribution g.
 
-A new finite sample of size n is given from function \ref{eq:01}, and the function \(f(\bm{x})\) is approximation from the sample by regression methods as \(\bm{\hat{g}}\). From this the mean and the variance of the noise \(\bm{\epsilon}\) can be approximated by
+A new finite sample of size n following function \ref{eq:01}, where the function \(\bm{\hat{f}}\) is the approximation of \(f(\bm{x})\) by regression methods. The variance of the noise \(\bm{\epsilon}\) can be approximated by
 \begin{align}
-    \overline{\epsilon} &\approx \frac{1}{n}\sum_{i=1}^n(y_i - \hat{g_i})\\ \label{eq:04}
     \text{Var}(\epsilon) &\approx \frac{1}{n - m}\sum_{i=1}^n ((y_i - \hat{g_i}) - \overline{\epsilon})^2
 \end{align}
-since
-\begin{equation}
-    \bm{y} - \bm{\hat{g}} = g(\bm{x}) + \bm{\epsilon} - \bm{\hat{g}}\approx \bm{\epsilon}.
-\end{equation}
-
-For all future reference of the moments the following convention will be used
-\begin{align}
-    \mu_n(c) = \left<(x-c)^n\right>.
-\end{align}
+where \(m = p-1\) and p is the number of columns in the design matrix \(\bm{X}\).
 
 \subsubsection{Error analysis}
 
@@ -164,7 +155,7 @@ There are a multitude of different cost functions for evaluating the error in a 
     MSE(\bm{y}, \bm{\tilde{y}}) &= \frac{1}{n}\sum_{i=1}^n(y_i - \tilde{y_i})^2\\ \label{eq:11}
     R^2(\bm{y}, \bm{\tilde{y}}) &= 1 - \frac{\sum_{i=1}^n(y_i - \tilde{y_i})^2}{\sum_{i=1}^n(y_i - \overline{y})^2}. 
 \end{align}
-Notice how for the variance given in equation \ref{eq:04} with \(m=0\) and a mean noise of \(\mu=0\) we are left with the equation for the MSE.
+Notice how for \(m=0\) in equation \ref{eq:03} the we are left with the equation for the MSE.
 
 \subsection{Linear regression methods}
 
@@ -184,19 +175,19 @@ by optimizing \(\bm{\beta}\).
 
 The ordinary least square method optimizes \(\bm{\beta}\) by minimizing the MSE cost function
 \begin{align}
-    C(\bm{\beta}) &= \frac{1}{n}\sum_{i=1}^n(y_i-\tilde{y}_i)\\
+    C(\bm{X, \beta}) &= \frac{1}{n}\sum_{i=1}^n(y_i-\tilde{y}_i)\\
     &= \frac{1}{n}\lsb \lp \bm{y} - \bm{\tilde{y}}\rp^T\lp \bm{y} - \bm{\tilde{y}}\rp\rsb\\
     &= \frac{1}{n}\lsb \lp \bm{y} - \bm{X}\bm{\beta}\rp^T\lp \bm{y} - \bm{X}\bm{\beta}\rp\rsb.
 \end{align}
 The steps is to take following derivative
 \begin{align}
-    \bm{\frac{\partial C(\beta)}{\partial\beta}} = 0
+    \frac{\partial C(\bm{X, \beta})}{\partial\bm{\beta}} = 0
 \end{align}
 which result in the OLS formula
 \begin{equation}\label{eq:06}
     \bm{\beta} = (\bm{X}^T\bm{X})^{-1}\bm{X}^T\bm{y}.
 \end{equation}
-A more rigorous version of the same derivation is found in ...
+A more rigorous version of the same derivation is found in \cite{MHJ_LinReg}.
 
 Another way of deriving the OLS formula is by considering
 \begin{equation}
@@ -206,7 +197,7 @@ Following this there exist a \(\bm{\beta}\) such that
 \begin{equation}
     \bm{\tilde{y}} = \bm{X}\bm{\beta}.
 \end{equation}
-A consequence of having \(\bm{\tilde{y}} = \text{proj}_{\text{Col X}}\bm{y}\) is that \(\bm{y} - \bm{\tilde{y}}\) is orthogonal to the vector space spanned by \(\bm{X}\) as stated by the Orthogonal Decomposition Theorem SITER. Therefore any column in \(\bm{X}\) must be orthogonal to \(\bm{y} - \bm{\tilde{y}}\) such that
+A consequence of having \(\bm{\tilde{y}} = \text{proj}_{\text{Col X}}\bm{y}\) is that \(\bm{y} - \bm{\tilde{y}}\) is orthogonal to the vector space spanned by \(\bm{X}\) as stated by the Orthogonal Decomposition Theorem. Therefore any column in \(\bm{X}\) must be orthogonal to \(\bm{y} - \bm{\tilde{y}}\) such that
 \begin{align}
     \bm{X}_i\pdot (\bm{y} - \bm{\tilde{y}}) = 0.
 \end{align}
@@ -218,34 +209,36 @@ and finally
 \begin{equation}
     \bm{X}^T\bm{X}\bm{\beta} = \bm{X}^T\bm{\tilde{y}} 
 \end{equation}
-which can be rearranged to equation \ref{eq:06}.
+which can be rearranged to equation \ref{eq:06}. The derivation is taken from \citep{LayDavidC2016Laai} in chapter 6.
 
 Both derivations are equal in the sense that they yield the OLS formula, but their interpretations are different.
 
-For the two remaining methods: ridge and lasso regression their derivations will not be carried out. Instead both of their derivations can be found at...., but knowing them will not have any impact on the interpretations of the results.
-
 \subsubsection{Ridge and Lasso regression}
 
-Ridge and lasso regression are two shrinkage methods in linear regression. They work by imposing a penalty on the regression coefficients based on their size. This is done by minimizing their respective cost functions, and for ridge regression this cost function is given by \textbf{DOBBELSJEKK DETTE}
+Ridge and lasso regression are two shrinkage methods in linear regression. They work by imposing a penalty on the regression coefficients based on their size. This is done by minimizing their respective cost functions, and for ridge regression this cost function is given by
 \begin{align}
-    \lsb \lp \bm{y} - \bm{\tilde{y}}\rp^T\lp \bm{y} - \bm{\tilde{y}}\rp + \lambda \bm{\beta}^T\bm{\beta}\rsb
+    C(\bm{X,\beta})_{\text{Ridge}} = \frac{1}{n}\lsb \lp \bm{y} - \bm{X\beta}\rp^T\lp \bm{y} - \bm{X\beta}\rp + \lambda \bm{\beta}^T\bm{\beta}\rsb
 \end{align}
-which is variant of the MSE with \(\lambda \geq 0\). The coefficients for \(\bm{\beta}\) in ridge regression can be written in the following closed form
+which is variant of the MSE with \(\lambda > 0\). The coefficients for \(\bm{\beta}\) in ridge regression can be written in the following closed form
 \begin{align}\label{eq:07}
     \bm{\beta} = (\bm{X}^T\bm{X} + \lambda\bm{I})^{-1}\bm{X}^T\bm{y}
 \end{align}
-where \(\bm{I} \in \mathbb{R}^{p\times p}\). Further analysis of equation \ref{eq:07} would reveal how the \(\lambda\) parameter shrinks terms i beta, but such information would not allow further insight when comparing the different methods.
+where \(\bm{I} \in \mathbb{R}^{p\times p}\). Further analysis of equation \ref{eq:07} would reveal how the \(\lambda\) parameter shrinks terms i beta, but that is not necessary for this project.
 
-Lasso regression much like OLS and ridge regression is a minimization problem. However unlike OLS and ridge regression there exist no analytical solution to the following cost function minimized in lasso regression:
+Lasso regression much like OLS and ridge regression is a minimization problem. However unlike OLS and ridge regression there exist no analytical solution to the cost function minimized in lasso regression:
+\begin{equation}
+C(\boldsymbol{X},\boldsymbol{\beta})=\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\vert\vert_2^2+\lambda\vert\vert \boldsymbol{\beta}\vert\vert_1.
+\end{equation}
 
+To solve lasso regression the implementation of gradient decent types of algorithms are a necessity. Such algorithms are outside the scope of this project and will not be covered in any depth, instead preexisting tools will be utilized.
 
-To solve lasso regression the implementation of gradient decent types of algorithms are a necessity. Such algorithms are outside the scope of this project and will not be covered in any depth, instead preexisting tools will be utilized.+
+\subsubsection{Confidence intervals}
 
-Before ending the subsection about Linear regression final part is to know about the confidence interval for each of the \(\beta_i\) terms. The \(68\%\) confidence intervals for the \(\beta_i\)-terms is given by
+The confidence intervals for the \(\beta_i\) terms from equation \ref{eq:06} at \(68\%\) confidence intervals for OLS is given by:
 \begin{align}\label{eq:12}
 \sigma(\beta_i)^{\text{OLS}} = \sigma\sqrt{(\bm{X}^T\bm{X})_{ii}}.
 \end{align}
-Thus the variance of \(\bm{\beta}^{\text{OLS}}\) is given by the diagonal of the square matrix \(\bm{X}^T\bm{X}\sigma^2\) multiplied with the variance from the error in function \ref{eq:01}. For ridge the confidence interval is given by
+Thus the variance of \(\bm{\beta}^{\text{OLS}}\) is given by the diagonal of the square matrix \(\bm{X}^T\bm{X}\) multiplied with the variance of the error in function \ref{eq:01}. For ridge regression the confidence intervals of the \(\beta_i\) terms from equation \ref{eq:07} at \(68\%\) is given by
 \begin{align*}
 &\sigma(\beta_i)^{\text{Ridge}} = \\
 &\sigma\sqrt{ \lsb\lp\bm{X^TX} + \lambda\bm{I}\rp^{-1}\bm{X^TX}\lp\lp\bm{X^TX} + \lambda\bm{I}\rp^{-1}\rp^T\rsb_{ii} }.
@@ -253,13 +246,15 @@ Thus the variance of \(\bm{\beta}^{\text{OLS}}\) is given by the diagonal of the
 
 \subsubsection{SVD}
 
-Any \(n\times p\) matrices \(\bm{X}\) with rank r can be written as
+Numerical matrix inversion has a tendency to become unstable for larger matrices \(\bm{X}\). To avoid this problem SVD will be utilized to instead take the inverse of the diagonal matrix from the SVD. Without going into to much technicality the goal of this subsection is to formulate mainly equation \ref{eq:06} and \ref{eq:07} but also their confidence intervals in terms of \(\bm{U, V, \Sigma}\).
+
+Any \(n\times p\) matrix \(\bm{X}\) with rank r can be written as
 \begin{align}
 \bm{X} = \bm{U\Sigma V}^T
 \end{align}
-with \(\bm{U}\) and orthogonal \({n\times n}\) matrix and \(\bm{V}\) a orthogonal \({p\times p}\) matrix. Whereas \(\bm{\Sigma}\) is a \(n\times p\) matrix where the first r diagonal elements are the singular values of \(\bm{X}\). A small note is that \(\bm{V}^{-1} = \bm{V}^T\) and \(\bm{U}^{-1} = \bm{U}^T\) since they are orthogonal matrices.
+with \(\bm{U}\) being an orthogonal \({n\times n}\) matrix and \(\bm{V}\) an orthogonal \({p\times p}\) matrix. Whereas \(\bm{\Sigma}\) is a \(n\times p\) matrix where the first r diagonal elements are the singular values of \(\bm{X}\). A small note is that \(\bm{V}^{-1} = \bm{V}^T\) and \(\bm{U}^{-1} = \bm{U}^T\) since they are orthogonal matrices\cite{MHJ_LinReg}.
 
-By using the SVD the formulas for both OLS and ridge regression can be rewritten as
+The formulas for both OLS and ridge regression can be rewritten in terms of \(\bm{\Sigma, U, V}\) as
 \begin{align}\label{eq:08}
 \bm{\beta}_{OLS} &= \bm{V}(\bm{\Sigma})^{-1}\bm{U}^T\bm{y}\\ \label{eq:09}
 \bm{\beta}_{Ridge} &= \bm{V}(\bm{\Sigma}^2 + \lambda\bm{I})^{-1}\bm{\Sigma}^T\bm{U}^T\bm{y}.
@@ -279,78 +274,114 @@ where \(\bm{\lambda} = \lambda\bm{I}\).
 
 \subsubsection{Reasmpling methods}
 
-There exist a multitude of different resampling methods, and common trope is to repeatedly refitting a model by drawing(often randomly) samples from a larger data set. By repeatedly drawing out samples from a larger set one can use the central limit theorem.  
+There exist a multitude of different resampling methods, but the common trope is to repeatedly refitting a model by drawing(often randomly) samples from a larger data set. By repeatedly drawing out samples from a larger set the goal is to utilize the central limit theorem and limit the correct value for a large number of runs.  
 
-K-fold cross validation is based around the principle of dividing a data set into n-folds with equal size if possible and \(n \leq (\text{len of the data})\). Than n-1 of the folds are used a training data in linear regression while 1 is used as test data. Thereafter the prediction error, mean and standard deviation is evaluated among other things. This is redone n times but with a different fold for the test data each time such that all n-folds are used as test data. Finally the central limit theorem is applied to the measured values for the prediction error, mean, standard deviation etc. Albeit not essential the data set should be shuffled before diving into folds to avoid bias in the linear regression fit.
+K-fold cross validation is based around the principle of dividing a data set into k equally sized(if possible) with \(k \leq (\text{len of the data})\). Than k-1 of the folds are used as training data in linear regression while 1 is used as test data. Thereafter the prediction error and mean among are evaluated among other things. This is redone k times but with a different fold for the test data each time such that all k-folds are used as test data. By the central limit theorem the evaluated values are decent approximations. Another important aspect would be to see how the results differ. Albeit not essential the data set should be shuffled before diving into folds to avoid an unbalanced representation of the data set.
 
 
 \subsubsection{Bias-variance tradeoff}
 
+When creating a model an important application is the ability to predict using the model. The term overfitting is often used when describing the action of fitting a model to close to the data such that the model no longer describes the underling function \(f(\bm{x})\). The bias-variance tradeoff is closely related to overfitting and underfitting. Such that our model must be complex enough to have low bias error, but also simple enough to avoid large variance errors.
+
 The MSE from equation \ref{eq:05} can be rewritten as
-\begin{align}
-     MSE(\bm{y}, \bm{\tilde{y}}) &= \frac{1}{n}\sum_{i=1}^n(y_i - \tilde{y_i})^2\\
-     &= E\lsb (f+\epsilon-\tilde{f})^2\rsb\\
+\begin{align}\label{eq:bias}
+\begin{split}
+&MSE(\bm{y}, \bm{\tilde{y}}) \\
+&= \frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\boldsymbol{\tilde{y}}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\boldsymbol{\tilde{y}}\right])^2+\sigma^2.
+\end{split}
 \end{align}
+In equation \ref{eq:bias} the first term is the bias term whereas the second is the variance term, and the last is the inevitable error from equation \ref{eq:01}. The derivation is given in section \ref{sec:proof} in the appendix.
+
+The bias error is the error which reveals the difference between the model and the actual function. For large bias errors the model has a large deviation from underlying function f. High bias can cause the model to miss important relations in the data. The bias error is large in underfitting.
+
+The variance error is the error that reveals how sensitive the model is to the noise. For high variances the model is not only fitted on the function f, but also on the error in the data set. If the noise were changed the model would change drastically. This error is most important when overfitting.
+
+The main goal of a model is to find the ideal combination of bias and variance error such that the error is minimized, while also being able to predict.
 
 \section{Method}\label{sec:Method}
 
+All code can be found in my github at\\
+\url{https://github.com/JonOttesen/FYS-STK4155/tree/master/Project1}\\
+and \texttt{regression.py} is the general module for the regression analysis, \texttt{results.py} is the program producing the results for the Franke function and \texttt{terrain.py} is the file which produces the results for the terrain data. The renaming python files \texttt{latex\_print.py} is used for printing latex tables wheras \texttt{testing.py} is testing file and is not used in producing results.
+
 \subsection{Preparations}
 
-There are two sets of data used during this project. The first is self-generated through the 2D Franke function with added noise normally distributed, while the other set is terrain data from ... over ....
+There are two sets of data used during this project. The first is self-generated through the 2D Franke function with added noise normally distributed, while the other set is terrain data found at\\
+\url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/Projects/2019/Project1/DataFiles}\\
+and I used the \texttt{SRTM\_data\_Norway\_2.tif} file.
 
-The self-generated data is generated with the Franke function on a \(n\times n\)\footnote{It's not requirement for grid to be \(n\times n\), however making the grid \(n\times m\) with \(m\neq n\) would not have any noticable effect on the results for a reasonable sized n and m.} meshgrid with \(x,y\in [0,1]\) selected by random from a uniform distribution, and each point has a added normally distributed noise with \(\mu = 0\) and \(\sigma = 1\) in the z-direction. Thus the function used in the data-generation is
+The self-generated data is generated with the Franke function on a \(n\times n\)\footnote{It's not requirement for grid to be \(n\times n\), however making the grid \(n\times m\) with \(m\neq n\) would not have any noticable effect on the results for a reasonable sized n and m.} meshgrid with \(x,y\in [0,1]\) selected by random from a uniform distribution, and each point has a added normally distributed noise with \(\mu = 0\) and \(\sigma = 1\). Thus the function used in the data-generation is
 \begin{equation}
 f_{F}(x,y) = F(x, y) + \mathcal{N}(0,1)
 \end{equation}
 with \(F(x,y)\) the Franke function. Note that I used the \textit{seed 42} when generating all the random numbers, this was to simulate a real-life data set where the measured data is static.
 
-The terrain data is very similar to the self-generated data, the largest difference is the span of the x and y axis on a meshgrid.
+In the terrain data I was given all the data points, thus I only had to generate the grid. Before doing that I cut away the last row and column such that my data set was of \(3600\times 1800\) data points. I further decrease the size of the data to \(400\times 200\) by taking the average value of \(9\times 9\) non overlapping grids inside the data set.
 
-The last preparatory step before the analysis is to create a design matrix from the x,y datapoints in the meshgrid. As for all meshgrids x and y are \(n\times n\) matrices, but these are both flattend:
-\begin{align}
-\bm{x_f} &= \lsb x_{00}\;\;x_{01}\;\;x_{02}\hdots x_{0n}\;\;x_{01}\hdots x_{nn}\rsb^T\\
-\bm{y_f} &= \lsb y_{00}\;\;y_{01}\;\;y_{02}\hdots y_{0n}\;\;y_{01}\hdots y_{nn}\rsb^T.
-\end{align}
-The columns in the design matrix \(\bm{X}\) is than created as follows:
-%\begin{align*}
-%&\bm{X} =\\
-%&\lsb \bm{x_f^{\circ 0} \circ y_f^{\circ 0}}\;\;\bm{x_f^{\circ 1} \circ y_f^{\circ 0}}\hdots\bm{x_f^{\circ k} \circ y_f^{\circ 0}}\;\;\bm{x_f^{\circ 0} \circ y_f^{\circ 1}}\hdots\bm{x_f^{\circ k} \circ y_f^{\circ k}}\rsb
-%\end{align*}
-where my intention is to illustrate that each column consist of the Hadamard product between \(\bm{x_f^u}\) and \(\bm{y_f^v}\) such that all polynomials in this sum is covered
-\begin{equation}
-\sum_{v=0}^k\sum_{u=0}^k\bm{x_f^{\circ u}}\circ \bm{y_f^{\circ v}}.
-\end{equation}
+With a reduced data set I created the x and y grid by creating a grid of 400 linearly spaced x-values and 200 linearly spaced y-values such that \(x, y \in [0, 1]\).
 
-%With the data set generated the regression analysis can begin. The design matrix \(\bm{X}\) was created such that it spans the vector space created by polynoial up to order k, thus having the following form:
-%\begin{align}
-%\bm{X}
-%=
-%\lsb \bm{x^0y^0}\;\;\bm{x^1y^0}\hdots\bm{x^ky^0}\;\;\bm{x^0y^1}\hdots\bm{x^ky^k}\rsb.
-%\end{align}
+The last preparatory step before the analysis is to create a design matrix from the x,y datapoints in the meshgrid. This is done by flattening the meshgrids using \texttt{np.ravel} such that the same index in x, y and z are still for the same data point.
 
+The design matrix is created  by polynomial combinations of x and y up to a given degree n. A code snippet of the creation of X is shown here:
+\begin{verbatim}
+for i in range(1, k + 1):
+    q = int((i)*(i + 1)/2)
+    for k in range(i + 1):
+        X[:,q+k] = x**(i-k) * y**k
+\end{verbatim}
+For a showing of the order of the different polynomial print \texttt{polynomial\_str} parameter from the \texttt{regression} class.
+
+For all design matrices the SVD is calculated by scipy and \texttt{full\_matrices = False}.
+
+With the SVD calculated OLS is calculated by equation \ref{eq:08} while ridge is calculated by equation \ref{eq:09}. Lasso is calculated by sklearn by \texttt{sklearn.linear\_model.Lasso}.
 
 
 \subsection{Regression analysis}
 
-With a design matrix in hand the SVD needed for the regression methods was calculated by the scipy module. With the SVD for a design matrix OLS is calculated by equation \ref{eq:08} and ridge regression is calculated by equation \ref{eq:09}. The lasso regression model is created using the sklearn library, and more specific th \texttt{sklearn.linear\_model.Lasso} module.
+For future reference when talking about the ideal \(\lambda\)-value I am referring to the \(\lambda\) which minimized the MSE and maximized the R\(^2\) error in k-fold cross validation for the excluded fold. This is done by calculating the error estimates for the excluded fold for n-different \(\lambda\)-values which are constant for each fold. Than the \(\lambda\) which minimized the mean error in the excluded folds is the 'ideal' \(\lambda\). In table \ref{tab:01} I have tried to illustrate how the error estimate may differ for the same fold depending on the \(\lambda\)-value. In table \ref{tab:01} the ideal \(\lambda\) would be number 4 since mean is the smallest. 
 
-In the earlier paragraph I did not specify form which data set the design matrix originated from. This is because the analysis for both sets of data is almost identical. The few minor differences in the method will be specified when they appear.
+\begin{table}
+\begin{tabular}{|c|c|c|c|}\hline
+\(\lambda\)-values & Fold 1 & Fold 2 & Fold 3 \\ \hline
+\(\lambda_{1}\) & 1 & 2 & 2\\ \hline
+\(\lambda_{2}\) & 2 & 2 & 2 \\ \hline
+\(\lambda_{3}\) & 1 & 2 & 1 \\ \hline
+\(\lambda_{4}\) & 1 & 1.5 & 1 \\ \hline
+\end{tabular}
+\caption{A illustration of how the error estimate can differ depending on the fold and the \(\lambda\) value. The ideal \(\lambda\) would here be \(\lambda_4\).}
+\label{tab:01}
+\end{table}
 
-At first the entire design matrix will be used in linear regression and not split into training and test data. The resulting models was than used to calculate the MSE and R\(^2\) error by equation \ref{eq:05} and \ref{eq:11} respectively. For the Franke function data both the actual Franke function and the data with added noise was used when evaluating the error.
+\subsubsection{Franke function}
 
-The next step was to split the data sets into training and test data with using the \texttt{test\_train\_split} function from sklear, the ratio for the split used was \(70\%\) training data. The training data was than used to fit the linear regression models and the MSE and R\(^2\) errors were calculated by using the test data and the Franke function without noise.
+Most of the actual data analysis is pretty similar between the different data sets. 
+In the Franke function data set I begin by calculating the OLS, ridge and lasso models for the entire design matrix with 5\(^{th}\) degree polynomial complexity. The resulting models was than used to calculate the MSE and R\(^2\) error by equation \ref{eq:05} and \ref{eq:11} respectively. The error estimates was calculated both with respect to the data set and to the real Franke function without noise. How the \(\lambda\) values used for ridge lasso was found is explained in the next couple of paragraphs. The confidence intervals for \(\beta\) was also calculated by the expression corresponding to the different methods. Except for lasso where equation \ref{eq:14} was used.
 
-With the data split into training and test data, the resampling technique k-fold cross validation was used in fitting the linear models. The \(\beta\)-coefficients, MSE and R\(^2\) values were stored for each exclusion of a fold. The error quantities were calculated both with respect to the Franke function and the test data with added noise. Finally the mean and variance for each measured quantity was calculated. These calculations were repeated for multiple different amount of data-points.
+The next step was to split the data sets into training and test data using the \texttt{test\_train\_split} function from sklear, the ratio for the split used was \(70\%\) training data and \(30\%\) test data. The training data was than used to fit the linear regression models and the MSE and R\(^2\) errors were calculated by using the test data and the Franke function without noise. Further for ridge and lasso regression the MSE and R\(^2\) error estimates was calculated for a multitude of different \(\lambda\)-values, and the \(\lambda\) giving the minimum was found. The confidence intervals for \(\beta\) in OLS was also calculated by equation \ref{eq:13}, the same was done for ridge and lasso, but with equation \ref{eq:14} and minimum \(\lambda\)-values.
 
-Unlike previously where the model complexity was constant, that is no longer the case. The models created will now be used to showcase the bias-variance tradeoff. This is done by varying the maximum order of the polynomial used in the creation of the design matrix \(\bm{X}\). Multiple design matrices are created for \(k=0,1,2,3,4...\) maximum order of polynomials. Each design matrix is splitted into test and training data with a constant seed such that the datapoints used for test and training are the same independent of k. Multiple regression method are used to create models dependent on the design matrix, both by using the regression method alone or through k-fold cross validation. The MSE, R\(^2\) error, the bias and variance of the model are thereafter calculated and plotted against the complexity. Remember that for the k-fold cross validation it's the mean of all the measured quantities which are plotted e.g the MSE from k-fold is the mean of all mean square errors calculated with k-fold.
+Now the resampling technique k-fold cross validation was implemented. The \(\beta\)-coefficients, MSE and R\(^2\) values were stored for each exclusion of a fold. The error quantities were calculated both with respect to the test data. Finally the mean and variance for each measured quantity was calculated. This was done for \(k=10\) folds.
 
+The next step was to use k-fold cross validation with 5-folds to calculate the MSE and R\(^2\) for test and train data. This was done for different polynomial degrees from 0 to 15. This was repeated 50 times for each degree but with random folds and the mean of the 50 runs for each polynomial degree was plotted. The result is thus a plot of the training error and test error pr polynomial degree.
 
-%The general implementation of OLS and ridge regression are both very similar and can be summarized as follows:\\
-%1. \texttt{Calculate SVD of a design matrix\(\bm{X}\)\\
-%2. \texttt{Find \(\bm{\beta}\) with equation \ref{eq:08}, \ref{eq:09}} or lasso\\
-%3. \texttt{Calculate \(\bm{\tilde{z}}\) by equation \ref{eq:10}}\\
-%4. \texttt{Calculate MSE and R\(^2\) errors}\\
-%5. \texttt{Calculate mean and standard deviation}
+The next step is to create a plot of the bias and variance. This is done by recreating the data set 100 times pr polynomial degree and creating a model each time for the training data. With 100 different models the variance in the bias-variance tradeoff was calculated by taking the variance between the \(\bm{\tilde{z}}\) in the test data. The bias was than the mean squared difference between the Franke function and the mean of all the \(\bm{\tilde{z}}\)-models for the test set as shown i equation \ref{eq:bias}.
+
+In the last part the ideal \(\lambda\)-value pr complexity is used to create models for the training data in the splitted data set. Further this is done for polynomials from 3 to 15 degree. This is done for OLS, ridge and lasso regression. The error estimates is than calculated between the model and the test data, but also between the model and the test section of the real Franke function.
+
+The last part which was done was to plot the models surface in 3D for both a OLS model and ridge model with the ideal \(\lambda\).
+
+\subsubsection{Terrain data}
+
+Unlike for the Franke data I will begin by calculating the error estimates using k-fold cross validation with 5 folds. This is done for all polynomial orders from 1 to 20. In the k-fold the error estimates for both the test and training folds are calculated and in the end both are plotted side by side.
+
+After k-fold cross validation the data set is splitted into test and training data. The training data is used to create multiple models for ridge and lasso for varying \(\lambda\) values. For each model with different \(\lambda\) error estimates are calculated on test data. The error estimates in test data are than plotted as a function   \(\lambda\). This is done for 15\(^\text{th}\) degree complexity.
+
+In the next step the evolution of the ideal \(\lambda\)-values are studied. This is done by calculating the ideal \(\lambda\) by k-fold 50 times with randomized folds, than the mean \(\lambda\)-value is calculated with corresponing standard error at \(95\%\) confidence. This is repeated for all polynomial degrees between 1\(^\text{st}\) and 15\(^\text{th}\) complexity. Finally the mean \(\lambda\)-values for each complexity is plotted with the error estimates, only the non-zero \(\lambda\) are plotted.
+
+With the mean ideal \(\lambda\)-values calculated the data set is again split into test and training sets. Ridge regression with the the mean ideal \(\lambda\)-values are than used to create models for all polynomial orders from 1 to 20. The ridge model with the mean ideal \(\lambda\)-value for each complexity is than used to calculate the error estimates for test and training sets. The error estimates from the test and training are than plotted in the same plot. For the polynomial degrees where there were no mean ideal \(\lambda\)-value I used \(\lambda = 0\).
+
+In the next part k-fold cross validation was again used but now with \(k=10\) folds. The error estimates for the OLS, ridge and lasso models for a 15\(^\text{th}\) degree complexity was than plotted in a histogram. The inevitable error from equation \ref{eq:01} was also calculated, this by equation \ref{eq:03}.
+
+The final part was simply creating a model for both 15\(^\text{th}\) and 5\(^\text{th}\) degree polynomial complexity for the entire data set. Calculating the error estimates and finally plotting colormesh plots for both modeled surfaces.
 
 
 \section{Results}\label{sec:Results}
@@ -366,7 +397,7 @@ For most of the analysis, the data set will consist of \(81\times 81\) data poin
     \label{fig:Franke_w_noise}
 \end{figure}
 
-The model created by OLS, Ridge and Lasso with a complexity of 5\(^\text{th}\) degree gave the following \(\beta\)-coefficients in table \ref{tab:01} for the full data set. Note however my choice for \(\lambda\) for both Ridge and Lasso, this choice will be apparent later. The confidence intervals for OLS is caluclated by \ref{eq:13} while ridge and lasso is calculated by equation \ref{eq:14}, and all \(\sigma\) are multiplied with 1.96 to get the confidence at \(95\%\).
+The model created by OLS, Ridge and Lasso with a complexity of 5\(^\text{th}\) degree gave the following \(\beta\)-coefficients in table \ref{tab:02} for the full data set. Note however my choice for \(\lambda\) for both Ridge and Lasso, this choice will be apparent later. The confidence intervals for OLS is caluclated by \ref{eq:13} while ridge and lasso is calculated by equation \ref{eq:14}, and all \(\sigma\) are multiplied with 1.96 to get the confidence at \(95\%\).
 
 \begin{table}
 \begin{tabular}{|c|c|c|c|}\hline
@@ -394,10 +425,10 @@ The model created by OLS, Ridge and Lasso with a complexity of 5\(^\text{th}\) d
 \(\beta_{20}\) & -13.6 \(\pm\) 22.1 & -8.49 \(\pm\) 4.26 & -0.915 \(\pm\) 20.9 \\ \hline
 \end{tabular}
 \caption{The \(\beta\)-values for the OLS, Ridge and Lasso regression methods with their respective confidence interval. For Ridge \(\lambda = 4.95\cdot 10^{-3}\) while for Lasso \(\lambda = 3.66\cdot 10^{-5}\).}
-\label{tab:01}
+\label{tab:02}
 \end{table}
 
-The linear models with the \(\beta\)-coefficients shown in table \ref{tab:01} gives the following error estimates for MSE and R\(^2\) shown in table \ref{tab:02} calculated by equation \ref{eq:05} and \ref{eq:11}. The error estimates shown are both between the model and the data set, but also between the actual Franke function and the model.
+The linear models with the \(\beta\)-coefficients shown in table \ref{tab:02} gives the following error estimates for MSE and R\(^2\) shown in table \ref{tab:03} calculated by equation \ref{eq:05} and \ref{eq:11}. The error estimates shown are both between the model and the data set, but also between the actual Franke function and the model.
 
 \begin{table}
 \begin{tabular}{|c|c|c|c|}\hline
@@ -408,10 +439,10 @@ R\(^2\) Franke & 0.944 & 0.934 & 0.905 \\ \hline
 R\(^2\) Data & 0.102 & 0.101 & 0.0956 \\ \hline
 \end{tabular}
 \caption{The error estimates MSE and R\(^2\) calculated based upon the model created by the coefficients in table \ref{tab:01}. The error estimates are calculated both with respect to the actual Franke function and the data set used to create the model.}
-\label{tab:02}
+\label{tab:03}
 \end{table}
 
-So far all the results presented are from creating models on the entire data set. From now on the data set is split at at ratio 70\% training and 30\% test data. The \(\beta\)-coefficients from the training data is given in table \ref{tab:03} in the appendix. The error estimates are given in table \ref{tab:04} and \ref{tab:05}. In table \ref{tab:04} the error estimates is calculated based on the data points used for training while the error estimates in table \ref{tab:05} is calculated based upon the test section of the data. 
+So far all the results presented are from creating models on the entire data set. From now on the data set is split at at ratio 70\% training and 30\% test data. The \(\beta\)-coefficients from the training data is given in table \ref{tab:13} in the appendix. The error estimates are given in table \ref{tab:04} and \ref{tab:05}. In table \ref{tab:04} the error estimates is calculated based on the data points used for training while the error estimates in table \ref{tab:05} is calculated based upon the test section of the data. 
 
 
 \begin{table}
@@ -422,7 +453,7 @@ MSE Data & 1.01 & 1.01 & 1.02 \\ \hline
 R\(^2\) Franke & 0.917 & 0.915 & 0.884 \\ \hline
 R\(^2\) Data & 0.0994 & 0.0979 & 0.092 \\ \hline
 \end{tabular}
-\caption{The error estimates MSE and R\(^2\) calculated based upon the model created by the coefficients in table \ref{tab:03}. The error estimates are for the training section of the data and are calculated both with respect to the actual Franke function and the data set used to create the model.}
+\caption{The error estimates MSE and R\(^2\) calculated based upon the model created by the coefficients in table \ref{tab:13}. The error estimates are for the training section of the data and are calculated both with respect to the actual Franke function and the data set used to create the model.}
 \label{tab:04}
 \end{table}
 
@@ -434,11 +465,11 @@ MSE Data & 0.981 & 0.979 & 0.984 \\ \hline
 R\(^2\) Franke & 0.917 & 0.916 & 0.888 \\ \hline
 R\(^2\) Data & 0.101 & 0.103 & 0.098 \\ \hline
 \end{tabular}
-\caption{The error estimates MSE and R\(^2\) calculated based upon the model created by the coefficients in table \ref{tab:03}. The error estimates are for the test section of the data and are calculated both with respect to the actual Franke function and the test section of the data set used to create the model.}
+\caption{The error estimates MSE and R\(^2\) calculated based upon the model created by the coefficients in table \ref{tab:13}. The error estimates are for the test section of the data and are calculated both with respect to the actual Franke function and the test section of the data set used to create the model.}
 \label{tab:05}
 \end{table}
 
-So far I have only blindly used two values for \(\lambda\) for both ridge and lasso regression. In figure \ref{fig:Vary_lambda_R} and \ref{fig:Vary_lambda_L} the MSE between the test set and the predicted model is plotted for a varying \(\lambda\) in ridge and lasso regression respectively. The same applies to figure \ref{fig:Vary_lambda_R2} and \ref{fig:Vary_lambda_L2}, but for a wider range of \(\lambda\)-values. Figure \ref{fig:Vary_lambda_R3}, \ref{fig:Vary_lambda_L3}, \ref{fig:Vary_lambda_R4} and \ref{fig:Vary_lambda_L4} are contour versions of the previous mentioned plots, but for more polynomial degrees.
+So far I have only blindly used two values for \(\lambda\) for both ridge and lasso regression. In figure \ref{fig:Vary_lambda_R} and \ref{fig:Vary_lambda_L} the MSE between the test set and the predicted model is plotted for a varying \(\lambda\) in ridge and lasso regression respectively. The same applies to figure \ref{fig:Vary_lambda_R2} and \ref{fig:Vary_lambda_L2}, but for a wider range of \(\lambda\)-values.
 
 \begin{figure}[H]
     \centering
@@ -454,7 +485,7 @@ So far I have only blindly used two values for \(\lambda\) for both ridge and la
     \label{fig:Vary_lambda_L}
 \end{figure}
 
-Using the resampling method k-fold cross validation with 10-folds the MSE calculated between the model and the excluded fold is shown as histograms in figure \ref{fig:K_fold10_OLS}, \ref{fig:K_fold10_Ridge} and \ref{fig:K_fold10_Lasso} for Ols, ridge and lasso respectively.
+Using the resampling method k-fold cross validation with 10-folds the MSE calculated between the model and the excluded fold is shown as histograms in figure \ref{fig:K_fold10_OLS}, \ref{fig:K_fold10_Ridge} and \ref{fig:K_fold10_Lasso} for OLS, ridge and lasso respectively.
 
 For 10-folds with OLS the MSE and R\(^2\) scores from the test data in k-fold are
 \begin{align*}
@@ -465,7 +496,7 @@ The standard deviation of the inevitable error from equation \ref{eq:01} is calc
 \begin{equation}
 \sigma = 1.0007 \pm 0.005
 \end{equation}
-with 95\% confidence interval. The mean \(\beta\)-coefficients of the models from k-fold is given in table \ref{tab:06} and the error is the standard deviation of all the calculated \(\beta_i\)-coefficients at a 95\% confidence interval. 
+with 95\% confidence interval. The mean \(\beta\)-coefficients of the models from k-fold is given in table \ref{tab:14} and the error is the standard deviation of all the calculated \(\beta_i\)-coefficients at a 95\% confidence interval. 
 
 \begin{figure}[H]
     \centering
@@ -488,7 +519,7 @@ with 95\% confidence interval. The mean \(\beta\)-coefficients of the models fro
     \label{fig:K_fold10_Lasso}
 \end{figure}
 
-In figure \ref{fig:test_vs_train} the MSE between a model and the training data is plotted togehter with the MSE between the model and test data not used in the creation of the model. This plotted against the complexity of the mode. In this case k-fold cross validation is used in the creation of test and training data with 5-folds. K-fold cross validation is run 50 times pr polynomial complexity but with random folds, the MSE is than the mean of the 50 runs. The same plot but for R\(^2\) is shown in figure \ref{fig:test_vs_trainR2}. The same plots but for ridge with \(\lambda = 10^{-3}\) and \(\lambda = 10^{-5}\) are shown in figure \ref{fig:test_vs_trainRidge}, \ref{fig:test_vs_trainR2Ridge}, \ref{fig:test_vs_trainLasso} and \ref{fig:test_vs_trainR2Lasso}.
+In figure \ref{fig:test_vs_train} the train and test errors from k-fold cross validation with \(k=5\) folds is plotted as function of polynomial complexity. The plotted values are the mean of 50 runs pr polynomial complexity but with random folds, the MSE is than the mean of the 50 runs. The same plot but for R\(^2\) is shown in figure \ref{fig:test_vs_trainR2}.
 
 Further in figure \ref{fig:bias_varianceOLS} the bias and variance is plotted against the model complexity. The bias and variance is calculated between 100 models created by re randomizing the noise 100 times and fitting the OLS model on a train set. The bias and variance is calculated on the test section of the model.
 
@@ -514,7 +545,7 @@ Further in figure \ref{fig:bias_varianceOLS} the bias and variance is plotted ag
     \label{fig:bias_varianceOLS}
 \end{figure}
 
-The final part of this subsection will resolve around finding the optimal solution for solving the problem. Therefore in figure \ref{fig:optimal_r2_franke} and \ref{fig:optimal_r2_data} the R\(^2\) score for OLS, ridge and lasso is plotted against the corresponding model complexity. The model is created using a training set whereas the error is estimated by a test set, further in figure \ref{fig:optimal_r2_franke} the test set used is for the real Franke function and figure \ref{fig:optimal_r2_data} corresponds to the data set. For lasso and ridge regression the \(\lambda\)-parameter is my calculated optimal. Corresponding figures for the MSE is shown in figure \ref{fig:optimal_mse_data} for the data set and \ref{fig:optimal_mse_franke} when comparing to the real Franke function. The minimum MSE and highest R\(^2\) scores is found in table \ref{tab:07} with the corresponing polynomial complexity and \(\lambda\)-parameters.
+The final part of this subsection will resolve around finding the optimal solution for solving the problem. Therefore in figure \ref{fig:optimal_r2_franke} and \ref{fig:optimal_r2_data} the R\(^2\) score for OLS, ridge and lasso is plotted against the corresponding model complexity. The model is created using a training set whereas the error is calculated using the test data. Further in figure \ref{fig:optimal_r2_franke} the error estimate is calculated with the real Franke function on the test section of the data while figure \ref{fig:optimal_r2_data} shows the error estimate for the data set. For lasso and ridge regression the \(\lambda\)-parameter is my calculated ideal \(\lambda\). Corresponding figures for the MSE is shown in figure \ref{fig:optimal_mse_data} for the data set and \ref{fig:optimal_mse_franke} when comparing to the real Franke function. The minimum MSE and highest R\(^2\) scores is found in table \ref{tab:06} with the corresponding polynomial complexity and \(\lambda\)-parameters.
 
 \begin{figure}[H]
     \centering
@@ -539,10 +570,10 @@ R\(^2\) Franke & 0.917 & 0.92 & 0.908 & 5, 6, 9 \\ \hline
 R\(^2\) Data & 0.103 & 0.103 & 0.102 & 4, 13, 15 \\ \hline
 \end{tabular}
 \caption{The lowest MSE and highest R\(^2\) estimate with corresponding polynomail degress and lambda value for figure \ref{fig:optimal_r2_data}, \ref{fig:optimal_r2_franke}, \ref{fig:optimal_mse_data} and \ref{fig:optimal_mse_franke}. The \(\lambda\)-paramters used for ridge is \(\lambda = 0.002458\) and \(\lambda = 0.03091\) and for lasso \(\lambda = 7.2605\cdot 10^{-6}\) and \(\lambda = 3.7727\cdot 10^{-5}\) for Franke and data respectively.}
-\label{tab:07}
+\label{tab:06}
 \end{table}
 
-Using the models for OLS, ridge and lasso with the best test data scores shown in table \ref{tab:07} i.e: 4\(^\text{th}\) order for OLS, 13\(^\text{th}\) order for ridge and 15\(^\text{th}\) order for lasso. The MSE and R\(^2\) error estimates for the entire data set for those models is shown in table \ref{tab:08}. The ridge model is plotted in figure \ref{fig:ridge_3d} whereas the remaing two models from table \ref{tab:08} is plotted in figure
+Using the models for OLS, ridge and lasso with the best test data scores shown in table \ref{tab:06} i.e: 4\(^\text{th}\) order for OLS, 13\(^\text{th}\) order for ridge and 15\(^\text{th}\) order for lasso. The MSE and R\(^2\) error estimates for the entire data set for those models is shown in table \ref{tab:07} and when the models are created on the entire data set in table \ref{tab:07_2}. The ridge model is plotted in figure \ref{fig:ridge_3d} whereas the two remaining models from table \ref{tab:06} is not plotted.
 
 \begin{table}
 \begin{tabular}{|c|c|c|c|}\hline
@@ -552,9 +583,22 @@ MSE Data & 1.001 & 0.9985 & 1.001 \\ \hline
 R\(^2\) Franke & 0.9023 & 0.9089 & 0.9046 \\ \hline
 R\(^2\) Data & 0.09922 & 0.1012 & 0.09854 \\ \hline
 \end{tabular}
-\caption{The MSE and R\(^2\) scores for the entire data set with the models with the best scores from the test data in table \ref{tab:07} for OLS, ridge and lasso.}
-\label{tab:08}
+\caption{The MSE and R\(^2\) scores for the entire data set with the models with the best scores from the test data in table \ref{tab:06} for OLS, ridge and lasso.}
+\label{tab:07}
 \end{table}
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|}\hline
+Error estimates & OLS & Ridge & Lasso \\ \hline
+MSE Franke & 0.007161 & 0.006443 & 0.007304 \\ \hline
+MSE Data & 0.9994 & 0.9971 & 1.001 \\ \hline
+R\(^2\) Franke & 0.9242 & 0.9318 & 0.9227 \\ \hline
+R\(^2\) Data & 0.1004 & 0.1025 & 0.09915 \\ \hline
+\end{tabular}
+\caption{The MSE and R\(^2\) scores for the entire data set with the models with the best scores from the test data in table \ref{tab:07} for OLS, ridge and lasso. The models are now created based on the entire data set not only the training set.}
+\label{tab:07_2}
+\end{table}
+
 
 \begin{figure}[H]
     \centering
@@ -601,7 +645,7 @@ To determine the complexity of the model I will begin by finding the MSE and R\(
     \label{fig:test_vs_train3}
 \end{figure}
 
-Based on figure \ref{fig:test_vs_train2} and \ref{fig:test_vs_train3} there exist no ideal polynomial complexity where further increase in complexity would have negligible effect. Thus I will be choosing a complexity of maximum 15\(^\text{th}\) degree\footnote{I will later learn to regret this decision, so many hours running programs}. The mean MSE and R\(^2\) error for a 15\(^\text{th}\) degree polynomial from k-fold with 5 folds can be found in table \ref{tab:09}.
+Based on figure \ref{fig:test_vs_train2} and \ref{fig:test_vs_train3} there exist no ideal polynomial complexity where further increase in complexity would have negligible effect. Thus I will be choosing a complexity of maximum 15\(^\text{th}\) degree\footnote{I will later learn to regret this decision, so many hours running programs}. The mean MSE and R\(^2\) error for a 15\(^\text{th}\) degree polynomial from k-fold with 5 folds can be found in table \ref{tab:08}.
 
 \begin{table}
 \begin{tabular}{|c|c|}\hline
@@ -612,7 +656,7 @@ R\(^2\) Test & 0.8657 \\ \hline
 R\(^2\) Training & 0.8662 \\ \hline
 \end{tabular}
 \caption{The error estimates MSE and R\(^2\) from figure \ref{fig:test_vs_train2} and \ref{fig:test_vs_train3} for 15\(^\text{th}\) degree polynomial.}
-\label{tab:09}
+\label{tab:08}
 \end{table}
 
 As done with the Franke function the data is splitted into training and test data. This split used to find the optimal \(\lambda\) parameter for ridge and lasso. The result of this is seen in figure \ref{fig:ridge_bad} and \ref{fig:lasso_bad} where the MSE in the test data is plotted against the corresponding \(\lambda\) parameter. Further increase in \(\lambda\)-values than demonstrated would prove pointless since it would not improve the accuracy of the model for a 15\(^\text{th}\) degree polynomial complexity. However for lower polynomial complexity \(\lambda > 0\) does in fact have a positive effect on the error estimates of the test data. 
@@ -641,7 +685,7 @@ In figure \ref{fig:lambda_pr_degree_terrain} the mean \(\lambda\) values which m
     \label{fig:lambda_pr_degree_terrain}
 \end{figure}
 
-Using the \(\lambda\)-values from figure \ref{fig:lambda_pr_degree_terrain} and recreating figure \ref{fig:test_vs_train2} with ridge, the final result is plotted in figure \ref{fig:test_vs_train2ridge}. Further a comparison of the test MSE scores from ridge and OLS with the same folds is shown in table \ref{tab:13}. Note however that after 12\(^\text{th}\) polynomials \(\lambda = 0\) and differences are because of round off errors in the calculations.
+Using the \(\lambda\)-values from figure \ref{fig:lambda_pr_degree_terrain} and recreating figure \ref{fig:test_vs_train2} with ridge, the final result is plotted in figure \ref{fig:test_vs_train2ridge}. Further a comparison of the test MSE scores from ridge and OLS with the same folds is shown in table \ref{tab:09}. Note however that after 12\(^\text{th}\) polynomials \(\lambda = 0\) and differences are because of round off errors in the calculations.
 
 \begin{figure}[H]
     \centering
@@ -675,7 +719,7 @@ Complexity & OLS & Ridge\\ \hline
 20 & 10345.836 & 10345.831 \\ \hline
 \end{tabular}
 \caption{The error estimates MSE and R\(^2\) from figure \ref{fig:test_vs_train2} and \ref{fig:test_vs_train3} for 15\(^\text{th}\) degree polynomial.}
-\label{tab:13}
+\label{tab:09}
 \end{table}
 
 Using a 15\(^\text{th}\) degree complexity to create the model the MSE and R\(^2\) error estimates for the entire data set is shown in table \ref{tab:10} and the inevitable error is \(\sigma = 107.98423\). Using a simple train test split the error estimates is shown in table \ref{tab:11} and the inevitable error for the train test case is \(\sigma = 107.98418\).
@@ -741,7 +785,33 @@ Using 15\(^{th}\) degree complexity for the entire data set a colormap of the mo
 
 \section{Discussion}\label{sec:Discussion}
 
-Something something
+In this part I will not be separating the Franke function data and the terrain data into two different subsections. This is because both sets are critical to fully evaluate the three linear regression methods.
+
+As expected the OLS models outperformed both ridge regression and lasso regression when fitting the entire data set, and evaluating the models on the same set. This should come as no surprise since the derivation is based around minimizing the cost function. From the vector space derivation the OLS model is the closest point in the vector space spanned by \(\bm{X}\) to the data set. It can be seen from table \ref{tab:02} and table \ref{tab:03} where the error was smaller than both ridge and lasso.
+
+The problem where OLS may struggle is when you want a predictive model. OLS is very sensitive to over fitting as seen in figure \ref{fig:test_vs_train}. Ridge and lasso is far less sensitive as seen in figure \ref{fig:optimal_r2_franke}. It's clear that their strengths is that they can use higher order polynomial degrees in the model without overfitting. In my case ridge regression gave constantly better results for both the Franke function and the terrain data than lasso regression did. This may have something to do with how they shrink the \(\beta\) coefficients. As seen in table \ref{tab:02} lasso regression has a tendency to make coefficients zero and way smaller than ridge for smaller \(\lambda\)-values.
+
+When comparing ridge and OLS on the other hand ridge gave best results in table \ref{tab:07}. It's worth noting here that I did not use the models with the best fit on the Franke function but on the test data. This was to simulate a real data set where I do not know the underlying function. It's also worth noting that my best error estimate on a test function from table \ref{tab:06} was from Ridge regression. However this was only for the test data. In table \ref{tab:07} I have used the same models as in table \ref{tab:06} but on the entire data set. It's evident that ridge gave the best fit over all.
+
+So far I have only covered how the regression methods behaved for a small data set. As evident in figure \ref{fig:test_vs_trainlarge_n} OLS is far more stable for a higher number of data points n. This is also very evident in figure \ref{fig:test_vs_train2} where there is almost no difference between the test and training error. Further from figure \ref{fig:ridge_bad} and \ref{fig:lasso_bad} it's clear that in these cases ridge and lasso regression would only worsen the result. This may simply be because the strengths of ridge and lasso regression is that it can utilize higher degree polynomial complexity than OLS without over-fitting. 
+
+An interesting result is shown in figure \ref{fig:lambda_pr_degree_terrain} where \(\lambda \rightarrow 0\) for larger polynomial complexity. This is unexpected as I would expect the ideal \(\lambda\)-values to increase as it does with the Franke function data as seen in figure \ref{fig:optimal_lambdas} to keep the model stable. My guess for this is that the data is to advanced for lower polynomials give good estimates, and thus changing \(\lambda\) would be similar to tilting a plane. For more advanced models less and less tilting is required. This is however just a wild guess. It is however clear that the polynomial order is too low to properly make use of the stabilizing qualities of ridge and lasso. Thus making OLS a better option since my used polynomials are rather stable without shrinking.
+
+As a short summary, OLS is the better option for fitting entire data sets or when the complexity and number of data points are to great. Ridge and lasso are better option when there are fewer data points and OLS begins to overfit the data. For very high polynomial orders lasso may be the better option as \(\lambda\) for ridge is larger than \(\lambda\) for lasso as seen in figure \ref{fig:optimal_lambdas} and table \ref{tab:02}.
+
+\subsubsection{Data sets}
+
+So far the regression methods haven been the focal point. In this subsection the data sets and their best models will be in focus.
+
+We will begin with the terrain data. It's very clear that from figure \ref{fig:test_vs_train2} that there is very little overfitting when using OLS. This is futher enhanced in table \ref{tab:09} where the difference between OLS and ridge regression with the ideal \(\lambda\) are practically equal. Although I will say that ridge regression is smaller from 4\(^\text{th}\) degree up to 12\(^\text{th}\) degree polynomials. After this all ideal \(lambda\) values were 0. There is however no point in using so low polynomial degrees since higher order are complexity is objectively better. Especially since there are no noticeable overfitting. By comparing figure \ref{fig:terrain_data} with the models in figure \ref{fig:colormap_terrain_model} and \ref{fig:colormap_terrain_model5th} there is clear that the 15\(^\text{th}\) degree complexity is far more capable of reproducing the original surface.
+
+Lasso regression is even worse than ridge regression in fitting the terrain data. Unlike ridge which gave some (very very minor) improvements in the test error, lasso is objectively wore. This is evident in figure \ref{fig:lasso_bad} where even \(\lambda = 0\) gave worse error estimates than OLS.
+
+For the Frank function the linear regression which gave the best fit is not as simple as for the terrain data. Unlike the for the terrain data lasso regression out preformed OLS in some cases.
+
+I will again look at table \ref{tab:06} and \ref{tab:07}. This is simply because the data shown in table \ref{tab:07} is based on model I would have chosen. This is because these models are the models which minimized the error estimate for the test data in table \ref{tab:06}. It is worth noting that ridge outperformed both lasso regression and OLS while lasso outperformed OLS with respect to real Franke function. These models are only created on the training set, so whether they outperform OLS by having smaller error estimates with regards to the Franke function when fitting the model on the entire data set is shown in figure \ref{tab:07_2}. Funny enough the error estimate with the Franke function is better in table \ref{tab:02}, this is however just a coincidence. The lasso error estimates are however better than in table \ref{tab:02}.
+
+All regression methods give good results in reproducing the original data, and a point could be made for all of the methods. I would however make a point in noting that finding the optimal \(\lambda\)-values for ridge and lasso is far computationally demanding than using OLS. Further the extra complexity need places more emphasis the computational cost of these two methods. Albeit I believe from table \ref{tab:07} and figure \ref{fig:optimal_lambdas} that ridge and lasso may be safer options to avoid overfitting, the extra computational power need does make OLS seem like the better option. Time used on finding \(\lambda\) may instead be used on finding the ideal polynomial complexity to avoid overfitting.
 
 \section{Conclusion}\label{sec:Conclusion}
 
@@ -751,15 +821,6 @@ Something something
 \appendix
 
 \section{Tables}
-
-\begin{align*}
-\bm{\beta}_{OLS} &= (\bm{X^TX})^{-1}\bm{X^Ty}\\
-&= ((\bm{U\Sigma V}^T)^T\bm{U\Sigma V}^T)^{-1}(\bm{U\Sigma V}^T)^T\bm{y}\\
-&= (\bm{V\Sigma^TU^T}\bm{U\Sigma V}^T)^{-1}\bm{V\Sigma^TU}^T\bm{y}\\
-&= (\bm{V\Sigma^2V}^T)^{-1}\bm{V\Sigma^TU}^T\bm{y}\\
-&= \bm{V}\bm{\Sigma}^{-2}\bm{\Sigma^TU^Ty}\\
-&= \bm{V}(\bm{\Sigma})^{-1}\bm{U^Ty}.
-\end{align*}
 
 \begin{table}
 \begin{tabular}{|c|c|c|c|}\hline
@@ -787,7 +848,7 @@ Something something
 \(\beta_{20}\) & -5.79 \(\pm\) 26.3 & -8.38 \(\pm\) 4.45 & -1.34 \(\pm\) 24.3 \\ \hline
 \end{tabular}
 \caption{The \(\beta\)-values for the OLS, Ridge and Lasso regression methods with their respective confidence interval. For Ridge \(\lambda = 4.95\cdot 10^{-3}\) while for Lasso \(\lambda = 3.66\cdot 10^{-5}\).}
-\label{tab:03}
+\label{tab:13}
 \end{table}
 
 \begin{table}
@@ -816,8 +877,10 @@ Something something
 \(\beta_{20}\) & -13.6 \(\pm\) 7.36 \\ \hline
 \end{tabular}
 \caption{The \(\beta\)-values for the OLS regression method using 10 folds in k-fold cross validation on the training data in a train/test data set. The confidence interval is 95\%, and is calculated by taking the standard deviation for all the calculated \(\beta_i\)-coefficients i.e the std for \(\beta_0\), \(\beta_1\), \(\beta_2\) etc.}
-\label{tab:06}
+\label{tab:14}
 \end{table}
+
+\FloatBarrier
 
 \section{Figures}
 
@@ -837,62 +900,6 @@ Something something
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{Ridge_and_smalllambacontour}
-    \caption{The MSE between the test set and the predicted model using Ridge regression for different polynomial orders and \(\lambda\) values. The \(\lambda\) which gives the minimum MSE for a 5\(^\text{th}\) order polynomial is highlighted.}
-    \label{fig:Vary_lambda_R3}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Lasso_and_smalllambdacontour}
-    \caption{The MSE between the test set and the predicted model using Lasso regression for different polynomial orders and \(\lambda\) values. The \(\lambda\) which gives the minimum MSE for a 5\(^\text{th}\) order polynomial is highlighted. The model is calculated using 2000 iterations pr \(\lambda\)-value.}
-    \label{fig:Vary_lambda_L3}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Ridge_and_largelambacontour}
-    \caption{The MSE between the test set and the predicted model using Ridge regression for different polynomial orders and \(\lambda\) values. The \(\lambda\) which gives the minimum MSE for a 5\(^\text{th}\) order polynomial is highlighted.}
-    \label{fig:Vary_lambda_R4}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Lasso_and_largelambdacontour}
-    \caption{The MSE between the test set and the predicted model using Lasso regression for different polynomial orders and \(\lambda\) values. The \(\lambda\) which gives the minimum MSE for a 5\(^\text{th}\) order polynomial is highlighted. The model is calculated using 2000 iterations pr \(\lambda\)-value.}
-    \label{fig:Vary_lambda_L4}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{tradeoff2MSEOLS}
-    \caption{The MSE between a OLS model for the Franke data set and both the training and test data separately in k-fold cross validation using the entire data sat as a basis for the exclusion of folds. In this case there are used 5 folds pr polynomial order. This is done \(N=50\) times with random folds and the plot shows the average.}
-    \label{fig:test_vs_trainRidge}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{tradeoff2R2OLS}
-    \caption{The R\(^2\) score between a OLS model for the Franke data set and both the training and test data separately in k-fold cross validation using the entire data sat as a basis for the exclusion of folds. In this case there are used 5 folds pr polynomial order. This is done \(N=50\) times with random folds and the plot shows the average.}
-    \label{fig:test_vs_trainR2Ridge}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{tradeoff2MSEOLS}
-    \caption{The MSE between a OLS model for the Franke data set and both the training and test data separately in k-fold cross validation using the entire data sat as a basis for the exclusion of folds. In this case there are used 5 folds pr polynomial order. This is done \(N=50\) times with random folds and the plot shows the average.}
-    \label{fig:test_vs_trainLasso}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{tradeoff2R2OLS}
-    \caption{The R\(^2\) score between a OLS model for the Franke data set and both the training and test data separately in k-fold cross validation using the entire data sat as a basis for the exclusion of folds. In this case there are used 5 folds pr polynomial order. This is done \(N=50\) times with random folds and the plot shows the average.}
-    \label{fig:test_vs_trainR2Lasso}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.5\textwidth]{ridge_lasso_high_order_polyMSE_data}
     \caption{The R\(^2\) between a test set from the data set and the regression method OLS, ridge and lasso model using ''optimal'' \(\lambda\)-parameters.}
     \label{fig:optimal_mse_franke}
@@ -903,6 +910,13 @@ Something something
     \includegraphics[width=0.5\textwidth]{ridge_lasso_high_order_polyMSE}
     \caption{The R\(^2\) between a test set and the regression method OLS, ridge and lasso model using ''optimal'' \(\lambda\)-parameters. The test set here is for the real Franke function, but it correspond to the part of the data set omitted in the training data.}
     \label{fig:optimal_mse_data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{ridge_lasso_lambda_poly}
+    \caption{The ideal \(\lambda\) values for the Franke function.}
+    \label{fig:optimal_lambdas}
 \end{figure}
 
 \begin{figure}[H]
@@ -935,10 +949,39 @@ Something something
     \label{fig:hist_terrain_lasso}
 \end{figure}
 
-\section{Proofs}
+\section{Proofs}\label{sec:proof}
 
+\subsubsection{Bias-variance tradeoff proof}
 
 \onecolumngrid
+
+\begin{align*}
+\mathbb{E}[(\bm{y}-\bm{\tilde{y}})^2]& = E[(f(\bm{x})+\bm{\epsilon}-\bm{\tilde{y}})^2] \\
+&= \mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})^2]+2\mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})\bm{\epsilon}]+\mathbb{E}[\bm{\epsilon}^2]\\
+&= \mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})^2]+2\mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})]\mathbb{E}[\bm{\epsilon}]+\sigma^2 \\
+&= \mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})^2] + \sigma^2 \\
+&= \mathbb{E}[(f(\bm{x}) + \mathbb{E}[\bm{\tilde{y}}] - \mathbb{E}[\bm{\tilde{y}}] - \bm{\tilde{y}})^2] + \sigma^2\\
+&= \left[f(\bm{x}) - \mathbb{E}[\bm{\tilde{y}}] \right]^2 + \mathbb{E}\left[\bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}] \right]^2 + \sigma^2\\
+&= \left[f(\bm{x}) - \mathbb{E}[\bm{\tilde{y}}] \right]^2 + \mathbb{E}\left[\bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}] \right]^2 + \sigma^2\\
+&= \text{Bias}^2(\bm{\tilde{y}}) + \text{Var}(\bm{\tilde{y}}) +  \sigma^2.
+\end{align*}
+A couple small comments to the above calculations. For two independent variables \(\bm{x}\) and \(\bm{y}\) the expectation value goes as follows
+\begin{equation}
+\mathbb{E}[\bm{xy}] = \mathbb{E}[\bm{x}]\mathbb{E}[\bm{y}].
+\end{equation}
+This is the case for \(\bm{\epsilon}\), \(\bm{\tilde{y}}\) and \(f(\bm{x})\). Therefore
+\begin{equation}
+2\mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})\bm{\epsilon}] = 2\mathbb{E}[(f(\bm{x})-\bm{\tilde{y}})]\mathbb{E}[\bm{\epsilon}] = 0
+\end{equation}
+since \(\mathbb{E}[\bm{\epsilon}] = 0\). Another unclear term is the following
+\begin{align}
+2\mathbb{E}\left[ \left(f(\bm{x}) + \mathbb{E}[\bm{\tilde{y}}]\right)\left( \bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}]\right) \right] = 0
+\end{align}
+which I omitted writing. This is zero because
+\begin{align}
+\mathbb{E}\left[ \bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}]\right] &= \mathbb{E}[\bm{\tilde{y}}] - \mathbb{E}[\mathbb{E}[\bm{\tilde{y}}]]\\
+&= \mathbb{E}[\bm{\tilde{y}}] - \mathbb{E}[\bm{\tilde{y}}] = 0.
+\end{align}
 
 \bibliographystyle{plain}
 \bibliography{references}
