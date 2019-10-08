@@ -22,11 +22,13 @@
 \BOOKMARK [2][-]{section*.23}{Franke function}{section*.22}% 22
 \BOOKMARK [3][-]{section*.44}{Terrain data}{section*.23}% 23
 \BOOKMARK [1][-]{section*.60}{Discussion}{section*.2}% 24
-\BOOKMARK [2][-]{section*.61}{Data sets}{section*.60}% 25
-\BOOKMARK [1][-]{section*.62}{Conclusion}{section*.2}% 26
-\BOOKMARK [1][-]{section*.63}{Tables}{section*.2}% 27
-\BOOKMARK [1][-]{section*.66}{Figures}{section*.2}% 28
-\BOOKMARK [2][-]{section*.74}{Terrain}{section*.66}% 29
-\BOOKMARK [1][-]{section*.77}{Proofs}{section*.2}% 30
-\BOOKMARK [2][-]{section*.78}{Bias-variance tradeoff proof}{section*.77}% 31
-\BOOKMARK [1][-]{section*.79}{Referanser}{section*.2}% 32
+\BOOKMARK [2][-]{section*.61}{Regression methods}{section*.60}% 25
+\BOOKMARK [3][-]{section*.62}{Data sets}{section*.61}% 26
+\BOOKMARK [3][-]{section*.63}{Bias-variance tradeoff}{section*.61}% 27
+\BOOKMARK [1][-]{section*.64}{Conclusion}{section*.2}% 28
+\BOOKMARK [1][-]{section*.65}{Tables}{section*.2}% 29
+\BOOKMARK [1][-]{section*.68}{Figures}{section*.2}% 30
+\BOOKMARK [2][-]{section*.76}{Terrain}{section*.68}% 31
+\BOOKMARK [1][-]{section*.79}{Proofs}{section*.2}% 32
+\BOOKMARK [2][-]{section*.80}{Bias-variance tradeoff proof}{section*.79}% 33
+\BOOKMARK [1][-]{section*.81}{Referanser}{section*.2}% 34

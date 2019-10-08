@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{HastieTrevor2009TEoS}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock {\em The Elements of Statistical Learning: Data Mining, Inference,
+  and Prediction}.
+\newblock Springer Series in Statistics. Springer New York, New York, NY, 2009.
+
 \bibitem{MHJ_LinReg}
 Morten Hjorth-Jensen.
 \newblock Lectures notes in fys-stk4155. data analysis and machine learning:
@@ -8,6 +14,10 @@ Morten Hjorth-Jensen.
   \url{https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression.html},
   2019.
 \newblock [Online; accessed 23-September-2019].
+
+\bibitem{LayDavidC2016Laai}
+David~C Lay.
+\newblock Linear algebra and its applications, 2016.
 
 \bibitem{wiki:Regression_analysis}
 Wikipedia.
