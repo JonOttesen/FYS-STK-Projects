@@ -825,15 +825,20 @@ For ridge and lasso the bias-variance curves would differ. They impose a penalty
 
 \section{Conclusion}\label{sec:Conclusion}
 
-OLS outperforms both ridge and regression for larger more complex data sets such as the terrain data. Here the \(MSE=11677\) for a polynomial of 15\(^\text{th}\) degree complexity. For lasso regression the same error estimate gave at best \(MSE\approx 15000\) for \(\lambda = 0\), whereas for ridge only very small \(\lambda\)-values could give result near that of OLS.
+OLS outperforms both ridge and lasso regression for larger more complex data sets such as the terrain data. Here the \(MSE=11677\) for a polynomial of 15\(^\text{th}\) degree complexity. For lasso regression the same error estimate gave at best \(MSE\approx 15000\) for \(\lambda = 0\), whereas for ridge only very small \(\lambda\)-values could give result near that of OLS.
 
-For the smaller data set from franke function ridge and lasso preformed far better.
+For the smaller data set such as the Franke function OLS has a tendency to over-fit for reasonably low complexity. This is seen from the bias-variance tradeoff where the ideal polynomial degree is around 5\(^\text{th}\). In these cases the shrinkage for \(\beta\)-parameters in ridge and lasso are more stable and are less prone to overfitting. They therefore works better with higher complexity. When predicting data a high complexity ridge model with \(MSE = 0.0086\) and a high complexity lasso model with \(MSE = 0.009\) outperformed a 4\(\text{th}\) order OLS model with \(MSE = 0.0092\) when predicting on the real Franke function.
 
+Therefore my conclusion is that OLS works best for larger data sets, while ridge and lasso works best for smaller data sets where overfitting may be problematic.
+
+\onecolumngrid
+\newpage
+\twocolumngrid
 \appendix
 
 \section{Tables}
 
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{|c|c|c|c|}\hline
 \(\beta\) & OLS & Ridge & Lasso \\ \hline
 \(\beta_{0}\) & 0.457 \(\pm\) 0.469 & 0.699 \(\pm\) 0.285 & 1.05 \(\pm\) 0.437 \\ \hline
@@ -862,7 +867,7 @@ For the smaller data set from franke function ridge and lasso preformed far bett
 \label{tab:13}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{|c|c|}\hline
 \(\beta\) & OLS \\ \hline
 \(\beta_{0}\) & 0.375 \(\pm\) 0.0435 \\ \hline
@@ -890,8 +895,6 @@ For the smaller data set from franke function ridge and lasso preformed far bett
 \caption{The \(\beta\)-values for the OLS regression method using 10 folds in k-fold cross validation on the training data in a train/test data set. The confidence interval is 95\%, and is standard error between the corresponding \(\beta_i\)-coefficients i.e the std for \(\beta_0\), \(\beta_1\), \(\beta_2\) etc.}
 \label{tab:14}
 \end{table}
-
-\FloatBarrier
 
 \section{Figures}
 
@@ -944,7 +947,6 @@ For the smaller data set from franke function ridge and lasso preformed far bett
     \label{fig:lasso_3d}
 \end{figure}
 
-\subsubsection{Terrain}
 
 \begin{figure}[H]
     \centering
@@ -987,7 +989,7 @@ since \(\mathbb{E}[\bm{\epsilon}] = 0\). Another unclear term is the following
 \begin{align}
 2\mathbb{E}\left[ \left(f(\bm{x}) + \mathbb{E}[\bm{\tilde{y}}]\right)\left( \bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}]\right) \right] = 0
 \end{align}
-which I omitted writing. This is zero because
+which I omitted writing in line six because it's zero. This is zero because
 \begin{align}
 \mathbb{E}\left[ \bm{\tilde{y}} - \mathbb{E}[\bm{\tilde{y}}]\right] &= \mathbb{E}[\bm{\tilde{y}}] - \mathbb{E}[\mathbb{E}[\bm{\tilde{y}}]]\\
 &= \mathbb{E}[\bm{\tilde{y}}] - \mathbb{E}[\bm{\tilde{y}}] = 0.

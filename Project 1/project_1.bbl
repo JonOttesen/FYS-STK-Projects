@@ -19,6 +19,13 @@ Morten Hjorth-Jensen.
 David~C Lay.
 \newblock Linear algebra and its applications, 2016.
 
+\bibitem{SVD}
+whuber (\url{https://stats.stackexchange.com/users/919/whuber}).
+\newblock The proof of shrinking coefficients using ridge regression through
+  spectral decomposition.
+\newblock Cross Validated.
+\newblock URL:https://stats.stackexchange.com/q/220324 (version: 2017-08-11).
+
 \bibitem{wiki:Regression_analysis}
 Wikipedia.
 \newblock {Regression analysis} --- {W}ikipedia{,} the free encyclopedia.
