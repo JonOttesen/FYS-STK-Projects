@@ -1,0 +1,987 @@
+\documentclass[uio,jmp,amsmath,amssymb,reprint,nofootinbib]{revtex4-1}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath,graphicx,varioref,verbatim,amsfonts,geometry,grffile}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{flafter}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Document formatting
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{1.5mm}
+%Color scheme for listings
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+%Listings configuration
+\usepackage{listings}
+%Hvis du bruker noe annet enn python, endre det her for å få riktig highlighting.
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+        
+\newcounter{subproject}
+\renewcommand{\thesubproject}{\alph{subproject}}
+\newenvironment{subproj}{
+\begin{description}
+\item[\refstepcounter{subproject}(\thesubproject)]
+}{\end{description}}
+
+\lstset{inputpath=C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/FYS-STK4155/Project2}
+\graphicspath{{C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/MachineLearning2019/Project2/Results/}{C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/MachineLearning2019/Project2/ResultsNN/}{C:/Users/Jon Andre Ottesen/Documents/UiO/H2019/Python/MachineLearning2019/Project2/Results_regressionNN/}}
+
+\numberwithin{equation}{section}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{neuralnetwork}
+
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\infint}{\int_{-\infty}^\infty}
+\newcommand{\pdot}{\boldsymbol{\cdot}}
+
+
+\begin{document}
+
+
+\title{Logistic regression and Neural Networks}% Force line breaks with \\
+
+\author{Jon A Ottesen}
+{Department of physics, University of Oslo}%Lines break automatically or can be 
+\date{\today}
+
+\begin{abstract}
+For this project, the aim is study logistic regression and neural network in a binary classification example resolving around credit card data and regression analysis of the franke function. In the binary classification example, neural network performed better than logistic regression. Neural network had the highest F1 score with 0.543 and with accuracy of 0.789, whereas a F1 score of 0.527 and accuracy of 0.783 was the best created model for logistic regression. For regression analysis of the franke function, nerual network gave both stable and accurate result with the most accurate having \(\text{R}^2=0.941\) between the model and the actual franke function for the test data. 
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}\label{sec:Introduction}
+
+With an increasing amount of data, both in respect to parameters and quantity, statistical knowledge is essential for any type of analysis. This ranges from scientific work to stock marked prices and medical imaging. The type of statistical analysis possible ranges from regression type models for curve fitting such as OLS, classification cases with logistic regression and neural networks and many more. These examples are just a few types of statistical tools under the broader term of supervised machine learning.
+
+The main focus of this project resolves around the previous mentioned methods of logistic regression and neural network. These methods will be used in conjunction with various sampling techniques, to study a binary classification example resolving around a credit card data set. Unlike most studies it's not the data set which is the focus, rather the methods themselves. However a major goal is of-course to create a good performing model for the data set.
+
+The final aspect studied in this report is the use of neural networks in a curve-fitting regression example on the franke function with added normally distributed noise. Moreover the performance of the neural network is compared to the performance of the more standard curve fitting algorithms: Ols, ridge regression and lasso regression. 
+
+
+\section{Theory}\label{sec:Theory}
+
+For most of the following theory the \(\bm{X}\) matrix is a matrix with n-samples and p-categories (columns) such that
+\begin{equation}\label{eq:01}
+\bm{X} = \begin{bmatrix} 
+    x_{11} & \dots & x_{1p} \\
+    \vdots & \ddots & \vdots\\
+    x_{n1} & \dots & x_{np} 
+    \end{bmatrix}.
+\end{equation}
+
+\subsection{Preprocessing and sampling}
+
+
+There exists a multitude of different preprocessing techniques meant to improve the performance of a model. An example of such a technique would be dimensional reduction where the data consist of an overwhelming amount of parameters. This is however not important for the credit card data. Instead the technique focused on are: one hot encoding and re-scaling techniques such as standardization and normalization.
+
+Lets assume that the column k in \(\bm{X}\) represents a category(parameter) with s categorical features e.g yesterdays dinner. A regular representation for this would be to assign a feature to a specific integer e.g chicken = 0, beef = 1, pasta = 2 etc. This would however assign a weight for each feature, and making one feature more important than another. One hot encoding is a process which extends the number of categories in \(\bm{X}\) by the number of features in a specific category. This means: one hot encoding is a process where categorical features in a column is converted into multiple binary 0,1 columns in \(\bm{X}\). Moreover this would extend the size of \(\bm{X}  \in \mathbb{R}^{n\times p}\) to \(\bm{X}  \in \mathbb{R}^{n\times p + s -1}\).
+
+The next topic of discussion is the re-scaling technique standardization. Although normalization i.e scaling every element between \([0,1]\) is a well studied and used technique I will be limiting myself to standardization. Given a sample category \(\bm{x}\) (a column in \(bm{X}\), the standardized version of the sample is given by
+\begin{equation}\label{eq:02}
+\bm{x}' = \frac{\bm{x} - \mu_{\bm{x}}}{\sigma_{\bm{x}}} 
+\end{equation}
+where \(\mu\) is the mean of the category and \(\sigma_{\bm{x}}\) is the standard deviation. The category \(bm{x}\) is therefore re-scaled such that \(bm{x}'\) has a mean \(\mu = 0\) and standard deviation \(\sigma = 1\).
+
+In cases where a data set is highly biased, down sampling are often used to combat over-fitting. For a simple 0/1 binary example, this done by excluding biased data such that the ratio \(\frac{S_0}{S_1}\) i.e the ratio of the number of 0 and 1 samples goes toward 1. This does however not mean that the ratio of 0 and 1 samples must equal, rather such that they are more balanced. Lastly, the exclusion of data samples should be carried out randomly or by removing undefined data. However, the removal off samples will result in the loss of potentially useful data for training, and this may affect the model.
+
+\subsection{Gradient decent}\label{sec:gd}
+
+The theory in this part is found in or based off \cite{MHJ_GD}.
+
+Gradient decent is a group of optimizing algorithms used in finding the ideal parameters for a model that minimizes some function. This function is often an error function e.g the cost function. As mentioned, there exists multiple types of gradient decent algorithms both in regards to the decent itself (finding the minimum) and the implementation.
+
+Steepest decent is one of the simplest gradient methods. The idea behind steepest decent is that for function \(C(\bm{\beta}), \bm{\beta} = (\beta_1, \beta_2, \beta_3 ...., \beta_n)\), decreases fastest if \(\Delta \bm{\beta} = \gamma_t\lp -\nabla C(\bm{\beta})\rp\) for \(\gamma_k > 0\). Thus the minimization of C based \(\bm{\beta}\) is given by
+\begin{align}\label{eq:sd}
+\bm{\beta}_{t+1} = \beta_t - \gamma_t\nabla C(\bm{\beta}_t)
+\end{align}
+where \(\gamma_t\) is chosen such that \(C(\bm{\beta_{t+1}}) \leq C(\bm{\beta_{t}})\). Furthermore the parameter \(\gamma_t\) is in most litterateur called the learning rate, as it will be here. Equation \ref{eq:sd} is repeated multiple times such that the F hopefully converges towards a minimum. However whether this minimum is a global or local minimum is difficult to determine even when testing for multiple initial values of \(\bm{\beta}\). Intuitively steepest decent is method were one goes in the opposite direction of the steepest increase.
+
+Another gradient descent method is the ADAM optimizer, and the main difference from steepest descent is that it 'remembers' the previous gradient to adapt the learning rate. ADAM much like steepest descent is a collection of equations used 
+iteratively:
+\begin{align}
+\bm{g}_t &= \nabla C(\bm{\beta}_t)\\
+\bm{m}_t &= \beta_1\bm{m}_{t-1} + (1-\beta_1)\bm{g}_t\\
+\bm{s}_t &= \beta_2\bm{s}_{t-1} + (1-\beta_2)\bm{g}_t^2\\
+\bm{\hat{m}}_t &= \frac{\bm{m}_t}{1-\beta_1^t}\\
+\bm{\hat{s}}_t &= \frac{\bm{m}_t}{1-\beta_2^t}\\
+\bm{x}_{t+1} &= \bm{\beta}_t - \gamma_t\frac{\bm{\hat{m}}}{\sqrt{\bm{\hat{s}}} + \epsilon}
+\end{align}
+where \(\beta_1\) and \(\beta_2\) are constants often taken as 0.9 and 0.99, while \(\epsilon \sim 10^{-8}\). For the hat notation, this is just a notation quirk for the ADAM algorithm and nothing else.
+
+As mentioned in the beginning of this subsection, there are multiple ways of implementing a gradient descent algorithm. Stochastic gradient descent is one method. Lets assume that the function C is not only a function of \(\beta\), but also data samples from X and the corresponding y. Both X and y are measured quantities and cannot be changed, however the number of samples and which samples given in C can be changed. Stochastic gradient descent is a implementation of gradient descent where the used samples in the function C is limited and randomized. The samples passed in C is referred to as a batch. When the total number of samples in the iterative process is equal to or greater than total number of samples in X, an epoch has passed. In stochastic gradient descent and most supervised machine learning, it is normal to state the number of epochs instead of iterations.
+
+A general take on a stochastic gradient descent type of algorithm may look like this:
+
+\begin{algorithm}[H]
+\caption{Gradient descent}
+\begin{algorithmic}
+\State Define cost function derivative and constants
+\For{1, 2, 3, 4... epochs}
+\For{t = 1, 2, ... iterations in epoch}
+\State Randomize new batch from X and y
+\State Compute \(\nabla C(X_{batch}, y, \beta)\)
+\State In-between calculations if ADAM
+\State Update \(\beta\) with \(-\gamma_t\nabla C(X_{batch}, y, \beta)\)
+\EndFor
+\EndFor
+\end{algorithmic}
+\label{alg:01}
+\end{algorithm}
+
+
+\subsection{Logistic regression}
+
+The theory presented in this subsection can be found at \cite{MHJ_LogReg}.
+
+In this subsection we will consider a design matrix \(\bm{X}\) with p categories that has n-samples i.e the same as the \ref{eq:01}, with the response or outcome \(\bm{y}\) with n-samples (\(n\times 1\) vector). This outcome is a binary outcome with two possible responses, either 1 or 0 i.e true or false.
+
+Logistic regression is a so-called 'soft'-classifier. Thus the result of logistic regression is the probability that the data points in the categories for \(\bm{X}_i\) belongs to a specific response in \(\bm{y}_i\). The probability of a specific event is given by the sigmoid function:
+\begin{align}\label{eq:03}
+p(t) = \frac{1}{1+\e^{-t}}
+\end{align}
+where t is just some arbitrary input variable. The goal of logistic regression is therefore to find the input t given the parameters in \(\bm{X}_i\) to classify the correct response in \(\bm{y}_i\). For this I will assume the correct input is given by the linear formula
+\begin{equation}
+\bm{t}_i = \bm{X}_i\bm{\beta}^T
+\end{equation}
+where \(\bm{\beta}\) is a row vector such that \(\bm{\beta} \in \mathbb{R}^{p\times 1}\). The probabilities from the sigmoid can therefore be written in the following form:
+\begin{align}\label{eq:04}
+p\lp \bm{y}_i = 1|\bm{X}_i, \bm{\beta}\rp &= \frac{1}{1+\e^{-\bm{X}_i\bm{\beta}^T}}\\ \label{eq:05}
+p\lp \bm{y}_i = 0|\bm{X}_i, \bm{\beta}\rp &= 1- p\lp \bm{y}_i = 1|\bm{X}_i, \bm{\beta}^T\rp.
+\end{align}
+The last case comes from the fact that there are only two responses, thus they will be dependent on each-other. Moreover, in equation \ref{eq:05} it's common practice to add a intercept term \(\beta_0\) to \(\bm{X}\) by adding a column vector consisting of 1's for centering purposes.
+As a common trope among regression problems there is of course a cost function to minimize:
+\begin{equation}\label{eq:06}
+C(\bm{\beta}) = -\sum_{i=1}^n \lp \bm{y}_i\lp \bm{X}_i\bm{\beta}^T\rp - \log(1 + \e^{\bm{X}_i\bm{\beta}^T})\rp.
+\end{equation}
+The derivative of equation \ref{eq:06} with respect to \(\bm{\beta}^T\)\footnote{I should just have defined beta as a column vector from the beginning, that would have made the notation easier.} can be written as
+\begin{equation}\label{eq:07}
+\frac{\partial C(\bm{\beta})}{\partial \bm{\beta}^T} = -\sum_{i=1}^n \lp \bm{y}_i\lp \bm{X}_i\rp - \bm{X}_i\frac{\e^{\bm{X}_i\bm{\beta}^T}}{1 + \e^{\bm{X}_i\bm{\beta}^T}}\rp.
+\end{equation}
+Expression \ref{eq:07} can be neatly tied up by matrix multiplication resulting in the following expression
+\begin{equation}\label{eq:08}
+\frac{\partial C(\bm{\beta})}{\partial \bm{\beta}^T} = -\bm{X}^T\lp \bm{y} - \frac{\e^{\bm{X}\bm{\beta}^T}}{1 + \e^{\bm{X}\bm{\beta}^T}}\rp.
+\end{equation}
+The remaining parts of logistic regression i.e finding the optimal \(\bm{\beta}\) to minimize the cost function is labeled a gradient decent problem. Equation \ref{eq:08} would than be treated as the \(\nabla C\) form section \ref{sec:gd}.
+
+\subsection{Neural Network}
+
+The theory for this subsection can be found at \cite{MHJ_NN}.
+
+Neural network much like logistic regression is a method that can be trained by gradient decent type algorithms. Unlike logistic regression, neural network can be extended from classification to perform regression analysis among others.
+
+There exists a multitude of different neural networks such as convolution neural networks and recurrent neural networks. Although newer methods have been devised, our focus will be on the simplest type of artificial neural networks; the feed-forward neural network.
+
+\subsubsection{Feed forward}
+
+Neural networks are based around the principle of having a given input parameter that is connected to another layer with neurons. In these connections there exist a weight, and in the neuron there exist i bias. This implies that the new value in the connected neuron from that specific input can be written as
+\begin{equation}
+z_j = w_{ij}x_i + b_j.
+\end{equation}
+This implies that the value in the j'th next node is given by the i'th node in the previous layer multiplied with the weight of the connection plus the bias of that node. This is not the entire truth, just a small portion. The value of the j'th next node is a sum of all the previous features plus the bias. In matrix multiplication this can be written as:
+\begin{equation}\label{eq:z_l}
+\bm{z}^{l} = \bm{a}^{(l-1)}\bm{W}^{(l)} + \bm{b}^{(l)}
+\end{equation}
+where l specifies the layer in the neural network. Furthermore \(\bm{a}^{(l)}\) is of shape \(N_{l-1}\), \(\bm{W}^{(l)}\) of shape \(N_{l-1}\times N_{l}\) and \(\bm{b}^{(l)}, \bm{z}^{(l)}\) of shape \(N_{l}\). The value given by \(\bm{z}^{(l)}\) is not the output value of a given node. The output value of a node is given by
+\begin{equation}\label{eq:09}
+\bm{a}^{(l)} = f_l\lp \bm{z}^{l}\rp.
+\end{equation}
+Merging equation \ref{eq:z_l} and \ref{eq:09}, the value for any given node as function of the previous nodes is given by
+\begin{equation}\label{eq:new_eq}
+\bm{a}^{l} = f_{l}\lp \bm{a}^{(l-1)}\bm{W}^{(l)} + \bm{b}^{(l)}\rp
+\end{equation}
+where \(f_l\) is the so-called activation function. The activation function is function enforced upon every layer except the first initial layer, and usual activation functions include: the sigmoid defined in equation \ref{eq:03}, the tanh function, the relu function and the elu function among others. For more information see the appendix \ref{sec:activation}. However, I will include the softmax activation function defined as
+\begin{equation}\label{eq:10}
+f(\bm{z}^{(l)}_j) = \frac{\e^{\bm{z}^{(l)}_j}}{\sum_{j=1}^n \e^{\bm{z}^{(l)}_j}} 
+\end{equation}
+and is special in the sense that it should only be used in final layer, preferably for a classification case. In a classification case it will give the probability for a specific node being the correct response and sum the probabilities will be 1. 
+
+I have tried to illustrate the entire forward process in a feed forward neural network in figure \ref{fig:01}.
+
+\begin{figure}[H]
+\scalebox{0.70}{
+\begin{neuralnetwork}[height=4.4, layerspacing = 34mm]
+\newcommand{\x}[2]{$x_#2$}
+\newcommand{\y}[2]{$\hat{y}_#2$}
+\newcommand{\hfirst}[2]{\small $a^{(1)}_#2$}
+\newcommand{\hsecond}[2]{\small $a^{(2)}_#2$}
+\inputlayer[count=3, bias=false, title=\(\bm{X}_i\), text=\x]
+\hiddenlayer[count=4, bias=false, title=\(f_1\lp \bm{X}_i\bm{W}^{(1)} + \bm{b}^{(1)}\rp\), text=\hfirst, widetitle = true] \linklayers
+\hiddenlayer[count=3, bias=false, title=\(f_2\lp \bm{a}^{(1)}\bm{W}^{(2)} + \bm{b}^{(2)}\rp\), text=\hsecond, widetitle=true] \linklayers
+\outputlayer[count=2, title=\(f_3\lp \bm{a}^{(2)}\bm{W}^{(3)} + \bm{b}^{(3)}\rp\), text=\y, widetitle=true] \linklayers
+\end{neuralnetwork}}
+\caption{An illustration of a neural network with the corresponding equation connecting each layer.}
+\label{fig:01}
+\end{figure}
+
+An interesting and very important consequence of equation \ref{eq:10} is that the entire process is just a continuously mathematical mapping from the inputs to the outputs. Therefore, if I so desired the entire process could be written as one large equation.
+
+In the terminology used, the node layers \(\bm{a}^{(l)}, \bm{z}^{(l)}\) are treated as row vectors instead of the mostly used column vector terminology. This does however not change the end result.
+
+\subsubsection{Back propagation}
+
+To create of good preforming neural network model, the wights and biases has to be optimized. This process is called back propagation and is a gradient decent type of algorithm for neural networks. The general idea is to start at the end of the neural network and update the weights and biases backward i.e the name back propagation.
+
+Much like logistic regression, neural network would not be complete without a cost function to minimize. The cost function in this case will remain undefined as \(C(\bm{W}, \bm{b})\), where the actual cost function is dependent on the function of the neural network. The two used cost functions is given in the appending \ref{sec:activation}.
+
+An important aspect of the continuity of equation \ref{eq:10} implies that the derivative with respect to the cost function can be studied in every layer as
+\begin{align}\label{eq:11}
+\frac{\partial C}{\partial \bm{W}^{(l)}} &= \frac{\partial C}{\partial \bm{a}^{(l)}}\frac{\partial \bm{a}^{(l)}}{\partial \bm{z}^{(l)}}\frac{\partial \bm{z}^{(l)}}{\partial \bm{W}^{(l)}}\\ \label{eq:12}
+\frac{\partial C}{\partial \bm{b}^{(l)}} &= \frac{\partial C}{\partial \bm{a}^{(l)}}\frac{\partial \bm{a}^{(l)}}{\partial \bm{z}^{(l)}}\frac{\partial \bm{z}^{(l)}}{\partial \bm{b}^{(l)}}.
+\end{align}
+The first term in both equation \ref{eq:11} and \ref{eq:12} is the derivative of the cost function based on the input parameter in cost function. This is only interesting for the output layer L. The derivatives of the cross entropy and mean squared error with respect to output layer are:
+\begin{align}
+\text{MSE}' &= 2(\bm{a}^{(L)} - \bm{y})\\ \label{eq:c_entropy}
+\text{C-entropy}' &= -\lp {\bm{y}}\ominus{\bm{a}^{(L)}} + \lp 1 - {\bm{y}}\ominus {(1-\bm{a}^{(L)})}\rp\rp
+\end{align}
+where I am applying hadamard division by \(\ominus\) i.e element-wise division. The second term in equation \ref{eq:11} and \ref{eq:12} is just the derivative of the activation function used in the l-layer with respect to the input parameter \(\bm{z}^{(l)}\). This is than dependent on the used activation function and the used activation functions with their corresponding derivatives is given in the appendix \ref{sec:activation}.
+
+The third term in equation \ref{eq:11} are both surprisingly simple:
+\begin{align}
+\frac{\partial \bm{z}^{(l)}}{\partial \bm{W}^{(l)}} &= \bm{a}^{(l-1)}\\
+\frac{\partial \bm{z}^{(l)}}{\partial \bm{b}^{(l)}} &= 1
+\end{align}
+which follows from the linear relation \(\bm{z}^{(l)} = \bm{a}^{(l-1)}\bm{W}^{(l)} + \bm{b}^{(l)}\) defined earlier in the forward propagation.
+
+The next step and a very important step is to define
+\begin{align}\label{eq:13}
+\delta^{l} = \frac{\partial C}{\partial \bm{a}^{(l)}}\frac{\partial \bm{a}^{(l)}}{\partial \bm{z}^{(l)}} = f_l'(\bm{z}^{(l)})\circ\frac{\partial C}{\partial \bm{a}^{(l)}}
+\end{align}
+with \(\circ\) being the hadamard multiplication. 
+
+The layers can be connected by the chain rule to allow for backward propagation:
+\begin{align}
+\frac{\partial C}{\partial \bm{a}^{(l-1)}} &= \frac{\partial C}{\partial \bm{z}^{(l)}}\frac{\partial \bm{z}^{(l)}}{\partial \bm{a}^{(l-1)}}\\
+&= \frac{\partial C}{\partial \bm{z}^{(l)}}\frac{\partial}{\partial \bm{a}^{(l-1)}}\lp \bm{a}^{(l-1)}\bm{W}^{(l)} + \bm{b}^{(l)}\rp\\
+&= \frac{\partial C}{\partial \bm{z}^{(l)}}{\bm{W}^{(l)}}^T\\
+&= \frac{\partial C}{\partial \bm{a}^{(l)}} \frac{\partial \bm{a}^{(l)}}{\partial \bm{z}^{(l)}}{\bm{W}^{(l)}}^T\\
+&= \delta^l {\bm{W}^{(l)}}^T.
+\end{align}
+The final result is \textbf{very} important
+\begin{equation}\label{eq:14}
+\frac{\partial C}{\partial \bm{a}^{(l-1)}} = \delta^l {\bm{W}^{(l)}}^T
+\end{equation}
+since it allows for the possibility of backwards propagation when the gradient in the outer layer L is calculated. Before giving a explanation on how everything fits together it's worth noting that
+\begin{equation}
+\frac{\partial C}{\partial \bm{b}^{(l)}} = \delta^l.
+\end{equation}
+Another important note is that by combining equation \ref{eq:13} with \ref{eq:14} results in the following relation
+\begin{equation}
+\delta^{l-1} = \delta^l {\bm{W}^{(l)}}^T \circ f_{l-1}'(\bm{z}^{(l-1)})
+\end{equation}
+where the transpose ensures correct dimensions.
+
+To summarize everything in four equations:
+\begin{align}\label{eq:delta_L}
+\delta^L &= f_L'(\bm{z}^{(L)})\circ\frac{\partial C}{\partial \bm{a}^{(L)}}\\\label{eq:partial_c}
+\frac{\partial C}{\partial \bm{W}^{(L)}} &= {\bm{a}^{(l-1)}}^T\delta^L\\
+\frac{\partial C}{\partial \bm{b}^{(L)}} &= \delta^L\\ \label{eq:delta_l}
+\delta^{L-1} &= \delta^L {\bm{W}^{(L)}}^T \circ f_{L-1}'(\bm{z}^{(L-1)}).
+\end{align}
+
+\begin{algorithm}[H]
+\caption{Backpropagation(GD = gradient descent)}
+\begin{algorithmic}
+\State Define cost function derivative and constants
+\For {epochs and iterations}
+\State Randomize new batch from X and y
+\State Compute \(\nabla C(X_{batch}, y_{batch})\)
+\State Compute \ref{eq:delta_L} for last layer
+\State Compute \ref{eq:11} and \ref{eq:12}
+\State Update weights and biases in last layer by GD
+\For {Layers backwards}
+\State Update delta by \ref{eq:delta_l}
+\State Compute \ref{eq:11} with \ref{eq:partial_c}
+\State Update weights and biases by GD
+\EndFor
+\EndFor
+\end{algorithmic}
+\label{alg:02}
+\end{algorithm}
+
+
+\subsection{Model evaluation}
+
+To evaluate a binary classification problem it's unusual to use the cross-entropy cross function, although it's comply valid. The problem however, lies in the fact that a low loss in the cost function does not always equate to a good model. Furthermore, intuitively cross entropy is harder to grasp than the accuracy given defined as
+\begin{align}\label{eq:15}
+\text{Accuracy} = \frac{1}{n}\sum_{i=0}^nI(y_i = \tilde{y}_i)
+\end{align}
+which is the fraction of correct predictions. In equation \ref{eq:15} \(y_i\) is the correct values whereas \(\tilde{y}_i\) is the predicted value.
+
+For an unbiased data set, the accuracy of a model is a good estimate for the performance. However, for a biased data set this is not always the the case. For a binary classification problem with either 0 or 1 where 90\% is 0, an accuracy of \(\sim 90\%\) would not correspond to good model. This is because this accuracy could be achieved by only guessing 0. For a model to good performance it also has to be predictive. To determine this four terms is needed to be known\cite{wiki:F1_score}
+\begin{enumerate}
+\item TP: True positive is the number of predicted and correct 1 predictions.
+\item TN: True negative is the number of  predicated and correct 0 predictions.
+\item FP: False positive is the number of  predicted but incorrect 1 predictions.
+\item FN: False negative is the number of  predicted but incorrect 0 predictions.
+\end{enumerate}
+From this the so-called precision and recall are defined as
+\begin{align}
+\text{precision} &= \frac{TP}{TP + FP}\\
+\text{recall} &= \frac{TP}{TP + FN}
+\end{align}
+and from this the F1 score can be defined
+\begin{equation}
+F1 = 2\frac{\text{precision}\cdot \text{recall}}{\text{precision} + \text{recall}}.
+\end{equation}
+The F1 score is a measure often used in unbalanced data and is the harmonic mean of precision and recall\cite{wiki:F1_score}.
+
+Another possibility model scoring is the area ratio i.e the area under the cumulative gain curve as done in \cite{yeh2009comparisons}. This can be done using sklearn-plot's module \texttt{plot\_cumulative\_gain}\footnote{This was however not done due some technical difficulties. I simply not able to download the scikit-plot package, so the F1 scores were used instead.}.
+
+\section{Method}\label{sec:Method}
+
+\subsection{Code implementation}
+
+\subsubsection{Logistic regression}
+
+Logistic regression is implemented by first implementing some necessary equations. These include equation \ref{eq:04} (sigmoid) and equation \ref{eq:08} (cost function derivative). The next step was to initiate the initial \(\beta\)-values, which I did by setting them all to zero. What's left is just to implement a gradient descent algorithm for \(\beta\) by using the general algorithm \ref{alg:01} for ADAM. 
+
+A final, but not short note on how I implemented batches in the gradient descent. The usual way is to ensure that there are no repeated samples in the batch, however this implementation takes time. Instead, I chose batches at random which could lead to overlapping samples. For the direct implementation I would recommend looking at the ADAM method in Gradient in the program \texttt{reg\_and\_nn.py}. The reason for this implementation is that some minor tests showed that it is about 5-7 times faster.
+
+\subsubsection{Neural Network}
+
+Neural Network, much logistic regression is first implemented by implementing all necessary equations. These are the activation and cost functions in appendix \ref{sec:activation}. The next step is to implement the stochasticity in the soon to come gradient descent, by batch implementation. Unlike logistic regression, this was done without overlapping samples, but still random between each iteration in the epochs.
+
+With usable batches implemented, the next step is forward propagation. This is done similarly as in figure \ref{fig:01}, but not for a sample at the time. The matrix multiplication in equation \ref{eq:new_eq} with the entire batch of \(\bm{X}\) acting as \(\bm{a}^{(0)}\). The weights are at first chosen at random in a normal distribution with \(\mu=0\) and \(\sigma_w = \sqrt{2/\text{number of nodes}}\), while all biases are set to 0.01.
+
+With forward propagation working the next step is backward propagation. This is done equivalently as in algorithm \ref{alg:02} with a general cost function that is specified when initiating the class. For my gradient descent I did use steepest descent rather than ADAM for simplicity.
+
+
+\subsection{Preparations}\label{sec:prep}
+
+\subsubsection{Credit card data}
+
+The data used can be found on following web page:
+
+\url{https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients}
+
+with descriptions of the different attributes of the data set. In our case the entire data set is the design matrix \(\bm{X}\) except the last column which is the correct values \(\bm{y}\).
+
+The first preparatory step before the analysis is preprocessing. The following columns: 1 (given credit), 5 (age), 12-17 (Bill statement for different months) and 18-23 (Previous payment) were all standardized by equation \ref{eq:02} independently. The remaining columns where not standardized nor normalized.
+
+Multiple of the columns in the credit card data was categorical with numerous features. To avoid unfair weighting, column: 3 (education), 4 (martial status) and  6-11 (payment history) were all one hot encoded. However in column 6-11 only the undefined values were one hot encoded and the -1 value although not undefined, and their previous value was set to 0 in the previous column. The same goes for other undefined categorical values in column 3 and 4. Another approach would be to remove rows containing undefined values, however I chose to keep them and instead treat them as another category.
+
+After prepossessing, the data was divided into a test and training set at random with a 40/60 test-training ratio. This was done using sklean's train\_test\_split function. This split remained unchanged for the entire binary classification example, and every model was made on the training set. When stating that error estimates were calculated, I am impling that they were calculated based on the test set, not the training set unless specified otherwise.
+
+The next preprocessing step is down-sampling. There exists no correct ratio for down-sampling. My choice was to use the ratio which maximized the norm of the accuracy and F1 scores. Furthermore I also chose the score which maximized the F1 score. These ratios are calculated by excluding 100 samples than 200 samples and so forth until the ratio between the samples are \(\frac{S_0}{S_1} = 1\). During the exclusion of samples the error estimates; accuracy and F1 are calculated. This process is repeated N=5 times with the excluded samples being randomized after each run, where one run stops when the ratio is 1. When N=5 runs are repeated the mean of the error estimates pr down-sampled ratio is calculated. The ratios which maximized the norm and F1 are than calculated from the mean of the error estimates for the N runs. For this test, the learning rate and number of epochs remained constant. This is done both on logistic regression and neural network, but for neural network the network configuration remained unchanged. However this is done immediately for logistic regression, but not for neural network.
+
+\subsubsection{Franke function}
+
+Most of this part is just a redo of what is done in \cite{Jon_P1} with the same seed, shape i.e \(81times 81\) and the addition of normal noise with a mean of 0 and a standard deviation of 1. Thus ensuring that the data set is exactly the same as in the article. Furthermore, the train-test split is also carried out with the same split percentage and seed i.e 70/30 train/test split with seed 42 using the sklearn module mentioned in the previous sub-subsection. The design matrix used is of 5th degree complexity.
+
+\subsection{Logistic regression}
+
+With a down-sampled training set, multiple models were created for a grid of different learning rates and epochs. For all of these models the error estimates: accuracy and F1 scores were calculated. From this grid a good preforming model and the corresponding recall and precision score was calculated.
+
+By using the previously discovered good model from the mesh-grid of learning rates and epoch the evolution of the error estimates was studied for different thresholds. Previously and for all further results a threshold of 0.5 has been used for determining whether the model predicts a 0 or 1. This was done by calculating the different error estimates for different thresholds including the precision and recall. The threshold which maximized the F1 score was also determined. Most of these calculations were carried out by sklearn's function \texttt{precision\_recall\_curve}.
+
+In effort to maximize the predictiveness of a logistic regression model a different down-sampling ratio was chosen. The ratio chosen was \(S_0/S_1\). For this new ratio a grid of models with different learning rates and epochs was made, and the error estimates were calculated for all the models in the grid. Furthermore, the test with varying threshold was also applied with the 1:1 ratio data set.
+
+\subsection{Neural Network Credit card}
+
+Before down-sampling it's necessary to find a stable network. For the entire training section of the data set the error estimates; accuracy and F1 was calculated for a meshgrid of different learning rates and epoch for four different activation functions in one hidden layer with constant neurons for all models. From this data, a stable configuration  was chosen to use in the down-sampling process.
+
+As in the logistic regression subsection, the down-sampling method is already described previously in subsection \ref{sec:prep}. The down-sampling ratio found will be used during all the results except when stated otherwise. As a final note, during the entirety of the credit card data analysis for neural network the softmax activation function from equation \ref{eq:10} is used in the final layer and a batch size of 200.
+
+With a down-sampled data, the next topic of study was how the performance of a neural network model changes depending on the learning rate, number of epochs and different activation functions in a hidden layer. Thus the accuracy and F1 scores were calculated for a multitude of models in a meshgrid of learning rates and epochs. Moreover a total of four grids were calculated, one for each activation function; the sigmoid, tanh, elu and relu. For all the models created, the number of neurons in the hidden layer remained constant.
+
+The next step is to create a good preforming model. For this part I will be restrict myself to 'only' one or two hidden layers. During this entire test for both one and two layers the learning rate and number of epochs remained constant. For one hidden layer: all possible combinations of activation functions and nodes between 1 and 100 was tested. For these 400 models the error estimates: accuracy and F1 was calculated, and the models with the best individual performance for each estimate and norm was chosen. For two layers, models from a meshgrid with any combination of \([4, 14, 24, 34, 44, 54, 64, 74, 84, 94, 104]\) nodes in both layers with all possible activation function combination was created. For all models the error estimates were calculated, and the models with the best accuracy, F1 and norm between the error estimates was chose.
+
+Choosing the best performing layer combination for two layers with regards to the F1 score, this combination was recreated a total of 300 times. For each of these recreations the error estimate F1 was calculated and all the F1 scores was plotted in a histogram.
+
+The next step was to choose the models with the highest F1 score from both 1 and 2 layers. These models was than recreated for varying \(\lambda\)-values and the F1 score was calculated. The F1 scores was than plotted as a function of the \(\lambda\)-values, and the overflow models was emitted from the plot. Furthermore, the initial hidden weights were kept constant.
+
+The last object of study is to maximize the F1 score. For this I estimated the ideal down-sampling ratio from a previous plot. With this down-sampling ratio I used layer combination with the best F1 score and recreated this model 300 times with the new down-sampling. For each recreation the F1 score was calculated and thereafter plotted in a histogram.
+
+\subsection{Neural Network Franke}
+
+The first step in this part is to change the cost function from the cross entropy used in the classification case to the MSE in the neural network. Furthermore changing the output nodes from two too one. As a final note before starting on the actual method: during this entire analysis I will only be using the relu as the activation function with a batch size of 500. As a final final note, when stating that the error estimates are calculated etc, I mean that both MSE and R2 are calculated with respect to the test section of the data for both the data set and the actual Franke function without noise.
+
+The first topic at hand is to showcase the instability I am experiencing. For this, a relu model for all activation functions was recreated a total of 100 times. Each time the model predicted only zeros was counted and every time the model predicted something else was counted. Note however that the model itself was stable i.e not overflow, but rather it only predicted zeros. The instability is important to be aware of such that countermeasures can be taken, to avoid missing a possible good model.
+
+Without any knowledge of a good combination of epochs, learning rate and activation function for the hidden layer, exploring this was the first task at hand. Using a constant number of neurons (50) the error estimates for the R2 and MSE for the test data (both franke and data set) was calculated for every possible combination of \([1, 10, 50, 100, 200, 500]\) epochs with \(\eta = [10^{-1}, 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}]\) and sigmoid , tanh, elu and relu as the hidden activation functions. The best score was chosen for each activation function.
+
+So far the design matrix X has only been of 5th order polynomial, this will now change. By choosing the best combination of activation function, epoch and learning rate from the previous paragraph, over-fitting with neural network will be studied. This is done on the entire data and k-fold cross validation is used with 4-folds for polynomial complexity from 1st degree to 20th degree. For each excluded fold in k-fold cross validation the error estimates is calculated. This process is repeated \(N=10\) times and the average of the error estimates is calculated. Without much specification, a test was implemented in the case of instability, and for unstable cases (predicting only zeros) the same model was re-created a maximum of n-times until stability. The error estimates was than finally plotted against the polynomial complexity.
+
+The final step, albeit large and complex is to create a good performing model by utilizing multiple layers if necessary. Before starting I will impose a restriction, and that is that the only activation function used in the hidden layers are the elu activation function. Furthermore I will only be using a design matrix of 5th degree complexity, except when stated otherwise.
+
+The first step was to study one hidden layer. Multiple models with the following \([10, 20, 40, 60, 80, 100, 140, 180, 250, 300]\) nodes were created. For each node a model was created a total of 5 times and the best error estimates for each node was kept. The best preforming number of neurons was than chosen to be used as the first layer in a two hidden layered model. The same step as with a one layered model was repeated with the same nodes. This run was also repeated 5 times with the best performing model for each node being kept. The best combination so far was than used as basis for a third hidden layer. The method used in the one and second hidden layer was than repeated for the third layer with again 5 repeated runs and the best performing models for each node being kept. In the cases the model was unstable for all 5 repeated runs, that node for that layer was omitted. Furthermore the addition of a third layer was repeated once for a different number of neurons in the second layer, the method however in the third layer remained unchanged.
+
+Finally the very best model found regardless of number of hidden layers and number of neurons was used to plot a 3D plot of the Franke function based on the model.
+
+
+\section{Results}\label{sec:Results}
+
+\subsection{Logistic regression}
+
+Figure \ref{fig:02} shows the accuracy and F1 scores as a function of the ratio of 0-samples/1-samples in the training data. When down-sampling: the batch size is 200, learning rate 0.001 and 1000 epochs. The plot is the mean of \(n=5\) random runs. The ratio which maximizes the norm of the accuracy and F1 scores is
+\begin{equation}\label{eq:16}
+\frac{S_0}{S_1} \approx 1.6
+\end{equation}
+which is the same as 7600 excluded 0-samples. This is the value for down-sampling which will be used in the rest of the logistic regression analysis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{down_sample_logistic_onehot}
+    \caption{The accuracy and F1 scores of logistic regression model as a function of the ratio \(\frac{S_0}{S_1}\) i.e the ratio between 0-samples and 1-samples in the training data. The batch size is 200, a learning rate 0.001 and 1000 epochs.}
+    \label{fig:02}
+\end{figure}
+
+The test accuracy of the logistic regression models for different leaning rates and number of iterations with constant batch size of 200 is shown in table \ref{tab:01}. All these models are trained using the down-sampled and normalized training set. In table \ref{tab:02} the F1 scores for different learning rates and epochs are given. In all of these cases the data is down-sampled to the ratio in \ref{eq:16}.
+
+
+\begin{table}[H]
+\caption{The accuracy scores of the logistic regression model for different learning rates and epoch, with a constant batch size of 200 with the down-sampling ratio given in \ref{eq:16}.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.1 & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 \\ \hline
+10 & 0.789 & 0.798 & 0.808 & 0.806 & 0.804 & 0.804 \\ \hline
+100 & 0.779 & 0.811 & 0.806 & 0.808 & 0.806 & 0.804 \\ \hline
+1000 & 0.779 & 0.811 & 0.809 & 0.803 & 0.807 & 0.806 \\ \hline
+10000 & 0.778 & 0.808 & 0.802 & 0.803 & 0.804 & 0.806 \\ \hline
+100000 & 0.78 & 0.788 & 0.803 & 0.804 & 0.805 & 0.804 \\ \hline
+\end{tabular}
+\label{tab:01}
+\end{table}
+
+\begin{table}[H]
+\caption{The F1 scores of the logistic regression model for different learning rates and epoch, with a constant batch size of 200 with the down-sampling ratio given in \ref{eq:16}.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.1 & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 \\ \hline
+10 & 0.506 & 0.514 & 0.496 & 0.422 & 0.404 & 0.404 \\ \hline
+100 & 0.0307 & 0.505 & 0.512 & 0.501 & 0.419 & 0.404 \\ \hline
+1000 & 0.00747 & 0.474 & 0.506 & 0.515 & 0.505 & 0.416 \\ \hline
+10000 & 0.0852 & 0.506 & 0.512 & 0.512 & 0.514 & 0.504 \\ \hline
+100000 & 0.0337 & 0.51 & 0.509 & 0.513 & 0.512 & 0.513 \\ \hline
+\end{tabular}
+\label{tab:02}
+\end{table}
+
+From table \ref{tab:01} and \ref{tab:02} a good model seem to be the 1000 epochs with learning rate 0.0001\footnote{Many of the other models are equally valid choices, but with 1000 epochs the calculation speed won't suffer too much.}, with accuracy of 0.803 and F1 score of 0.515. The precision and recall score of this model is
+\begin{align}
+\text{Recall} = 0.471\\
+\text{Precision} = 0.563
+\end{align}
+with a threshold of 0.5 for rounding up to the binary 1. In figure \ref{fig:03} the F1, precision, recall and accuracy is plotted for different thresholds for binary rounding. The maximum for F1 is found at 0.47 being \(F1 = 0.527\) with an accuracy of 0.783.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{different_tresholds}
+    \caption{The accuracy, F1, precision, recall as a function of the threshold used in determining whether a probability corresponds to a 0 or 1 sample. This is for a 0.0001 learning rate, 1000 epochs, 200 batch size model with a down-sampling ratio of \(\frac{S_0}{S_1} \approx 1.6\).}
+    \label{fig:03}
+\end{figure}
+
+
+For a down sampling ratio of \(\frac{S_0}{S_1} = 1\), the accuracy and F1 scores for different learning rates and epochs are shown in table \ref{tab:03} and \ref{tab:04} respectively. The maximum F1 score being 0.525. For a 1000 epoch, 0.0001 learning rate model, the threshold that maximizes the F1 score was found at 0.5 with unchanged F1 as seen in figure \ref{fig:03}, and a accuracy of 0.777.
+
+
+\begin{table}[H]
+\caption{The Accuracy scores of the logistic regression model for different learning rates and epoch, with a constant batch size of 200 with the down-sampling ratio of 1.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.1 & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 \\ \hline
+10 & 0.624 & 0.776 & 0.779 & 0.786 & 0.777 & 0.753 \\ \hline
+100 & 0.773 & 0.772 & 0.778 & 0.782 & 0.787 & 0.77 \\ \hline
+1000 & 0.751 & 0.778 & 0.776 & 0.776 & 0.782 & 0.786 \\ \hline
+10000 & 0.722 & 0.787 & 0.776 & 0.775 & 0.775 & 0.78 \\ \hline
+100000 & 0.775 & 0.768 & 0.771 & 0.775 & 0.775 & 0.775 \\ \hline
+\end{tabular}
+\label{tab:03}
+\end{table}
+
+\begin{table}[H]
+\caption{The F1 scores of the logistic regression model for different learning rates and epoch, with a constant batch size of 200 with the down-sampling ratio of 1.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.1 & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 \\ \hline
+10 & 0.454 & 0.516 & 0.524 & 0.512 & 0.505 & 0.5 \\ \hline
+100 & 0.508 & 0.515 & 0.524 & 0.524 & 0.51 & 0.503 \\ \hline
+1000 & 0.499 & 0.525 & 0.525 & 0.524 & 0.524 & 0.512 \\ \hline
+10000 & 0.478 & 0.52 & 0.523 & 0.522 & 0.525 & 0.523 \\ \hline
+100000 & 0.0139 & 0.525 & 0.522 & 0.523 & 0.524 & 0.524 \\ \hline
+\end{tabular}
+\label{tab:04}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{different_tresholds_1_ratio}
+    \caption{The accuracy, F1, precision, recall as a function of the threshold used in determining whether a probability corresponds to a 0 or 1 sample. This is for a 0.0001 learning rate, 1000 epochs, 200 batch size model with a down-sampling ratio of \(\frac{S_0}{S_1} = 1\).}
+    \label{fig:04}
+\end{figure}
+
+
+\subsection{Neural Network}
+
+For 'just' one hidden layer with a tanh hidden activation layer function and softmax activation function the accuracy and F1 scores for a multitude of learning rates and epochs for 64 hidden nodes is shown in table \ref{tab:05} and \ref{tab:06}. Furthermore the accuracy and F1 scores for the same learning rates and epochs with the softmax activation function, but different hidden layer functions is given in table \ref{tab:11} to \ref{tab:16}.
+
+\begin{table}[H]
+\caption{The accuracy for a NN with tanh activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.78 & 0.816 & 0.796 & 0.585 & 0.416 & 0.566 \\ \hline
+10 & 0.78 & 0.818 & 0.816 & 0.793 & 0.677 & 0.693 \\ \hline
+50 & 0.78 & 0.812 & 0.817 & 0.807 & 0.783 & 0.658 \\ \hline
+100 & 0.78 & 0.811 & 0.818 & 0.816 & 0.797 & 0.634 \\ \hline
+500 & 0.78 & 0.754 & 0.816 & 0.819 & 0.812 & 0.787 \\ \hline
+\end{tabular}
+\label{tab:05}
+\end{table}
+
+
+\begin{table}[H]
+\caption{The F1 for a NN with tanh activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.0 & 0.464 & 0.35 & 0.234 & 0.368 & 0.174 \\ \hline
+10 & 0.0 & 0.495 & 0.462 & 0.34 & 0.285 & 0.255 \\ \hline
+50 & 0.0 & 0.478 & 0.471 & 0.426 & 0.206 & 0.326 \\ \hline
+100 & 0.0 & 0.485 & 0.475 & 0.466 & 0.386 & 0.215 \\ \hline
+500 & 0.0 & 0.455 & 0.482 & 0.474 & 0.439 & 0.266 \\ \hline
+\end{tabular}
+\label{tab:06}
+\end{table}
+
+From table \ref{tab:05} and \ref{tab:06} the combination of 100 epochs and a learning rate of 0.0001 gave the following scores
+\begin{align}
+\text{Accuracy} = 0.818\\
+\text{F1} = 0.475.
+\end{align}
+This combination of epochs, learning rate and hidden activation function is used in figure \ref{fig:05} where the accuracy and F1 scores are plotted against the ratio of 0-samples over 1-samples in the training data. The ratio where the sum of the norms of the accuracy and F1 scores are at its highest is at
+\begin{align}\label{eq:17}
+\frac{S_0}{S_1} \approx 1.70
+\end{align}
+which is about the same as 7200 excluded samples from the training set. The performance scores for this model with down-sampling is
+\begin{align}
+\text{Accuracy} = 0.801\\
+\text{F1} = 0.531.
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{down_sample_NN_onehot}
+    \caption{The accuracy and F1 scores for a NN with a hidden layer with 64 nodes and tanh activation as a function of the ratio \(\frac{S_0}{S_1}\) i.e the ratio between 0-samples and 1-samples in the training data. The batch size is 200, a learning rate of 0.0001 and 100 epochs.}
+    \label{fig:05}
+\end{figure}
+
+Using the down-sampling from figure \ref{fig:05} with many, many and many combinations for 1 and 2 hidden layers with 100 epochs and a learning rate of 0.0001. The combinations which yielded the best accuracy, F1 and the norm is given in table \ref{tab:07}. Furthermore in figure \ref{fig:06} and \ref{fig:07}, a histogram distribution of the F1 scores for one and two hidden layers are plotted with their mean and standard deviation.
+
+
+\begin{table}[H]
+\caption{The best accuracy, F1 and norm between them for both 1 and 2 hidden layers for the given activation function and number of nodes with 100 epochs, a learning rate of 0.0001 and a batch size of 200. The ratio of the down-sampling used is given in \ref{eq:17}.}
+\begin{tabular}{|c|c|c|c|}\hline
+Layers & Nodes & Accuacy & F1 \\ \hline
+Elu & 7 & 0.808 & 0.523\\ \hline
+Elu & 13 & 0.801 & 0.540\\ \hline
+Elu & 13 & 0.801 & 0.540\\ \hline
+Sigmoid - Elu & 54 - 74 & 0.812 & 0.517\\ \hline
+Tanh - Sigmoid & 74 - 104 & 0.793 & 0.541\\ \hline
+Elu - Sigmoid & 24 - 94 & 0.803 & 0.538\\ \hline
+\end{tabular}
+\label{tab:07}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{hist_1_hidden_layer_F1}
+    \caption{A histogram of all the F1 scores for all the models with different activation functions and nodes with one hidden layer for 100 epochs, batch size of 200 and 0.0001 learning rate. The ratio of the down-sampling used is given in \ref{eq:17}.}
+    \label{fig:06}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{hist_2_hidden_layer_F1}
+    \caption{A histogram of all the F1 scores for all the models with different activation functions and nodes with two hidden layers for 100 epochs, batch size of 200 and 0.0001 learning rate. The ratio of the down-sampling used is given in \ref{eq:17}.}
+    \label{fig:07}
+\end{figure}
+
+By recreating the model with the highest F1 from table \ref{tab:07}, but with random weights 300 times, multiple F1 scores arose. These are plotted in the histogram in figure \ref{fig:08}. The best F1 score from this was \(F1 = 0.540\) and the mean was \(\mu = 0.532\) with a standard deviation of \(\sigma = 0.002\).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{NN_histogram}
+    \caption{A histogram of the F1 scores for the same model but with different initial random weights with the mean and standard deviation for a 74 tanh - 104 sigmoid model (the same as in table \ref{tab:07}).}
+    \label{fig:08}
+\end{figure}
+
+In figure \ref{fig:09} the two models with the best F1 scores from table \ref{tab:07} is plotted against various \(\lambda\)-values in the interval \(\lambda \in [10^{-7}, 1]\). In this plot the stochasticity in the initialization of the initial weights are removed by applying a seed before the initialization.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.52\textwidth]{varying_lambda}
+    \caption{The accuracy of a one hidden and two hidden layer models (the best scoring F1 models from table \ref{tab:07}) with different \(\lambda\)-values. The initial weights are the same for all \(\lambda\)-values.}
+    \label{fig:09}
+\end{figure}
+
+Using the same method as in figure \ref{fig:04}, but with a down-sampling fraction of \(\frac{S_0}{S_1}\approx 1.3\) which equal removing 8816 0-samples. The performance scores for the model with the highest F1 score was
+\begin{align}
+\text{Accuracy} = 0.789\\
+\text{F1} = 0.543.
+\end{align}
+and the corresponding histogram for the F1 scores is shown in figure \ref{fig:10}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{NN_histogram_highestF1}
+    \caption{A histogram of the F1 scores for the same model but with different initial random weights with the mean and standard deviation for a 74 tanh - 104 sigmoid model (the same as in table \ref{tab:07}). The only difference is that this is for a down-sampling ratio of \(\frac{S_0}{S_1}\approx 1.3\).}
+    \label{fig:10}
+\end{figure}
+
+
+\subsection{Regression analysis Neural Network}\label{sec:reg_NN}
+
+I will start by illustrating the instability in the creation of the models. For a model with one hidden layer, relu as all activation functions, 50 nodes in the hidden layer, 200 epochs and \(\eta = 10^{-4}\) the number of stable models was \(N_{stable} = 78\) and \(N_{unstable} = 22\) unstable models. Note however that none of these models caused overflow, but rather predicted all zeros.
+
+The start of this result section will resolve around finding the ideal activation functions. Thus with one hidden layer and relu end activation function for 50 neurons in the hidden layer, the R\(^2\) and MSE errors is shown in table \ref{tab:08}. The shown values are the best from a grid of \(\eta \in [10^{-1}, 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}]\) and \(\text{epochs} \in [1, 10, 50, 100, 200, 500]\). The best combination for all numbers in table \ref{tab:08} was with 500 epochs with \(\eta = 10^{-4}\), except for the tanh function and the MSE/R2 data error where 200 epochs minimized the error. In table \ref{tab:09} the error estimates for the elu model with different \(\eta\)-values for 500 epochs is given.
+
+
+\begin{table}[H]
+\caption{The MSE and R2 error estimates for test section of the data for a learning rate of \(\eta = 10^{-4}\) and 500 epochs, except for tanh with 200 epochs. The design matrix used is for 5th order polynomial complexity.}
+\begin{tabular}{|c|c|c|c|c|}\hline
+ & Relu & Elu & Sigmoid & Tanh \\ \hline
+MSE Franke & 0.00743 & 0.00734 & 0.021 & 0.0117 \\ \hline
+R2 Franke & 0.921 & 0.922 & 0.776 & 0.865 \\ \hline
+MSE data & 0.977 & 0.978 & 0.998 & 0.986 \\ \hline
+R2 data & 0.105 & 0.103 & 0.0856 & 0.0965 \\ \hline
+\end{tabular}
+\label{tab:08}
+\end{table}
+
+\begin{table}[H]
+\caption{The MSE and R2 error estimates for test section of the data with different learning rates and 500 epochs for the elu activation function. The design matrix used is for 5th order polynomial complexity.}
+\begin{tabular}{|c|c|c|c|c|c|}\hline
+ & \(10^{-2}\) & \(10^{-3}\) & \(10^{-4}\) & \(10^{-5}\) & \(10^{-6}\) \\ \hline
+MSE Franke & 0.3 & 0.0116 & 0.00734 & 0.0134 & 0.0308 \\ \hline
+R2 Franke & 0.0 & 0.877 & 0.922 & 0.858 & 0.672 \\ \hline
+MSE data & 0.0 & 0.985 & 0.98 & 0.988 & 0.0 \\ \hline
+R2 data & 0.0 & 0.0976 & 0.102 & 0.0947 & 0.0771 \\ \hline
+\end{tabular}
+\label{tab:09}
+\end{table}
+
+So far I have only used a 5th order polynomial. In figure \ref{fig:11} the R-squared error for the test and training data is plotted against the polynomial complexity using the best model from table \ref{tab:08} i.e the 50 layer elu model. The shown plot is the averaged of N = 10 random k-fold cross validation runs with 4 folds. Furthermore in figure \ref{fig:12} the same plot is shown, but the error is calculated based on the real franke function.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{overfitting_dataR2}
+    \caption{The R2 test and training error as a function of polynomial complexity for a 500 epochs, 0.0001 learning rate model with 50 neurons and elu in the hidden layer and relu as the activation function in the last layer. The error is with regards to the data set with noise.}
+    \label{fig:11}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{overfitting_dataR2_real}
+    \caption{The R2 test and training error as a function of polynomial complexity for a 500 epochs, 0.0001 learning rate model with 50 neurons and elu in the hidden layer and relu as the activation function in the last layer. The error is with regards to the Franke function without noise.}
+    \label{fig:12}
+\end{figure}
+
+The next step in regression analysis utilizing neural networks concerns the matter of creating a optimal model. In figure \ref{fig:13} the R2 error estimate for test section of the actual Franke function is plotted against the number of neurons in the hidden layer. The activation function for hidden layer is elu, while the end activation function is relu. The best model was found at 80 nodes in the hidden layer with the following error estimates
+\begin{align}
+\text{R}^2_{Franke} = 0.941\\
+\text{MSE}_{Franke} = 0.00558.
+\end{align}
+Both of these error estimates are for the test section of the actual Franke function. Furthermore in figure \ref{fig:14} the R2 error estimates for the test section between the model and franke function is plotted against the number of neurons in the added second layer. The second layer consists of the elu activation function added upon the best performing layer from figure \ref{fig:13}. This model had the following error estimates \(\text{R}^2_{Franke} = 0.928\) and \(\text{MSE}_{Franke} = 0.00645\). Lastly figure \ref{fig:15} shows the R2 for the third added layer as a function of the number of neurons in that layer with the following error estimates \(\text{R}^2_{Franke} = 0.916\) and \(\text{MSE}_{Franke} = 0.00793\).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{r2_as_a_function_of_neurons}
+    \caption{The best models for each neuron number for N=5 re-randomization of the initial weights. The model uses 500 epochs with a learning rate of 0.0001 and elu hidden activation function, and relu in the last layer.}
+    \label{fig:13}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{r2_as_a_function_of_neurons_layer2}
+    \caption{The best models for each neuron number in the second layer for N=5 re-randomization of the initial weights. The model uses 500 epochs with a learning rate of 0.0001 and all elu activation functions except relu in the last layer. The first layer is the best layer from figure \ref{fig:13}.}
+    \label{fig:14}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{r2_as_a_function_of_neurons_layer3}
+    \caption{The best models for each neuron number in the second layer for N=5 re-randomization of the initial weights. The model uses 500 epochs with a learning rate of 0.0001 and all elu activation functions except relu in the last layer. The first layer is the best layer from figure \ref{fig:13} and second layer is the best from figure \ref{fig:14}.}
+    \label{fig:15}
+\end{figure}
+
+In figure \ref{fig:16} a 3D plot of the predicted best model from figure \ref{fig:11} beside the actual Franke function.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{franke_func_NN}
+    \caption{A 3-dimensional plot of the best model from figure \ref{fig:11} beside the actual Franke function.}
+    \label{fig:16}
+\end{figure}
+
+
+
+\section{Discussion}\label{sec:Discussion}
+
+The first topic of discussion will be about bad terminology. In the beginning of subsection \ref{sec:reg_NN} I bluntly call the model unstable. This is however not the case. As stated there, none of the so-called unstable models caused overflow. Instead they all predicted zeros. This is a consequence of gradient descent mixed with random initial weights. Gradient descent does not necessarily find the global minimum. Instead, and often, the found minimum will be a local minimum. For around 20-25\% cases with the used model, one such local minimum was to predict all zeros. If I were to use a different standard deviation than \(\sqrt{2/\text{Number of nodes}}\) this may have been avoided. This also showcase the stochastic behavior in the model creation, but more about that later.
+
+Another point I will discuss is one problem in my down-sampling. When down-sampling, I throw away many data-points never too be seen again. Doing this, I may loose a great deal of potentially critical information regarding the model. One way to avoid this would be to re-randomize the omitted data-points multiple times and taken the average for my results. However, any methods involving re-running my results multiple times would take too much computational power.
+
+The last point out concerns my implementation of the back propagation algorithm. As mentioned in the section \ref{sec:Method}, I used steepest descent for updating the weights. A better opting may be ADAM since it is capable of adjusting the learning rate automatically. This is of-course just speculation without any results proving my hypothesis.
+
+\subsection{Credit card data}
+
+\subsubsection{Logistic regression}
+
+Figure \ref{fig:02} showcases an important aspect for biased data, and data analysis in general. It clearly shows improved predictability for a model created with a smaller training set more evenly distributed between the possible sample values (0 or 1 samples). So much that the lose in accuracy is less than the increase in the F1 score. Furthermore, it can clearly be seen that the down-sampling that maximizes the F1 score is at a evenly distributed data set.
+
+Funny enough, the best F1 score was not achieved at a sample ratio of \(S_0/S_1=1\), but rather when the norm of accuracy and F1 was at its maximum. The very best F1 score ended up being \(F1=0.527\) and a accuracy of 0.783 with a 0.47 threshold instead of a 0.5 threshold. Whether the change of threshold is a more efficient way of improving the predictability and thus the F1 score than down-sampling is difficult to say, but the results may indicate something along those lines. Another interesting aspect is that the accuracy of the changed threshold model was greater than the accuracy of the 1-ratio down-sampled model. It would have been interesting to change threshold for a non down-sampled model, and see whether the F1 score could improve and compete with the down-sampled versions. Based on the result however it seems a good mixture of down-sampling together with a minor tweak in the threshold would prove the best predictability of the model.
+
+Unlike for neural network, the initial \(\beta\)-values for logistic regression was not randomized. This may have hindered the logistic regression model such that it was 'stuck' in a possible bad local minimum, and could not 'break' free.
+
+\subsubsection{Neural Network}
+
+I will begin by directing you gaze to figure \ref{fig:08} and \ref{fig:10}. In these figure, all the models created in these histograms have the same parameters. Except all have different initial weights. This makes it perfectly clear just how many different local minima there exists. This makes it difficult to determine whether a model combination is good or just pure luck. Furthermore, it also makes it difficult to determine whether the hyper parameter \(\lambda\) would have any noticeable effect. 
+
+In figure \ref{fig:09} the error estimates is plotted for multiple \(\lambda\)-values with the same initial weights. It's clear that the addition of the \(\lambda\) parameter may improve the performance of the model, but not by a large margin. It would require more testing to figure out how much exactly, I did not do this because of the sheer amount of adjustable parameters in a neural network.
+
+For a one layered neural network the combinations of epochs and learning rates differs depending on the activation function as seen for table \ref{tab:06} and \ref{tab:12} for tanh and sigmoid respectively. The sigmoid function seems to be more dependent on a correct combination of learning rate and epochs. The same analysis can be applied to the other activation functions as-well.
+
+In the subject of down-sampling, a similar trend as seen in logistic regression arises in figure \ref{fig:05}. However, unlike logistic regression the down-sampling that maximizes the F1 score is not at a 1:1 ratio, but around \(S_0/S_1 \approx 1.3\). This can be seen in figure \ref{fig:08} and \ref{fig:10} where the mean of the F1 score is larger for the \(S_0/S_1 \approx 1.3\) down-sampling ratio. The maximum achieved F1 score was for two layers with \(F1 = 0.543\) and accuracy of 0.789. It is also notable from table \ref{tab:07} that two layers seem to have slightly better performance than with one hidden layer. This may just arise from the fact that there were preformed more test for two layers than one.
+
+\subsection{Comparison}
+
+The most important subject is how logistic regression and neural network performed in comparison. From all the results, neural network outperformed logistic regression in both accuracy and F1 scores. The maximum F1 score for logistic regression was 0.527 whereas, the highest F1 score for neural network was 0.543. The corresponding accuracy to the best F1 score models also showed that neural network had a better performance.
+
+A comparison of the highest accuracy is however more difficult. This is because I did not include the accuracy for a non down-samples logistic regression model. They do however seem to be about the same when studying the number in table \ref{tab:01}, \ref{tab:06} and taking figure \ref{fig:02} into account.
+
+It seem neural network outperformed logistic regression in this analysis. As mentioned in the discussion about logistic regression, this may be caused by being 'stuck' in a bad local minima. However, the neural network used in this analysis is not optimal. Both in regard to the implementation and the network itself. If a professional neural network package was used there may have been significant jumps in the performance.
+
+\subsection{Regression Neural network}
+
+Much like earlier with the classification example, the randomization of the hidden weights does make it difficult to find a good model. However there are still some clear trends in the results.
+
+From table \ref{tab:08} it's obvious that the best functions for the regression analysis is either the elu or relu activation function. Furthermore it's evident from table \ref{tab:09} that a learning rate of \(10^{-4}\) is the best choice.
+
+An important aspect of regression analysis with neural network is the lack of overfitting. Figure \ref{fig:11} barley shows any sign of overfitting and in comparison to OLS from \cite{Jon_P1} there is no point in worrying. However, it's is clear that the best polynomial lies somewhere around 5th degree complexity, much like in \cite{Jon_P1} for OLS and ridge. 
+
+In comparison to rige and lasso regression, neural network doesn't need the necessary fine tuning in regards to finding the optimal \(\lambda\) penalty parameter. This is an advantage for neural network in comparison to ridge and lasso where the optimal \(\lambda\)-parameter differs depending on the polynomial complexity. This is evident from \cite{Jon_P1} in the appendix in figure 28. By finding a good combination of epochs and learning rate, the fear of potentially overfitting won't be a problem. However, the need of choosing a good activation function requires some analysis. The same goes for choosing a total number of layers and nodes,
+
+The second to last issue for discussion is the addition of multiple hidden layers. A trend in figure \ref{fig:13}, \ref{fig:14} and \ref{fig:15} is that the addition of multiple hidden layers worsen the error estimate. Especially when reaching three hidden layers, where multiple values for some neuron numbers had to be emitted because they predicted zeros or overflow. Although one hidden layer had the best error estimate, it seems that for a small number of nodes in two hidden layers were stable in the error estimate prediction. A clear trend in all three figure is that when the neuron number increases for the last layer before the output the performance of the model goes down.
+
+The best performing model with neural network had \(R^2 = 0.942\) as the best error estimate and the 3D plot is given in figure \ref{fig:16}. This is better than the best performing model in \cite{Jon_P1} with the best error estimate being \(R^2 = 0.932\) when the data is split between test and training. The best neural network model only fall slightly the best model from \cite{Jon_P1} when the entire data set is used as training with \(R^2 = 0.944\). However, the best created model may outperform event that since the error is only taken with respect to the test section of the data not the entire data set. When taking the error estimate on the entire data set with model created on the training set, it may have even better performance.
+
+Before ending, I would like to quickly discuss the uneven behavior of figure \ref{fig:16}. This is because I used the elu activation function in the hidden layer. When testing with relu, this did not happen.
+
+
+\section{Conclusion}\label{sec:Conclusion}
+
+Both logistic regression and neural network showed clear evidence that down-sampling of data improved model performance. The highest F1 score for a logistic regression model was \(F1=0.527\) with an accuracy of 0.783. On the same data set, the highest F1 score of a neural network model was \(F1 = 0.543\) with an accuracy of 0.789. In general: the neural network had better performance than the logistic regression model in all aspects, although which method had the highest accuracy is unclear.
+
+The best performing neural network model for regression analysis was a one hidden layer model with elu in the hidden layer and relu as the end activation function. This model had an error estimate of \(R^2 = 0.941\) which outperformed most models created using linear regression methods. Furthermore,the usage of neural network showed only a slight tendency for overfitting in comparison to OLS.
+
+\newpage
+\appendix
+
+\section{Tables NN}
+\begin{table}[H]
+\caption{The accuracy for a NN with sigmoid activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.78 & 0.805 & 0.78 & 0.78 & 0.779 & 0.755 \\ \hline
+10 & 0.78 & 0.815 & 0.806 & 0.787 & 0.76 & 0.779 \\ \hline
+50 & 0.78 & 0.819 & 0.813 & 0.801 & 0.781 & 0.763 \\ \hline
+100 & 0.78 & 0.819 & 0.817 & 0.806 & 0.78 & 0.775 \\ \hline
+500 & 0.78 & 0.81 & 0.818 & 0.814 & 0.804 & 0.78 \\ \hline
+\end{tabular}
+\label{tab:11}
+\end{table}
+
+\begin{table}[H]
+\caption{The F1 for a NN with sigmoid activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.0 & 0.382 & 0.0127 & 0.0193 & 0.00301 & 0.0367 \\ \hline
+10 & 0.0 & 0.507 & 0.385 & 0.0909 & 0.0217 & 0.0 \\ \hline
+50 & 0.0 & 0.474 & 0.433 & 0.31 & 0.0128 & 0.018 \\ \hline
+100 & 0.0 & 0.456 & 0.457 & 0.371 & 0.0 & 0.0124 \\ \hline
+500 & 0.0 & 0.442 & 0.474 & 0.436 & 0.362 & 0.0 \\ \hline
+\end{tabular}
+\label{tab:12}
+\end{table}
+
+
+\begin{table}[H]
+\caption{The accuracy for a NN with relu activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.78 & 0.811 & 0.801 & 0.728 & 0.653 & 0.549 \\ \hline
+10 & 0.78 & 0.817 & 0.815 & 0.78 & 0.754 & 0.454 \\ \hline
+50 & 0.78 & 0.812 & 0.818 & 0.78 & 0.792 & 0.473 \\ \hline
+100 & 0.78 & 0.78 & 0.817 & 0.78 & 0.799 & 0.78 \\ \hline
+500 & 0.78 & 0.78 & 0.78 & 0.78 & 0.78 & 0.793 \\ \hline
+\end{tabular}
+\label{tab:13}
+\end{table}
+
+\begin{table}[H]
+\caption{The F1 for a NN with relu activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.0 & 0.424 & 0.359 & 0.145 & 0.166 & 0.276 \\ \hline
+10 & 0.0 & 0.471 & 0.443 & 0.0 & 0.118 & 0.208 \\ \hline
+50 & 0.0 & 0.49 & 0.476 & 0.0 & 0.205 & 0.359 \\ \hline
+100 & 0.0 & 0.0 & 0.471 & 0.0 & 0.312 & 0.0 \\ \hline
+500 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.342 \\ \hline
+\end{tabular}
+\label{tab:14}
+\end{table}
+
+
+\begin{table}[H]
+\caption{The accuracy for a NN with elu activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.78 & 0.78 & 0.78 & 0.756 & 0.78 & 0.55 \\ \hline
+10 & 0.78 & 0.816 & 0.813 & 0.78 & 0.78 & 0.588 \\ \hline
+50 & 0.78 & 0.78 & 0.78 & 0.813 & 0.779 & 0.78 \\ \hline
+100 & 0.78 & 0.78 & 0.816 & 0.813 & 0.799 & 0.78 \\ \hline
+500 & 0.78 & 0.78 & 0.78 & 0.816 & 0.803 & 0.78 \\ \hline
+\end{tabular}
+\label{tab:15}
+\end{table}
+
+\begin{table}[H]
+\caption{The F1 for a NN with elu activation function in the hidden layer with 64 nodes and softmax for the final activation function. The batch size used is 200.}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+  & 0.01 & 0.001 & 0.0001 & 1e-05 & 1e-06 & 1e-07 \\ \hline
+1 & 0.0 & 0.0 & 0.0 & 0.0832 & 0.0 & 0.337 \\ \hline
+10 & 0.0 & 0.438 & 0.436 & 0.0 & 0.0 & 0.293 \\ \hline
+50 & 0.0 & 0.0 & 0.0 & 0.436 & 0.313 & 0.0 \\ \hline
+100 & 0.0 & 0.0 & 0.472 & 0.454 & 0.305 & 0.0 \\ \hline
+500 & 0.0 & 0.0 & 0.0 & 0.467 & 0.381 & 0.0 \\ \hline
+\end{tabular}
+\label{tab:16}
+\end{table}
+
+\section{Activation and cost functions}
+
+\subsection{Cost function}
+
+There are a total of two cost function that will be used in this project: cross entropy and mean square error(MSE). The cross entropy cost function takes the following form for a binary classification problem
+\begin{equation}
+C(\bm{p}_i) = -\lp \bm{y}_i\cdot \ln(\bm{p}_i) + (1-\bm{y}_i)\cdot \ln(1-\bm{p}_i)\rp.
+\end{equation}
+Notice how I did not include either a sum nor divided on the total number. This is because the matrix notation used for the logistic regression and neural network handles multiple samples without any modifications by innate summation. Furthermore the division by the number of samples N is unnecessary because of the multiplication with the learning rate. The derivative of the cross entropy is given by
+\begin{equation}
+\frac{\partial C(\bm{p}_i)}{\partial \bm{p}_i} = -\lp \bm{y}_i\ominus\bm{p}_i + \lp 1 - \bm{y}_i\ominus (1-\bm{p}_i)\rp\rp
+\end{equation}
+and \(\bm{y}_i\) is the correct value e.g \([1,0]\) whereas \(\bm{p}_i\) is the probability for predicting either. Furthermore, the sign \(\ominus\) is meant as hadamard division.
+
+The next cost function is the MSE given by
+\begin{equation}
+C(\bm{p}_i) = \lp \bm{y}_i - \bm{p_i}\rp^2,
+\end{equation}
+and again notice the lack of summation and division by sample number N. The derivative of the MSE is
+\begin{equation}
+\frac{\partial C(\bm{p}_i)}{\partial \bm{p}_i} = -2\lp \bm{y}_i - \bm{p_i}\rp
+\end{equation}
+where the number 2 can be omitted because of the learning rate multiplication.
+
+\subsection{Activation functions}\label{sec:activation}
+
+There are a total of five activation function utlized within project: softmax, sigmoid (logit), tanh, relu and elu.
+
+The softmax activation function is defined as followed:
+\begin{equation}
+f_{\text{soft}}(\bm{p}_i) = \frac{\e^{\bm{p}_i}}{\sum_{i=1}^n \e^{\bm{p}_i}} 
+\end{equation}
+with the derivative being
+\begin{equation}
+\frac{\partial f_{\text{soft}}(\bm{p}_i)}{\partial \bm{p}_i} = f_{\text{soft}}(\bm{p}_i)\circ(1-f_{\text{soft}}(\bm{p}_i))
+\end{equation}
+where \(\circ\) is hadamard multiplication.
+
+The sigmoid activation function is defined as followed:
+\begin{equation}
+f_{\text{sig}}(\bm{p}_i) = \frac{1}{1- \e^{\bm{p}_i}}
+\end{equation}
+with the derivative being
+\begin{equation}
+\frac{\partial f_{\text{sig}}(\bm{p}_i)}{\partial \bm{p}_i} = f_{\text{sig}}(\bm{p}_i)\circ(1-f_{\text{sig}}(\bm{p}_i))
+\end{equation}
+where \(\circ\) is hadamard multiplication.
+
+The relu activation function is defined as followed:
+\begin{equation}
+f_{\text{relu}}(\bm{p}_i) =
+\begin{cases}
+\bm{p}_i & \bm{p}_i > 0\\
+0 & \bm{p}_i \leq 0
+\end{cases}
+\end{equation}
+with the derivative begin
+\begin{equation}
+\frac{\partial f_{\text{relu}}(\bm{p}_i)}{\partial \bm{p}_i} =
+\begin{cases}
+1 & \bm{p}_i > 0\\
+0 & \bm{p}_i \leq 0
+\end{cases}.
+\end{equation}
+
+The elu activation function is defined as followed:
+\begin{equation}
+f_{\text{elu}}(\bm{p}_i) =
+\begin{cases}
+\bm{p}_i & \bm{p}_i > 0\\
+\alpha\e^{\bm{p}_i} & \bm{p}_i \leq 0
+\end{cases}
+\end{equation}
+with the derivative begin
+\begin{equation}
+\frac{\partial f_{\text{elu}}(\bm{p}_i)}{\partial \bm{p}_i} =
+\begin{cases}
+1 & \bm{p}_i > 0\\
+\alpha\e^{\bm{p}_i} & \bm{p}_i \leq 0
+\end{cases}
+\end{equation}
+where \(\alpha = 0.1\) and just a parameter.
+
+
+\onecolumngrid
+
+\bibliographystyle{plain}
+\bibliography{references} 
+
+\end{document}

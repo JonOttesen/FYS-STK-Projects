@@ -1,0 +1,37 @@
+\BOOKMARK [0][-]{section*.2}{Logistic regression and Neural Networks}{}% 2
+\BOOKMARK [1][-]{section*.1}{Sammendrag}{section*.2}% 1
+\BOOKMARK [1][-]{section*.3}{Introduction}{section*.2}% 3
+\BOOKMARK [1][-]{section*.4}{Theory}{section*.2}% 4
+\BOOKMARK [2][-]{section*.5}{Preprocessing and sampling}{section*.4}% 5
+\BOOKMARK [2][-]{section*.6}{Gradient decent}{section*.4}% 6
+\BOOKMARK [2][-]{section*.7}{Logistic regression}{section*.4}% 7
+\BOOKMARK [2][-]{section*.8}{Neural Network}{section*.4}% 8
+\BOOKMARK [3][-]{section*.9}{Feed forward}{section*.8}% 9
+\BOOKMARK [3][-]{section*.11}{Back propagation}{section*.8}% 10
+\BOOKMARK [2][-]{section*.12}{Model evaluation}{section*.4}% 11
+\BOOKMARK [1][-]{section*.13}{Method}{section*.2}% 12
+\BOOKMARK [2][-]{section*.14}{Code implementation}{section*.13}% 13
+\BOOKMARK [3][-]{section*.15}{Logistic regression}{section*.14}% 14
+\BOOKMARK [3][-]{section*.16}{Neural Network}{section*.14}% 15
+\BOOKMARK [2][-]{section*.17}{Preparations}{section*.13}% 16
+\BOOKMARK [3][-]{section*.18}{Credit card data}{section*.17}% 17
+\BOOKMARK [3][-]{section*.19}{Franke function}{section*.17}% 18
+\BOOKMARK [2][-]{section*.20}{Logistic regression}{section*.13}% 19
+\BOOKMARK [2][-]{section*.21}{Neural Network Credit card}{section*.13}% 20
+\BOOKMARK [2][-]{section*.22}{Neural Network Franke}{section*.13}% 21
+\BOOKMARK [1][-]{section*.23}{Results}{section*.2}% 22
+\BOOKMARK [2][-]{section*.24}{Logistic regression}{section*.23}% 23
+\BOOKMARK [2][-]{section*.32}{Neural Network}{section*.23}% 24
+\BOOKMARK [2][-]{section*.42}{Regression analysis Neural Network}{section*.23}% 25
+\BOOKMARK [1][-]{section*.51}{Discussion}{section*.2}% 26
+\BOOKMARK [2][-]{section*.52}{Credit card data}{section*.51}% 27
+\BOOKMARK [3][-]{section*.53}{Logistic regression}{section*.52}% 28
+\BOOKMARK [3][-]{section*.54}{Neural Network}{section*.52}% 29
+\BOOKMARK [2][-]{section*.55}{Comparison}{section*.51}% 30
+\BOOKMARK [2][-]{section*.56}{Regression Neural network}{section*.51}% 31
+\BOOKMARK [1][-]{section*.57}{Conclusion}{section*.2}% 32
+\BOOKMARK [1][-]{section*.58}{Tables NN}{section*.2}% 33
+\BOOKMARK [1][-]{section*.65}{Activation and cost functions}{section*.2}% 34
+\BOOKMARK [2][-]{section*.66}{Cost function}{section*.65}% 35
+\BOOKMARK [2][-]{section*.67}{Activation functions}{section*.65}% 36
+\BOOKMARK [1][-]{section*.68}{Referanser}{section*.2}% 37

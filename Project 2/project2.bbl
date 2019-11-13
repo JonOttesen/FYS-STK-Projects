@@ -1,0 +1,53 @@
+\begin{thebibliography}{1}
+
+\bibitem{MHJ_GD}
+Morten Hjorth-Jensen.
+\newblock Lectures notes in fys-stk4155. data analysis and machine learning:
+  Linear regression and more advanced regression analysis.
+\newblock
+  \url{https://compphysics.github.io/MachineLearning/doc/pub/Splines/html/Splines.html},
+  2019.
+\newblock [Online; accessed 06-November-2019].
+
+\bibitem{MHJ_LogReg}
+Morten Hjorth-Jensen.
+\newblock Lectures notes in fys-stk4155. data analysis and machine learning:
+  Linear regression and more advanced regression analysis.
+\newblock
+  \url{https://compphysics.github.io/MachineLearning/doc/pub/LogReg/html/LogReg.html},
+  2019.
+\newblock [Online; accessed 06-November-2019].
+
+\bibitem{MHJ_NN}
+Morten Hjorth-Jensen.
+\newblock Lectures notes in fys-stk4155. data analysis and machine learning:
+  Linear regression and more advanced regression analysis.
+\newblock
+  \url{https://compphysics.github.io/MachineLearning/doc/pub/NeuralNet/html/NeuralNet.html},
+  2019.
+\newblock [Online; accessed 06-November-2019].
+
+\bibitem{Jon_P1}
+Jon~Andre Ottesen.
+\newblock Fys-stk4155 – applied data analysis and machine learning project 1
+  - regression analysis and resampling methods.
+\newblock
+  \url{https://github.com/JonOttesen/FYS-STK-Projects/tree/master/Project%201},
+  2019.
+\newblock [Online; accessed 06-November-2019].
+
+\bibitem{wiki:F1_score}
+Wikipedia.
+\newblock {F1 score} --- {W}ikipedia{,} the free encyclopedia.
+\newblock
+  \url{http://en.wikipedia.org/w/index.php?title=F1\%20score&oldid=924681114},
+  2019.
+\newblock [Online; accessed 07-November-2019].
+
+\bibitem{yeh2009comparisons}
+I-Cheng Yeh and Che-hui Lien.
+\newblock The comparisons of data mining techniques for the predictive accuracy
+  of probability of default of credit card clients.
+\newblock {\em Expert Systems with Applications}, 36(2):2473--2480, 2009.
+
+\end{thebibliography}
