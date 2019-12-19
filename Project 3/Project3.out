@@ -1,0 +1,32 @@
+\BOOKMARK [0][-]{section*.2}{FYS-STK4155 \205 Applied data analysis and machine learning Project 3 - A game of snake using reinforced and supervised learning}{}% 2
+\BOOKMARK [1][-]{section*.1}{Sammendrag}{section*.2}% 1
+\BOOKMARK [1][-]{section*.3}{Introduction}{section*.2}% 3
+\BOOKMARK [1][-]{section*.4}{Theory}{section*.2}% 4
+\BOOKMARK [2][-]{section*.5}{Game of snake}{section*.4}% 5
+\BOOKMARK [2][-]{section*.6}{Hamiltonian circuit}{section*.4}% 6
+\BOOKMARK [3][-]{section*.7}{Pertubated Hamiltonian cycle}{section*.6}% 7
+\BOOKMARK [2][-]{section*.8}{Neural Network}{section*.4}% 8
+\BOOKMARK [3][-]{section*.9}{1D Neural network}{section*.8}% 9
+\BOOKMARK [2][-]{section*.10}{Convolutional neural network}{section*.4}% 10
+\BOOKMARK [3][-]{section*.11}{Convolution layer}{section*.10}% 11
+\BOOKMARK [3][-]{section*.12}{Pooling layer}{section*.10}% 12
+\BOOKMARK [3][-]{section*.13}{Techniques etc}{section*.10}% 13
+\BOOKMARK [2][-]{section*.14}{Supervised learning}{section*.4}% 14
+\BOOKMARK [2][-]{section*.15}{Reinforced learning}{section*.4}% 15
+\BOOKMARK [3][-]{section*.16}{Q-learning}{section*.15}% 16
+\BOOKMARK [2][-]{section*.17}{Model evaluation}{section*.4}% 17
+\BOOKMARK [1][-]{section*.18}{Method}{section*.2}% 18
+\BOOKMARK [2][-]{section*.19}{Code implementation}{section*.18}% 19
+\BOOKMARK [3][-]{section*.20}{Snake}{section*.19}% 20
+\BOOKMARK [3][-]{section*.21}{Convolutional neural network}{section*.19}% 21
+\BOOKMARK [2][-]{section*.22}{Supervised Learning}{section*.18}% 22
+\BOOKMARK [2][-]{section*.23}{Reinforced Learning}{section*.18}% 23
+\BOOKMARK [1][-]{section*.24}{Results}{section*.2}% 24
+\BOOKMARK [2][-]{section*.25}{Hamiltonian circuit}{section*.24}% 25
+\BOOKMARK [2][-]{section*.30}{Supervised Hamiltonian path}{section*.24}% 26
+\BOOKMARK [2][-]{section*.35}{Reinforced Learning}{section*.24}% 27
+\BOOKMARK [1][-]{section*.45}{Discussion}{section*.2}% 28
+\BOOKMARK [2][-]{section*.46}{Supervised model}{section*.45}% 29
+\BOOKMARK [2][-]{section*.47}{Reinforced learning}{section*.45}% 30
+\BOOKMARK [1][-]{section*.48}{Conclusion}{section*.2}% 31
+\BOOKMARK [1][-]{section*.49}{Referanser}{section*.2}% 32

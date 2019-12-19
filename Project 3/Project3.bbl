@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{RL}
+Mauro Comi.
+\newblock How to teach ai to play games: Deep reinforcement learning.
+\newblock
+  \url{https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a},
+  2019.
+\newblock [Online; accessed 09-December-2019].
+
+\bibitem{CS231}
+Andrej Karpathy.
+\newblock Convolutional neural networks (cnns / convnets).
+\newblock \url{http://cs231n.github.io/convolutional-networks/}, 2019.
+\newblock [Online; accessed 09-December-2019].
+
+\bibitem{Project2}
+Jon~Andre Ottesen.
+\newblock Logistic regression and neural networks.
+\newblock
+  \url{https://github.com/JonOttesen/FYS-STK-Projects/tree/master/Project%202},
+  2019.
+\newblock [Online; accessed 12-Desember-2019].
+
+\bibitem{Greedy_H}
+John Tapsell.
+\newblock Nokia 6110 part 3 – algorithms.
+\newblock \url{https://johnflux.com/2015/05/02/nokia-6110-part-3-algorithms/},
+  2019.
+\newblock [Online; accessed 03-Desember-2019].
+
+\bibitem{wiki:Reinforcement_learning}
+Wikipedia.
+\newblock {Reinforcement learning} --- {W}ikipedia{,} the free encyclopedia.
+\newblock
+  \url{http://en.wikipedia.org/w/index.php?title=Reinforcement\%20learning&oldid=931421705},
+  2019.
+\newblock [Online; accessed 19-December-2019].
+
+\end{thebibliography}
